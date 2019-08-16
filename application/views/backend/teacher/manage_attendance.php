@@ -63,7 +63,7 @@
 
 
 <script type="text/javascript">
-    function select_section(class_id) 
+    function select_section(class_id)
     {
         $.ajax({
             url: '<?php echo base_url(); ?>admin/get_sectionss/' + class_id,

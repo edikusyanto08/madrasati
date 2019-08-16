@@ -16,13 +16,13 @@
       </div>
   <div class="content-i">
     <div class="content-box">
-        
+
         <div class="tab-content">
 		<div class="tab-pane active" id="permissions">
         <div class="element-wrapper">
                 <h6 class="element-header">
                   <?php echo get_phrase('behavior');?>
-                  <div style="margin-top:auto;text-align:right;"><a href="#" data-target="#addroutine" data-toggle="modal" class="btn btn-control btn-grey-lighter btn-purple"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
+                  <div style="margin-top:auto;float:left;"><a href="#" data-target="#addroutine" data-toggle="modal" class="btn btn-control btn-grey-lighter btn-purple"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
                 </h6>
                 <div class="element-box-tp">
                   <div class="table-responsive">
@@ -44,7 +44,7 @@
             	$this->db->order_by('request_id', 'desc');
             	$requests = $this->db->get_where('request', array('teacher_id' => $this->session->userdata('login_user_id')))->result_array();
             	foreach ($requests as $row):
-        	?>   
+        	?>
 				<tr>
 				    	<td>
 					    <?php if($row['status'] == 2):?>
@@ -70,7 +70,7 @@
 						<a href="<?php echo base_url();?>uploads/request/<?php echo $row['file'];?>" class="btn btn-rounded btn-sm btn-primary" style="color:white"><i class="os-icon picons-thin-icon-thin-0042_attachment"></i> <?php echo get_phrase('download');?></a>
 					<?php endif;?>
 					</td>
-				
+
 				</tr>
 			<?php endforeach;?>
                       </tbody>
@@ -79,8 +79,8 @@
                 </div>
               </div>
                 </div>
-                
-                
+
+
                     <div class="tab-pane" id="apply">
           <div class="element-wrapper">
             <div class="element-box lined-primary">
@@ -120,10 +120,10 @@
 			</div>
 			</div>
           </div>
-                
+
               </div>
-              
-     
+
+
       </div>
     </div>
     </div>

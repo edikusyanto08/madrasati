@@ -25,7 +25,7 @@
 	  </div>
     <div class="content-i">
         <div class="content-box">
-            <div style="margin: auto 0;float:right;"><button class="btn btn-success btn-rounded btn-upper" data-target="#new_semester" data-toggle="modal" type="button">+ <?php echo get_phrase('new_semester');?></button></div><br>
+            <div style="margin: auto 0;float:left;"><button class="btn btn-success btn-rounded btn-upper" data-target="#new_semester" data-toggle="modal" type="button">+ <?php echo get_phrase('new_semester');?></button></div><br>
             <div class="element-wrapper">
               <h6 class="element-header"><?php echo get_phrase('semesters');?></h6>
                 <div class="element-box-tp">
@@ -54,7 +54,7 @@
                   </div>
                 </div>
               </div>
- 
+
 <div class="modal fade" id="new_semester" tabindex="-1" role="dialog" aria-labelledby="new_semester" aria-hidden="true" style="top:10%;">
   <div class="modal-dialog window-popup edit-my-poll-popup" role="document">
     <div class="modal-content">
@@ -77,10 +77,9 @@
                         <button class="btn btn-rounded btn-success" type="submit"><?php echo get_phrase('save');?></button>
                     </div>
                 </div>
-            </form>          
+            </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-

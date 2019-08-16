@@ -18,7 +18,7 @@
 															<img src="<?php echo base_url();?>uploads/<?php echo $this->db->get_where('settings', array('type' => 'logo'))->row()->description;?>" style="background-color: #fff; padding:10px;">
 														</div>
 														<div class="author-content">
-															<a href="javascript:void(0);" class="h3 author-name"><?php echo get_phrase('calassrooms');?></a>
+															<a href="javascript:void(0);" class="h3 author-name"><?php echo get_phrase('classrooms');?></a>
 															<div class="country"><?php echo $this->db->get_where('settings', array('type' => 'system_name'))->row()->description;?>  |  <?php echo $this->db->get_where('settings', array('type' => 'system_title'))->row()->description;?></div>
 														</div>
 													</div>
@@ -34,9 +34,9 @@
             								<div class="aec-full-message-w">
                 								<div class="aec-full-message">
                     								<div class="container-fluid" style="background-color: #f2f4f8;"><br>
-                    									<div class="col-sm-12">     
+                    									<div class="col-sm-12">
 															<div class="row">
-																<?php 
+																<?php
 																    $this->db->order_by('dormitory_id', 'desc');
 																    $rooms = $this->db->get('dormitory')->result_array();
 					                                                foreach($rooms as $room):
@@ -44,7 +44,7 @@
                                   								<div class="col-sm-6">
 			                                                        <div class="ui-block list">
 			                                                            <div class="more" style="float:right; margin-right:15px; ">
-                                                                            <i class="icon-options"></i>                                
+                                                                            <i class="icon-options"></i>
                                                                             <ul class="more-dropdown" style="z-index:999">
                                                                                 <li><a href="javascript:void(0);" onclick="showAjaxModal('<?php echo base_url();?>modal/popup/modal_classrooms/<?php echo $room['dormitory_id'];?>');"><?php echo get_phrase('students');?></a></li>
                                                                                 <li><a href="javascript:void(0);" onclick="showAjaxModal('<?php echo base_url();?>modal/popup/modal_classroom/<?php echo $room['dormitory_id'];?>');"><?php echo get_phrase('edit');?></a></li>
@@ -65,10 +65,10 @@
           											</div>
               								</div>
             							</div>
-        							</div>      
-    							</div>	
+        							</div>
+    							</div>
   							</div>
-						</div>  
+						</div>
 					</div>
                   </div>
               </div>
@@ -78,7 +78,7 @@
   </div>
 </div>
 
- 
+
 <div class="modal fade" id="crearadmin" tabindex="-1" role="dialog" aria-labelledby="crearadmin" aria-hidden="true" style="top:10%;">
   <div class="modal-dialog window-popup edit-my-poll-popup" role="document">
     <div class="modal-content">
@@ -100,10 +100,9 @@
                         <button class="btn btn-rounded btn-success" type="submit"><?php echo get_phrase('save');?></button>
                     </div>
                 </div>
-            </form>          
+            </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-

@@ -1,12 +1,12 @@
 <?php $events = $this->db->get('events')->result_array();?>
-<div class="content-w" > 
+<div class="content-w" >
     <?php include 'fancy.php';?>
     <div class="header-spacer"></div>
       <div class="conty"><br>
         <div class="container-fluid">
          <div class="layout-w">
           <div class="content-w">
-            <div class="container-fluid"> 
+            <div class="container-fluid">
               <div class="element-box">
                 <h3 class="form-header"><?php echo get_phrase('calendar_events');?></h3><br>
                 <div class="table-responsive">
@@ -35,18 +35,18 @@
                   <div class="select">
                     <select name="color" id="color" required="">
                       <option value=""><?php echo get_phrase('select');?></option>
-                      <option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
-                      <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
-                      <option style="color:#008000;" value="#008000">&#9724; Green</option>             
-                      <option style="color:#FFD700;" value="#FFD700">&#9724; Yellow</option>
-                      <option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
-                      <option style="color:#FF0000;" value="#FF0000">&#9724; Red</option>
-                      <option style="color:#000;" value="#000">&#9724; Black</option>
+                      <option style="color:#0071c5;" value="#0071c5">&#9724; <?php echo get_phrase('Dark blue');?></option>
+                      <option style="color:#40E0D0;" value="#40E0D0">&#9724; <?php echo get_phrase('Turquoise');?></option>
+                      <option style="color:#008000;" value="#008000">&#9724; <?php echo get_phrase('Green');?></option>
+                      <option style="color:#FFD700;" value="#FFD700">&#9724; <?php echo get_phrase('Yellow');?></option>
+                      <option style="color:#FF8C00;" value="#FF8C00">&#9724; <?php echo get_phrase('Orange');?></option>
+                      <option style="color:#FF0000;" value="#FF0000">&#9724; <?php echo get_phrase('Red');?></option>
+                      <option style="color:#000;" value="#000">&#9724; <?php echo get_phrase('Black');?></option>
                     </select>
                   </div>
                 </div>
                 <input type="hidden" name="id" class="form-control" id="id">
-                <div class="form-group"> 
+                <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
                       <label class="text-danger"><input type="checkbox"  name="delete"> <?php echo get_phrase('delete');?></label>
@@ -77,13 +77,13 @@
               <div class="select">
                 <select name="color" id="color" required="">
                   <option value=""><?php echo get_phrase('select');?></option>
-                  <option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
-                  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
-                  <option style="color:#008000;" value="#008000">&#9724; Green</option>             
-                  <option style="color:#FFD700;" value="#FFD700">&#9724; Yellow</option>
-                  <option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
-                  <option style="color:#FF0000;" value="#FF0000">&#9724; Red</option>
-                  <option style="color:#000;" value="#000">&#9724; Black</option>
+                  <option style="color:#0071c5;" value="#0071c5">&#9724; <?php echo get_phrase('Dark blue');?></option>
+                  <option style="color:#40E0D0;" value="#40E0D0">&#9724; <?php echo get_phrase('Turquoise');?></option>
+                  <option style="color:#008000;" value="#008000">&#9724; <?php echo get_phrase('Green');?></option>
+                  <option style="color:#FFD700;" value="#FFD700">&#9724; <?php echo get_phrase('Yellow');?></option>
+                  <option style="color:#FF8C00;" value="#FF8C00">&#9724; <?php echo get_phrase('Orange');?></option>
+                  <option style="color:#FF0000;" value="#FF0000">&#9724; <?php echo get_phrase('Red');?></option>
+                  <option style="color:#000;" value="#000">&#9724; <?php echo get_phrase('Black');?></option>
                 </select>
               </div>
             </div>
@@ -102,8 +102,8 @@
       </div>
     </div>
 <script>
-    $(document).ready(function() 
-    {   
+    $(document).ready(function()
+    {
         $('#calendar').fullCalendar({
             header: {
             left: 'prev,next today',
@@ -117,7 +117,7 @@
             eventLimit: true,
             selectable: true,
             selectHelper: true,
-            select: function(start, end) {        
+            select: function(start, end) {
             $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
             $('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
             $('#ModalAdd').modal('show');
@@ -126,8 +126,8 @@
                         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                             $('#calendar').fullCalendar('changeView', 'agendaDay');
                         }
-                }, 
-        eventRender: function(event, element) 
+                },
+        eventRender: function(event, element)
         {
           element.bind('dblclick', function() {
             $('#ModalEdit #id').val(event.id);
@@ -143,7 +143,7 @@
           edit(event);
         },
         events: [
-        <?php foreach($events as $event): 
+        <?php foreach($events as $event):
           $start = explode(" ", $event['start']);
           $end = explode(" ", $event['end']);
           if($start[1] == '00:00:00'){
@@ -175,11 +175,11 @@
         }else{
           end = start;
         }
-        id =  event.id;     
+        id =  event.id;
         Event = [];
         Event[0] = id;
         Event[1] = start;
-        Event[2] = end;     
+        Event[2] = end;
         $.ajax({
         url: '<?php echo base_url();?>admin/calendar/update_date/',
         type: "POST",
@@ -197,7 +197,7 @@
                             title: '<?php echo get_phrase('successfully_updated');?>'
                         })
             }else{
-              alert('Error update'); 
+              alert('Error update');
             }
           }
         });

@@ -1,21 +1,21 @@
-<?php 
+<?php
    require_once "face/config.php";
    $redirectURL = base_url()."auth/facebook/";
    $permissions = ['email'];
    $loginURL = $helper->getLoginUrl($redirectURL, $permissions);
 ?>
-<?php 
+<?php
     $student_id = $this->session->userdata('login_user_id');
-    $student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array(); 
+    $student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array();
     foreach($student_info as $row): ?>
-<div class="content-w"> 
+<div class="content-w">
 	<?php include 'fancy.php';?>
 	<div class="header-spacer"></div>
 	<div class="content-i">
 		<div class="content-box">
 			<div class="conty">
     			<div class="row">
-        			<main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">                
+        			<main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
             			<div id="newsfeed-items-grid">
     						<div class="ui-block paddingtel">
           						<div class="user-profile">
@@ -41,7 +41,7 @@
           								        </div>
           								        <div class="value-pair">
           								            <div><?php echo get_phrase('member_since');?>:</div>
-          								            <div class="value"><?php echo $row['since'];?>.</div>
+          								            <div class="value" style="direction: ltr;"><?php echo $row['since'];?>.</div>
           								        </div>
           								        <div class="value-pair">
           								            <div><?php echo get_phrase('roll');?>:</div>
@@ -51,55 +51,55 @@
           								</div>
           							</div>
           							<div class="ui-block">
-										<div class="ui-block-title">		
+										<div class="ui-block-title">
 											<h6 class="title"><?php echo get_phrase('update_information');?></h6>
 										</div>
 										<?php echo form_open(base_url() . 'student/my_profile/update' , array('enctype' => 'multipart/form-data'));?>
 										<div class="ui-block-content">
-											<div class="row">									
+											<div class="row">
     										<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 											    <div class="form-group label-floating">
     												<label class="control-label"><?php echo get_phrase('first_name');?></label>
 												    <input class="form-control" disabled value="<?php echo $row['first_name'];?>" type="text" required="">
 											    </div>
-						    			    </div>							
+						    			    </div>
 										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('last_name');?></label>
 												    <input class="form-control" disabled value="<?php echo $row['last_name'];?>" type="text" required="">
-											    </div>								
-						   				    </div>						   	
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+											    </div>
+						   				    </div>
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('email');?></label>
 												    <input class="form-control" name="email" value="<?php echo $row['email'];?>" type="email">
 											    </div>
-						    			    </div>							
-										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+						    			    </div>
+										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('phone');?></label>
 												    <input class="form-control" name="phone" value="<?php echo $row['phone'];?>" type="text">
 											    </div>
-						   				    </div>	
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+						   				    </div>
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('update_password');?></label>
 												    <input class="form-control" name="password" type="password">
 											    </div>
-						   				    </div>		
-										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+						   				    </div>
+										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('address');?></label>
 												    <input class="form-control" name="address" value="<?php echo $row['address'];?>" type="text">
 											    </div>
 										    </div>
-										    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">								
+										    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
     											<div class="form-group">
 												    <label class="control-label"><?php echo get_phrase('photo');?></label>
 												    <input class="form-control" placeholder="" name="userfile" type="file">
 											    </div>
 						    			    </div>
-						    			    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">	
+						    			    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
 						    			    <button class="btn btn-info btn-rounded pull-right" type="submit"><?php echo get_phrase('update');?></button>
 						    			    </div>
 									    </div>
@@ -146,7 +146,7 @@
 											</ul>
 										</div>
 									</div>
-									
+
 									<h4 class="text-center"><?php echo get_phrase('your_linked_accounts');?></h4>
     <?php $photo = $this->db->get_where('student', array('student_id' => $this->session->userdata('login_user_id')))->row()->fb_photo;?>
     <?php $name = $this->db->get_where('student', array('student_id' => $this->session->userdata('login_user_id')))->row()->fb_name;?>
@@ -206,7 +206,7 @@
         </div>
       </div>
     </div>
-    
+
 								</div>
                 			</div>
             			</div>

@@ -25,8 +25,8 @@
 	  </div>
  <div class="content-i">
   <div class="content-box">
-      
-      <div style="margin: auto 0;float:right;"><button class="btn btn-success btn-rounded btn-upper" data-target="#new_grade" data-toggle="modal" type="button">+ <?php echo get_phrase('new');?></button></div><br>
+
+      <div style="margin: auto 0;float:left;"><button class="btn btn-success btn-rounded btn-upper" data-target="#new_grade" data-toggle="modal" type="button">+ <?php echo get_phrase('new');?></button></div><br>
           <div class="element-wrapper">
               <h6 class="element-header"><?php echo get_phrase('grade_levels');?></h6>
                 <div class="element-box-tp">
@@ -41,7 +41,7 @@
                             <th class="text-center"><?php echo get_phrase('options');?></th>
                         </tr>
                       </thead>
-                        <?php 
+                        <?php
                             $grades = $this->db->get('grade')->result_array();
                             foreach($grades as $row):
                         ?>
@@ -61,9 +61,9 @@
                   </div>
                 </div>
               </div>
-              
-              
-              
+
+
+
               <div class="modal fade" id="new_grade" tabindex="-1" role="dialog" aria-labelledby="new_grade" aria-hidden="true">
       <div class="modal-dialog window-popup create-friend-group create-friend-group-1" role="document">
         <div class="modal-content">

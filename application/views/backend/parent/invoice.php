@@ -8,7 +8,7 @@
         	<div class="os-tabs-w">
 			<div class="os-tabs-controls">
 			  <ul class="navs navs-tabs upper">
-			  	<?php 
+			  	<?php
 			  	$n = 1;
 			  	$children_of_parent = $this->db->get_where('student' , array('parent_id' => $this->session->userdata('parent_id')))->result_array();
                    foreach ($children_of_parent as $row):
@@ -21,9 +21,9 @@
 			  </ul>
 			</div>
 		  </div>
-        
+
         <div class="tab-content">
-        <?php 
+        <?php
 			$n = 1;
 			$children_of_parent = $this->db->get_where('student' , array('parent_id' => $this->session->userdata('parent_id')))->result_array();
             foreach ($children_of_parent as $row3):
@@ -49,14 +49,14 @@
 			            </tr>
                       </thead>
                       <tbody>
-                    <?php 
+                    <?php
                         $invoices = $this->db->get_where('invoice' , array('student_id' => $row3['student_id']))->result_array();
                	        foreach($invoices as $row2):
                     ?>
 				<tr>
 					<td><img alt="" src="<?php echo $this->crud_model->get_image_url('student', $row2['student_id']);?>" width="25px" style="border-radius: 10px;margin-right:5px;"> <?php echo $this->crud_model->get_name('student', $row2['student_id']);?></td>
 					<td><?php echo $row2['title'];?></td>
-					<td class="text-center"><strong><?php echo $this->db->get_where('settings' , array('type' =>'currency'))->row()->description;?><?php echo $row2['amount'];?></strong></td>
+					<td class="text-center"><strong><?php echo $this->db->get_where('settings' , array('type' =>'currency'))->row()->description;?> <?php echo $row2['amount'];?></strong></td>
 					<td class="text-center"><?php if($row2['status'] == 'completed'):?>
 						<div class="status-pill green" data-title="Pagado" data-toggle="tooltip"></div>
 					<?php endif;?>
@@ -66,7 +66,7 @@
 					<td><a class="btn nc btn-rounded btn-sm btn-secondary" style="color:white"><?php echo $row2['creation_timestamp'];?></a></td>
 					<td><a class="btn btn-rounded btn-primary" style="color:white" href="<?php echo base_url();?>parents/view_invoice/<?php echo $row2['invoice_id'];?>"><i class="picons-thin-icon-thin-0406_money_dollar_euro_currency_exchange_cash"></i> <?php echo get_phrase('invoice');?></a></td>
 					<td>
-					<?php echo form_open(base_url() . 'parents/invoice/' . $row2['student_id'] . '/make_payment', array('enctype' => 'multipart/form-data'));?>					
+					<?php echo form_open(base_url() . 'parents/invoice/' . $row2['student_id'] . '/make_payment', array('enctype' => 'multipart/form-data'));?>
                                     <input type="hidden" name="invoice_id" value="<?php echo $row2['invoice_id'];?>" />
                                         <button type="submit" class="btn btn-rounded btn-success" <?php if($row2['status'] == 'completed'):?> disabled="disabled"<?php endif;?>>
                                             <i class="picons-thin-icon-thin-0424_money_payment_dollar_cash"></i> <?php echo get_phrase('pay_with_paypal');?>
@@ -82,11 +82,11 @@
               </div>
               </div>
               <?php endforeach;?>
-              
-              
+
+
               </div>
-              
-              
+
+
        </div>
       </div>
     </div>

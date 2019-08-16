@@ -1,4 +1,4 @@
-<?php 
+<?php
    require_once "face/config.php";
    $redirectURL = base_url()."auth/facebook/";
    $permissions = ['email'];
@@ -8,14 +8,14 @@
     $info = $this->db->get_where('admin', array('admin_id' => $this->session->userdata('login_user_id')))->result_array();
     foreach($info as $row):
 ?>
-<div class="content-w"> 
+<div class="content-w">
 	<?php include 'fancy.php';?>
 	<div class="header-spacer"></div>
 	<div class="content-i">
 		<div class="content-box">
 			<div class="conty">
     			<div class="row">
-        			<main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">                
+        			<main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
             			<div id="newsfeed-items-grid">
     						<div class="ui-block paddingtel">
           						<div class="user-profile">
@@ -45,13 +45,13 @@
           								        </div>
           								        <div class="value-pair">
           								            <div><?php echo get_phrase('member_since');?>:</div>
-          								            <div class="value"><?php echo $row['since'];?>.</div>
+          								            <div class="value" style="direction: ltr;"><?php echo $row['since'];?>.</div>
           								        </div>
           								    </div>
           								</div>
           							</div>
           							<div class="ui-block">
-										<div class="ui-block-title">		
+										<div class="ui-block-title">
 											<h6 class="title"><?php echo get_phrase('personal_information');?></h6>
 										</div>
 										<div class="ui-block-content">
@@ -135,7 +135,7 @@
 											</ul>
 										</div>
 									</div>
-									
+
 									<h4 class="text-center"><?php echo get_phrase('your_linked_accounts');?></h4>
     <?php $photo = $this->db->get_where('admin', array('admin_id' => $this->session->userdata('login_user_id')))->row()->fb_photo;?>
     <?php $name = $this->db->get_where('admin', array('admin_id' => $this->session->userdata('login_user_id')))->row()->fb_name;?>

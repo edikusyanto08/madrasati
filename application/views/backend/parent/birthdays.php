@@ -31,7 +31,7 @@
                                                   <div class="aec-full-message-w">
                                                        <div class="aec-full-message">
                                                             <div class="container-fluid" style="background-color: #f2f4f8;"><br>
-                                                                 <div class="col-sm-12">                           
+                                                                 <div class="col-sm-12">
                                                                            <div class="row">
                                                                                 <?php
                                                                                      for ($i = 1; $i <= 12; $i++):
@@ -42,8 +42,8 @@
                                                                                      else if ($i == 5) {$m = get_phrase('may'); $ma = 05;}
                                                                                      else if ($i == 6) {$m = get_phrase('june'); $ma = 06;}
                                                                                      else if ($i == 7) {$m = get_phrase('july'); $ma = 07;}
-                                                                                     else if ($i == 8) {$m = get_phrase('august'); $ma = 08;}
-                                                                                     else if ($i == 9) {$m = get_phrase('september'); $ma = 09;}
+                                                                                     else if ($i == 8) {$m = get_phrase('august'); $ma = 8;}
+                                                                                     else if ($i == 9) {$m = get_phrase('september'); $ma = 9;}
                                                                                      else if ($i == 10) {$m = get_phrase('october'); $ma = 10;}
                                                                                      else if ($i == 11) {$m = get_phrase('november'); $ma = 11;}
                                                                                      else if ($i == 12) {$m = get_phrase('december');  $ma = 12;}
@@ -55,7 +55,7 @@
                                                                                                </div>
                                                                                           </div>
                                                                                      </div>
-                                                                                     <?php 
+                                                                                     <?php
                                                                                           $data = $this->crud_model->get_birthdays_by_month($ma);
                                                                                           foreach($data as $day):
                                                                                      ?>
@@ -78,10 +78,10 @@
                                                                       </div>
                                                                  </div>
                                                             </div>
-                                                       </div>      
-                                                  </div>    
+                                                       </div>
+                                                  </div>
                                              </div>
-                                        </div>  
+                                        </div>
                                    </div>
                               </div>
                          </div>

@@ -34,7 +34,7 @@
             <div class="element-wrapper">
                 <h6 class="element-header">
                   <?php echo get_phrase('student_reports');?>
-                  <div style="margin-top:auto;text-align:right;"><a href="#" data-target="#addroutine" data-toggle="modal" class="btn btn-control btn-grey-lighter btn-purple"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
+                  <div style="margin-top:auto;float:left;"><a href="#" data-target="#addroutine" data-toggle="modal" class="btn btn-control btn-grey-lighter btn-purple"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
                 </h6>
                 <div class="element-box-tp">
                   <div class="table-responsive">
@@ -52,7 +52,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php 
+                        <?php
                             $this->db->order_by('id', 'desc');
                             $reports = $this->db->get('reports')->result_array();
 					        foreach($reports as $row):
@@ -94,9 +94,9 @@
                 </div>
               </div>
       </div>
-      
-      
-      
+
+
+
       <div class="tab-pane" id="teachers">
 		  <div class="element-wrapper">
                 <h6 class="element-header">
@@ -116,7 +116,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                          <?php 
+                          <?php
 				            $reports = $this->db->get('reporte_alumnos')->result_array();
 				            foreach($reports as $row):
 			            ?>
@@ -152,12 +152,12 @@
           </div>
             </div>
           </div>
-          
-          
-          
-          
+
+
+
+
       </div>
-    </div>      
+    </div>
   </div>
 </div>
 <div class="display-type"></div>
@@ -182,7 +182,7 @@
                 		    <span class="material-input"></span>
                 	    </div>
                     </div>
-                    
+
                   <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group label-floating is-select">
                             <label class="control-label"><?php echo get_phrase('class');?></label>
@@ -247,7 +247,7 @@
                     <div class="form-buttons-w text-right">
                         <center><button class="btn btn-rounded btn-success" type="submit"><?php echo get_phrase('save');?></button></center>
                     </div>
-                <?php echo form_close();?>        
+                <?php echo form_close();?>
             </div>
         </div>
         </div>
@@ -257,7 +257,7 @@
 
 
 <script type="text/javascript">
-    function get_class_sections(class_id) 
+    function get_class_sections(class_id)
     {
         $.ajax({
             url: '<?php echo base_url();?>admin/get_class_section/' + class_id ,

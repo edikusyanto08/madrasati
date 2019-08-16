@@ -19,7 +19,7 @@
                           </div>
                         </div>
                         <div class="profile-section" style="background-color: #fff;">
-                          <div class="control-block-button">                                    
+                          <div class="control-block-button">
                           </div>
                         </div>
                       </div>
@@ -31,7 +31,7 @@
             <div class="element-wrapper">
                 <h6 class="element-header">
                   <?php echo get_phrase('school_bus');?>
-                  <div style="margin-top:auto;float:right;"><a href="#" data-target="#crearadmin" data-toggle="modal" class="btn btn-control btn-grey-lighter btn-purple"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
+                  <div style="margin-top:auto;float:left;"><a href="#" data-target="#crearadmin" data-toggle="modal" class="btn btn-control btn-grey-lighter btn-purple"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
                 </h6>
                 <div class="element-box-tp">
                   <div class="table-responsive">
@@ -57,7 +57,7 @@
 					        <td><a class="btn nc btn-rounded btn-sm btn-primary" style="color:white"><?php echo $buss['number_of_vehicle'];?></a></td>
     					    <td><?php echo $buss['driver_name'];?></td>
 					        <td><?php echo $buss['driver_phone'];?></td>
-					        <td><a class="btn nc btn-rounded btn-sm btn-success" style="color:white"><span><?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?></span><?php echo $buss['route_fare'];?></a></td>
+					        <td><a class="btn nc btn-rounded btn-sm btn-success" style="color:white"><span><?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?>&nbsp</span><?php echo $buss['route_fare'];?></a></td>
 					        <td>
 						        <a style="color:grey;" href="javascript:void(0);" onclick="showAjaxModal('<?php echo base_url();?>modal/popup/modal_bus/<?php echo $buss['transport_id'];?>');"><i class="picons-thin-icon-thin-0729_student_degree_science_university_school_graduate"></i></a>
 						        <a style="color:grey;" href="javascript:void(0);" onclick="showAjaxModal('<?php echo base_url();?>modal/popup/modal_transport/<?php echo $buss['transport_id'];?>');"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i></a>
@@ -72,14 +72,14 @@
               </div>
       </div>
       </div>
-    </div>      
+    </div>
   </div>
 </div>
 <div class="display-type"></div>
 </div>
 
 
- 
+
 <div class="modal fade" id="crearadmin" tabindex="-1" role="dialog" aria-labelledby="crearadmin" aria-hidden="true" style="top:10%;">
   <div class="modal-dialog window-popup edit-my-poll-popup" role="document">
     <div class="modal-content">
@@ -132,10 +132,9 @@
                         <button class="btn btn-rounded btn-success" type="submit"><?php echo get_phrase('save');?></button>
                     </div>
                 </div>
-            </form>          
+            </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-

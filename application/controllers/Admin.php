@@ -7,10 +7,10 @@
             $this->load->database();
             $this->load->library('session');
             $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-            $this->output->set_header('Pragma: no-cache');    
+            $this->output->set_header('Pragma: no-cache');
             $this->load->library('excel');
         }
-        
+
         public function index()
         {
             if ($this->session->userdata('admin_login') != 1)
@@ -22,7 +22,7 @@
                 redirect(base_url() . 'admin/panel/', 'refresh');
             }
         }
-    
+
         function panel($param1 = '', $param2 = '')
         {
             if ($this->session->userdata('admin_login') != 1)
@@ -40,40 +40,40 @@
             $page_data['page_title'] = get_phrase('dashboard');
             $this->load->view('backend/index', $page_data);
         }
-        
-        function news($param1 = '', $param2 = '', $param3 = '') 
+
+        function news($param1 = '', $param2 = '', $param3 = '')
         {
-            if ($this->session->userdata('admin_login') != 1) 
+            if ($this->session->userdata('admin_login') != 1)
             {
                 $this->session->set_userdata('last_page', current_url());
                 redirect(base_url(), 'refresh');
             }
-            if ($param1 == 'create') 
+            if ($param1 == 'create')
             {
                 $this->crud_model->create_news();
                 $this->crud_model->send_news_notify();
                 $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
                 redirect(base_url() . 'admin/panel/', 'refresh');
             }
-            if ($param1 == 'update_panel') 
+            if ($param1 == 'update_panel')
             {
                 $this->crud_model->update_panel_news($param2);
                 $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
                 redirect(base_url() . 'admin/panel/', 'refresh');
             }
-            if ($param1 == 'update_news') 
+            if ($param1 == 'update_news')
             {
                 $this->crud_model->update_panel_news($param2);
                 $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
                 redirect(base_url() . 'admin/news/', 'refresh');
             }
-            if ($param1 == 'delete') 
+            if ($param1 == 'delete')
             {
                 $this->crud_model->delete_news($param2);
                 $this->session->set_flashdata('flash_message' , get_phrase('successfully_deleted'));
                 redirect(base_url() . 'admin/panel/', 'refresh');
             }
-            if ($param1 == 'delete2') 
+            if ($param1 == 'delete2')
             {
                 $this->crud_model->delete_news($param2);
                 $this->session->set_flashdata('flash_message' , get_phrase('successfully_deleted'));
@@ -83,8 +83,8 @@
             $page_data['page_title'] = get_phrase('news');
             $this->load->view('backend/index', $page_data);
         }
-        
-        function message($param1 = 'message_home', $param2 = '', $param3 = '') 
+
+        function message($param1 = 'message_home', $param2 = '', $param3 = '')
         {
             parse_str(substr(strrchr($_SERVER['REQUEST_URI'], "?"), 1), $_GET);
             if ($this->session->userdata('admin_login') != 1)
@@ -97,23 +97,23 @@
                 $this->db->where('id', $_GET['id']);
                 $this->db->update('notification', $notify);
             }
-            if ($param1 == 'send_new') 
+            if ($param1 == 'send_new')
             {
                 $this->session->set_flashdata('flash_message' , get_phrase('message_sent'));
                 $message_thread_code = $this->crud_model->send_new_private_message();
                 move_uploaded_file($_FILES["file_name"]["tmp_name"], "uploads/messages/" . $_FILES["file_name"]["name"]);
                 redirect(base_url() . 'admin/message/message_read/' . $message_thread_code, 'refresh');
             }
-            if ($param1 == 'send_reply') 
+            if ($param1 == 'send_reply')
             {
                 $this->session->set_flashdata('flash_message' , get_phrase('reply_sent'));
                 $this->crud_model->send_reply_message($param2);
                 move_uploaded_file($_FILES["file_name"]["tmp_name"], "uploads/messages/" . $_FILES["file_name"]["name"]);
                 redirect(base_url() . 'admin/message/message_read/' . $param2, 'refresh');
             }
-            if ($param1 == 'message_read') 
+            if ($param1 == 'message_read')
             {
-                $page_data['current_message_thread_code'] = $param2; 
+                $page_data['current_message_thread_code'] = $param2;
                 $this->crud_model->mark_thread_messages_read($param2);
             }
             $page_data['infouser'] = $param2;
@@ -122,7 +122,7 @@
             $page_data['page_title']                = get_phrase('private_messages');
             $this->load->view('backend/index', $page_data);
         }
-    
+
         function group($param1 = "group_message_home", $param2 = "", $param3 = '')
         {
             if ($this->session->userdata('admin_login') != 1)
@@ -130,7 +130,7 @@
                 redirect(base_url(), 'refresh');
             }
             $max_size = 2097152;
-            if ($param1 == "create_group") 
+            if ($param1 == "create_group")
             {
                 $this->crud_model->create_group();
                 $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
@@ -145,32 +145,32 @@
                 $this->session->set_flashdata('flash_message' , get_phrase('successfully_deleted'));
                 redirect(base_url() . 'admin/group/', 'refresh');
             }
-            elseif ($param1 == "edit_group") 
+            elseif ($param1 == "edit_group")
             {
                 $this->crud_model->update_group($param2);
                 $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
                 redirect(base_url() . 'admin/group/', 'refresh');
             }
-            else if ($param1 == 'group_message_read') 
+            else if ($param1 == 'group_message_read')
             {
                 $page_data['current_message_thread_code'] = $param2;
             }
-            else if ($param1 == 'create_message_group') 
+            else if ($param1 == 'create_message_group')
             {
                 $page_data['current_message_thread_code'] = $param2;
             }
-            else if ($param1 == 'update_group') 
+            else if ($param1 == 'update_group')
             {
                 $page_data['current_message_thread_code'] = $param2;
             }
             else if($param1 == 'send_reply')
             {
-                if(!file_exists('uploads/group_messaging_attached_file/')) 
+                if(!file_exists('uploads/group_messaging_attached_file/'))
                 {
                     $oldmask = umask(0);
                     mkdir ('uploads/group_messaging_attached_file/', 0777);
                 }
-                if ($_FILES['attached_file_on_messaging']['name'] != "") 
+                if ($_FILES['attached_file_on_messaging']['name'] != "")
                 {
                     if($_FILES['attached_file_on_messaging']['size'] > $max_size)
                     {
@@ -182,7 +182,7 @@
                         move_uploaded_file($_FILES['attached_file_on_messaging']['tmp_name'], $file_path);
                     }
                 }
-    
+
                 $this->crud_model->send_reply_group_message($param2);
                 $this->session->set_flashdata('flash_message', get_phrase('message_sent'));
                 redirect(base_url() . 'admin/group/group_message_read/'.$param2, 'refresh');
@@ -192,7 +192,7 @@
             $page_data['page_title']                = get_phrase('message_group');
             $this->load->view('backend/index', $page_data);
         }
-    
+
         function pending($param1 = '', $param2 = '')
         {
             if ($this->session->userdata('admin_login') != 1)
@@ -203,7 +203,7 @@
             $page_data['page_title'] = get_phrase('pending_users');
             $this->load->view('backend/index', $page_data);
         }
-    
+
     function students_report($param1 = '', $param2 = '')
     {
       if ($this->session->userdata('admin_login') != 1)
@@ -216,7 +216,7 @@
       $page_data['page_title']  = get_phrase('students_report');
       $this->load->view('backend/index', $page_data);
     }
-    
+
     function general_reports($class_id = '', $section_id = '')
     {
       if ($this->session->userdata('admin_login') != 1)
@@ -229,14 +229,14 @@
       $page_data['page_title']  = get_phrase('general_reports');
       $this->load->view('backend/index', $page_data);
     }
-    
+
     function all($class_id = '', $section_id = '')
     {
       if ($this->session->userdata('admin_login') != 1)
       {
         redirect(base_url(), 'refresh');
       }
-      
+
       $page_data['page_name']   = 'all';
       $page_data['page_title']  = get_phrase('my_files');
       $this->load->view('backend/index', $page_data);
@@ -245,7 +245,7 @@
     function birthdays()
     {
         if ($this->session->userdata('admin_login') != 1)
-        { 
+        {
             redirect(base_url(), 'refresh');
         }
         $page_data['page_name']  = 'birthdays';
@@ -256,10 +256,10 @@
     function librarian($param1 = '', $param2 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
-        { 
+        {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $md5 = md5(date('d-m-Y H:i:s'));
             $data['first_name']        = $this->input->post('first_name');
@@ -280,7 +280,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/librarian/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['first_name']         = $this->input->post('first_name');
@@ -292,7 +292,7 @@
             $data['idcard']     = $this->input->post('idcard');
             $data['address']     = $this->input->post('address');
             if($this->input->post('password') != ""){
-                $data['password']     = sha1($this->input->post('password'));   
+                $data['password']     = sha1($this->input->post('password'));
             }
             if($_FILES['userfile']['name'] != ""){
                 $data['image']     = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
@@ -303,7 +303,7 @@
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/librarian_image/' . $md5.str_replace(' ', '', $_FILES['userfile']['name']));
             redirect(base_url() . 'admin/librarian/', 'refresh');
         }
-        if ($param1 == 'update_profile') 
+        if ($param1 == 'update_profile')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['first_name']         = $this->input->post('first_name');
@@ -315,7 +315,7 @@
             $data['phone']     = $this->input->post('phone');
             $data['address']     = $this->input->post('address');
             if($this->input->post('password') != ""){
-                $data['password']     = sha1($this->input->post('password'));   
+                $data['password']     = sha1($this->input->post('password'));
             }
             if($_FILES['userfile']['name'] != ""){
                 $data['image']     = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
@@ -326,7 +326,7 @@
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/librarian_image/' . $md5.str_replace(' ', '', $_FILES['userfile']['name']));
             redirect(base_url() . 'admin/librarian_update/'.$param2.'/', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('librarian_id', $param2);
             $this->db->delete('librarian');
@@ -348,7 +348,7 @@
         $page_data['page_title'] = get_phrase('upload_files');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function new_payment($param1 = '', $param2 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -359,7 +359,7 @@
         $page_data['page_title'] = get_phrase('new_payment');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function recent()
     {
         if($this->session->userdata('admin_login')!=1)
@@ -377,7 +377,7 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $md5 = md5(date('d-m-Y H:i:s'));
             $data['first_name']        = $this->input->post('first_name');
@@ -398,7 +398,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/accountant/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['first_name']         = $this->input->post('first_name');
@@ -410,7 +410,7 @@
             $data['idcard']     = $this->input->post('idcard');
             $data['address']     = $this->input->post('address');
             if($this->input->post('password') != ""){
-                $data['password']     = sha1($this->input->post('password'));   
+                $data['password']     = sha1($this->input->post('password'));
             }
             if($_FILES['userfile']['name'] != ""){
                 $data['image']     = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
@@ -421,7 +421,7 @@
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/accountant_image/' . $md5.str_replace(' ', '', $_FILES['userfile']['name']));
             redirect(base_url() . 'admin/accountant/', 'refresh');
         }
-        if ($param1 == 'update_profile') 
+        if ($param1 == 'update_profile')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['first_name']         = $this->input->post('first_name');
@@ -433,7 +433,7 @@
             $data['phone']     = $this->input->post('phone');
             $data['address']     = $this->input->post('address');
             if($this->input->post('password') != ""){
-                $data['password']     = sha1($this->input->post('password'));   
+                $data['password']     = sha1($this->input->post('password'));
             }
             if($_FILES['userfile']['name'] != ""){
                 $data['image']     = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
@@ -444,7 +444,7 @@
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/accountant_image/' . $md5.str_replace(' ', '', $_FILES['userfile']['name']));
             redirect(base_url() . 'admin/accountant_update/'.$param2.'/', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('accountant_id', $param2);
             $this->db->delete('accountant');
@@ -480,7 +480,7 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'do_update') 
+        if ($param1 == 'do_update')
         {
             $data['description'] = $this->input->post('report_teacher');
             $this->db->where('type' , 'students_reports');
@@ -508,16 +508,16 @@
         $page_data['settings']   = $this->db->get('settings')->result_array();
         $this->load->view('backend/index', $page_data);
     }
-    
-    function query() 
+
+    function query()
     {
         if($_POST['b'] != "")
-        {       
+        {
             $this->db->like('name' , $_POST['b']);
             $query = $this->db->get_where('student')->result_array();
             if(count($query) > 0)
             {
-                foreach ($query as $row) 
+                foreach ($query as $row)
                 {
                     echo '<p style="text-align: left; color:#fff; font-size:14px;"><a style="text-align: left; color:#fff; font-weight: bold;" href="'.base_url().'admin/student_portal/'. $row['student_id'] .'/">'. $row['name'] .'</a>' ." &nbsp;".$status.""."</p>";
                 }
@@ -526,7 +526,7 @@
             }
         }
     }
- 
+
     function new_student($param1 = '', $param2 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -544,7 +544,7 @@
         {
             redirect(site_url('login'), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['name']        = $this->input->post('name');
             $data['grade_point'] = $this->input->post('point');
@@ -554,7 +554,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/grade/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $data['name']        = $this->input->post('name');
             $data['grade_point'] = $this->input->post('point');
@@ -565,7 +565,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/grade/', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('grade_id', $param2);
             $this->db->delete('grade');
@@ -588,95 +588,95 @@
             $data['permissions'] = $this->input->post('messages');
             $this->db->where('type' , 'messages');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('admins');
             $this->db->where('type' , 'admins');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('parents');
             $this->db->where('type' , 'parents');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('teachers');
             $this->db->where('type' , 'teachers');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('students');
             $this->db->where('type' , 'students');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('accountants');
             $this->db->where('type' , 'accountants');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('librarians');
             $this->db->where('type' , 'librarians');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('library');
             $this->db->where('type' , 'library');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('academic');
             $this->db->where('type' , 'academic');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('attendance');
             $this->db->where('type' , 'attendance');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('calendar');
             $this->db->where('type' , 'calendar');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('files');
             $this->db->where('type' , 'files');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('polls');
             $this->db->where('type' , 'polls');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('notifications');
             $this->db->where('type' , 'notifications');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('admissions');
             $this->db->where('type' , 'admissions');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('behavior');
             $this->db->where('type' , 'behavior');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('news');
             $this->db->where('type' , 'news');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('school_bus');
             $this->db->where('type' , 'school_bus');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('classrooms');
             $this->db->where('type' , 'classrooms');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('accounting');
             $this->db->where('type' , 'accounting');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('schedules');
             $this->db->where('type' , 'schedules');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('system_reports');
             $this->db->where('type' , 'system_reports');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('academic_settings');
             $this->db->where('type' , 'academic_settings');
             $this->db->update('account_role' , $data);
-            
+
             $data['permissions'] = $this->input->post('settings');
             $this->db->where('type' , 'settings');
             $this->db->update('account_role' , $data);
@@ -687,14 +687,14 @@
         $page_data['page_title']                = get_phrase('users');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function admins($param1 = '' , $param2 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['first_name']         = $this->input->post('first_name');
@@ -715,7 +715,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/admins/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['first_name']         = $this->input->post('first_name');
@@ -723,13 +723,13 @@
             $data['username']     = $this->input->post('username');
             $data['email']        = $this->input->post('email');
             if($this->input->post('datetimepicker') != ""){
-                $data['birthday']     = $this->input->post('datetimepicker');   
+                $data['birthday']     = $this->input->post('datetimepicker');
             }
             $data['gender']     = $this->input->post('gender');
             $data['phone']     = $this->input->post('phone');
             $data['address']     = $this->input->post('address');
             if($this->input->post('password') != ""){
-                $data['password']     = sha1($this->input->post('password'));   
+                $data['password']     = sha1($this->input->post('password'));
             }
             if($_FILES['userfile']['size'] > 0){
                 $data['image']     = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
@@ -741,7 +741,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/admins/', 'refresh');
         }
-        if ($param1 == 'update_profile') 
+        if ($param1 == 'update_profile')
         {
             $data['first_name']         = $this->input->post('first_name');
             $data['last_name']         = $this->input->post('last_name');
@@ -750,7 +750,7 @@
             $data['profession']        = $this->input->post('profession');
             $data['idcard']        = $this->input->post('idcard');
             if($this->input->post('datetimepicker') != ""){
-                $data['birthday']     = $this->input->post('datetimepicker');   
+                $data['birthday']     = $this->input->post('datetimepicker');
             }
             if(!empty($_FILES['userfile']['tmp_name'])){
                 $data['image']     = md5(date('d-m-y H:i:s')).str_replace(' ', '', $_FILES['userfile']['name']);
@@ -759,7 +759,7 @@
             $data['phone']     = $this->input->post('phone');
             $data['address']     = $this->input->post('address');
             if($this->input->post('password') != ""){
-                $data['password']     = sha1($this->input->post('password'));   
+                $data['password']     = sha1($this->input->post('password'));
             }
             $data['owner_status'] = $this->input->post('owner_status');
             $this->db->where('admin_id', $param2);
@@ -799,7 +799,7 @@
 
     function admin_profile($admin_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
@@ -808,10 +808,10 @@
         $page_data['admin_id']  =  $admin_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function accountant_profile($accountant_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
@@ -820,10 +820,10 @@
         $page_data['accountant_id']  =  $accountant_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function librarian_profile($librarian_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
@@ -832,10 +832,10 @@
         $page_data['librarian_id']  =  $librarian_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function librarian_update($librarian_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
@@ -844,10 +844,10 @@
         $page_data['librarian_id']  =  $librarian_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function accountant_update($accountant_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
@@ -856,10 +856,10 @@
         $page_data['accountant_id']  =  $accountant_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function admin_update($admin_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
@@ -868,10 +868,10 @@
         $page_data['admin_id']  =  $admin_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function update_account($admin_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
@@ -904,7 +904,7 @@
         if($param1 == 'accept')
         {
             $pending = $this->db->get_where('pending_users', array('user_id' => $param2))->result_array();
-            foreach ($pending as $row) 
+            foreach ($pending as $row)
             {
                 $data['first_name'] = $row['first_name'];
                 $data['last_name'] = $row['last_name'];
@@ -923,7 +923,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/teachers/', 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['first_name']        = $this->input->post('first_name');
@@ -946,7 +946,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/teachers/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['first_name']        = $this->input->post('first_name');
@@ -960,7 +960,7 @@
                 $data['image']     = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
             }
             if($this->input->post('password') != ""){
-             $data['password']     = sha1($this->input->post('password'));   
+             $data['password']     = sha1($this->input->post('password'));
             }
             $this->db->where('teacher_id', $param2);
             $this->db->update('teacher', $data);
@@ -968,7 +968,7 @@
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/teacher_image/' . $md5.str_replace(' ', '', $_FILES['userfile']['name']));
             redirect(base_url() . 'admin/teachers/', 'refresh');
         }
-        if ($param1 == 'update_profile') 
+        if ($param1 == 'update_profile')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['first_name']        = $this->input->post('first_name');
@@ -983,7 +983,7 @@
                 $data['image']     = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
             }
             if($this->input->post('password') != ""){
-             $data['password']     = sha1($this->input->post('password'));   
+             $data['password']     = sha1($this->input->post('password'));
             }
             $this->db->where('teacher_id', $param2);
             $this->db->update('teacher', $data);
@@ -991,7 +991,7 @@
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/teacher_image/' . $md5.str_replace(' ', '', $_FILES['userfile']['name']));
             redirect(base_url() . 'admin/teacher_update/'.$param2. '/', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('teacher_id', $param2);
             $this->db->delete('teacher');
@@ -1003,11 +1003,11 @@
         $page_data['page_title'] = get_phrase('teachers');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function teacher_profile($teacher_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
-        {            
+        if ($this->session->userdata('admin_login') != 1)
+        {
             redirect(base_url(), 'refresh');
         }
         $page_data['page_name']  = 'teacher_profile';
@@ -1015,11 +1015,11 @@
         $page_data['teacher_id']  =  $teacher_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function teacher_update($teacher_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
-        {            
+        if ($this->session->userdata('admin_login') != 1)
+        {
             redirect(base_url(), 'refresh');
         }
         $page_data['page_name']  = 'teacher_update';
@@ -1027,11 +1027,11 @@
         $page_data['teacher_id']  =  $teacher_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function teacher_schedules($teacher_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
-        {            
+        if ($this->session->userdata('admin_login') != 1)
+        {
             redirect(base_url(), 'refresh');
         }
         $page_data['page_name']  = 'teacher_schedules';
@@ -1039,11 +1039,11 @@
         $page_data['teacher_id']  =  $teacher_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function teacher_subjects($teacher_id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
-        {            
+        if ($this->session->userdata('admin_login') != 1)
+        {
             redirect(base_url(), 'refresh');
         }
         $page_data['page_name']  = 'teacher_subjects';
@@ -1051,14 +1051,14 @@
         $page_data['teacher_id']  =  $teacher_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function parents($param1 = '', $param2 = '', $param3 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
         {
            redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['first_name']             = $this->input->post('first_name');
@@ -1082,7 +1082,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/parents/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             if(!empty($_FILES['userfile']['tmp_name'])){
                 $data['image']     = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
@@ -1108,7 +1108,7 @@
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/parent_image/' . $md5.str_replace(' ', '', $_FILES['userfile']['name']));
             redirect(base_url() . 'admin/parents/', 'refresh');
         }
-        if ($param1 == 'update_profile') 
+        if ($param1 == 'update_profile')
         {
             if(!empty($_FILES['userfile']['tmp_name'])){
                 $data['image']     = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
@@ -1137,7 +1137,7 @@
         if($param1 == 'accept')
         {
             $pending = $this->db->get_where('pending_users', array('user_id' => $param2))->result_array();
-            foreach ($pending as $row) 
+            foreach ($pending as $row)
             {
                 $data['first_name'] = $row['first_name'];
                 $data['last_name'] = $row['last_name'];
@@ -1156,7 +1156,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/parents/', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('parent_id' , $param2);
             $this->db->delete('parent');
@@ -1188,7 +1188,7 @@
       if($param1 == 'send_emails')
       {
         require("class.phpmailer.php");
-        $mail = new PHPMailer(); 
+        $mail = new PHPMailer();
         $mail->IsHTML(true);
         $mail->IsMail();
         $mail->SetFrom($this->db->get_where('settings', array('type' => 'system_email'))->row()->description, $this->db->get_where('settings', array('type' => 'system_name'))->row()->description);
@@ -1209,8 +1209,8 @@
         redirect(base_url() . 'admin/notify/', 'refresh');
       }
       if($param1 == 'sms')
-      {       
-        $sms_status = $this->db->get_where('settings' , array('type' => 'sms_status'))->row()->description; 
+      {
+        $sms_status = $this->db->get_where('settings' , array('type' => 'sms_status'))->row()->description;
         $year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description;
         $class_id   =   $this->input->post('class_id');
         $receiver   =   $this->input->post('receiver');
@@ -1220,24 +1220,24 @@
             $users = $this->db->get(''.$this->input->post('receiver').'')->result_array();
         }
         $message = $this->input->post('message');
-        foreach ($users as $row) 
+        foreach ($users as $row)
         {
             if($receiver == 'student'){
                 $phones = $this->db->get_where('student' , array('student_id' => $row['student_id']))->row()->phone;
             }else{
                 $phones = $row['phone'];
             }
-            if ($sms_status == 'twilio') 
+            if ($sms_status == 'twilio')
             {
                  $this->crud_model->twilio($message,$phones);
-            }else if ($sms_status == 'clickatell') 
+            }else if ($sms_status == 'clickatell')
             {
                  $this->crud_model->clickatell($message,$phones);
-            }  
-            else if ($sms_status == 'msg91') 
+            }
+            else if ($sms_status == 'msg91')
             {
                  $this->crud_model->send_sms_via_msg91($message,$phones);
-            }  
+            }
         }
         $this->session->set_flashdata('flash_message' , get_phrase('sent_successfully'));
         redirect(base_url() . 'admin/notify/', 'refresh');
@@ -1258,7 +1258,7 @@
         $page_data['page_title'] = get_phrase('profile');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function parent_update($parent_id = '')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1270,7 +1270,7 @@
         $page_data['page_title'] = get_phrase('update_information');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function parent_childs($parent_id = '')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1282,8 +1282,8 @@
         $page_data['page_title'] = get_phrase('parent_childs');
         $this->load->view('backend/index', $page_data);
     }
-    
-    function delete_student($student_id = '', $class_id = '') 
+
+    function delete_student($student_id = '', $class_id = '')
     {
         if ($this->session->userdata('admin_login') != 1)
         {
@@ -1292,13 +1292,13 @@
         $tables = array('student', 'attendance', 'enroll', 'invoice', 'mark', 'payment', 'students_request', 'student_question', 'reporte_alumnos');
         $this->db->delete($tables, array('student_id' => $student_id));
         $threads = $this->db->get('message_thread')->result_array();
-        if (count($threads) > 0) 
+        if (count($threads) > 0)
         {
-            foreach ($threads as $row) 
+            foreach ($threads as $row)
             {
                 $sender = explode('-', $row['sender']);
                 $receiver = explode('-', $row['reciever']);
-                if (($sender[0] == 'student' && $sender[1] == $student_id) || ($receiver[0] == 'student' && $receiver[1] == $student_id)) 
+                if (($sender[0] == 'student' && $sender[1] == $student_id) || ($receiver[0] == 'student' && $receiver[1] == $student_id))
                 {
                     $thread_code = $row['message_thread_code'];
                     $this->db->delete('message', array('message_thread_code' => $thread_code));
@@ -1309,7 +1309,7 @@
         $this->session->set_flashdata('flash_message' , get_phrase('successfully_deleted'));
         redirect(base_url() . 'admin/students/', 'refresh');
     }
-    
+
     function attendance_selector()
     {
         $data['class_id']   = $this->input->post('class_id');
@@ -1323,7 +1323,7 @@
                     'section_id'=>$data['section_id'],
                         'year'=>$data['year'],
                             'timestamp'=>$data['timestamp']));
-        if($query->num_rows() < 1) 
+        if($query->num_rows() < 1)
         {
             $students = $this->db->get_where('enroll' , array('class_id' => $data['class_id'] , 'section_id' => $data['section_id'] , 'year' => $data['year']))->result_array();
             foreach($students as $row) {
@@ -1332,24 +1332,24 @@
                 $attn_data['timestamp']  = $data['timestamp'];
                 $attn_data['section_id'] = $data['section_id'];
                 $attn_data['student_id'] = $row['student_id'];
-                $this->db->insert('attendance' , $attn_data);  
+                $this->db->insert('attendance' , $attn_data);
             }
         }
         redirect(base_url().'admin/manage_attendance/'.$data['class_id'].'/'.$data['section_id'].'/'.$data['timestamp'],'refresh');
     }
-    
+
     function attendance_update($class_id = '' , $section_id = '' , $timestamp = '')
-    {        
+    {
         $sms_status = $this->db->get_where('settings' , array('type' => 'sms_status'))->row()->description;
         $notify = $this->db->get_where('settings' , array('type' => 'absences'))->row()->description;
         $running_year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description;
         $attendance_of_students = $this->db->get_where('attendance' , array('class_id'=>$class_id,'section_id'=>$section_id,'year'=>$running_year,'timestamp'=>$timestamp))->result_array();
-        foreach($attendance_of_students as $row) 
+        foreach($attendance_of_students as $row)
         {
             $attendance_status = $this->input->post('status_'.$row['attendance_id']);
             $this->db->where('attendance_id' , $row['attendance_id']);
             $this->db->update('attendance' , array('status' => $attendance_status));
-            if ($attendance_status == 2) 
+            if ($attendance_status == 2)
             {
                 $student_name   = $this->crud_model->get_name('student',$row['student_id']);
                 $parent_id      = $this->db->get_where('student' , array('student_id' => $row['student_id']))->row()->parent_id;
@@ -1358,15 +1358,15 @@
                 $message        = 'Your child' . ' ' . $student_name . ' is absent today.';
                 if($notify == 1)
                 {
-                    if ($sms_status == 'msg91') 
+                    if ($sms_status == 'msg91')
                     {
                         $this->crud_model->send_sms_via_msg91($message, $receiver);
                     }
-                    else if ($sms_status == 'twilio') 
+                    else if ($sms_status == 'twilio')
                     {
                         $this->crud_model->twilio($message,"".$receiver."");
                     }
-                    else if ($sms_status == 'clickatell') 
+                    else if ($sms_status == 'clickatell')
                     {
                         $this->crud_model->clickatell($message,$receiver);
                     }
@@ -1416,7 +1416,7 @@
             $data['description'] = $this->input->post('msg91_key');
             $this->db->where('type' , 'msg91_key');
             $this->db->update('settings' , $data);
-            
+
             $data['description'] = $this->input->post('msg91_sender');
             $this->db->where('type' , 'msg91_sender');
             $this->db->update('settings' , $data);
@@ -1449,7 +1449,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/sms/', 'refresh');
         }
-        if($param1 == 'twilio') 
+        if($param1 == 'twilio')
         {
             $data['description'] = $this->input->post('twilio_account');
             $this->db->where('type' , 'twilio_account');
@@ -1466,7 +1466,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/sms/', 'refresh');
         }
-        if($param1 == 'services') 
+        if($param1 == 'services')
         {
             $data['description'] = $this->input->post('absences');
             $this->db->where('type' , 'absences');
@@ -1534,11 +1534,11 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $page_data['edit_profile']  = $param2;
         }
-        if ($param1 == 'update_phrase') 
+        if ($param1 == 'update_phrase')
         {
             $language   =   $param2;
             $total_phrase   =   $this->input->post('total_phrase');
@@ -1550,7 +1550,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/translate/update/'.$language, 'refresh');
         }
-        if ($param1 == 'add') 
+        if ($param1 == 'add')
         {
             $language = $this->input->post('language');
             $this->load->dbforge();
@@ -1564,7 +1564,7 @@
             $this->session->set_flashdata('flash_message', get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/translate/', 'refresh');
         }
-        if ($param1 == 'do_update') 
+        if ($param1 == 'do_update')
         {
             $language        = $this->input->post('language');
             $data[$language] = $this->input->post('phrase');
@@ -1665,7 +1665,7 @@
         $page_data['page_title'] = get_phrase('poll_details');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function new_poll($code = '')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1714,7 +1714,7 @@
         $page_data['page_title'] = get_phrase('teacher_routine');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function get_class_area()
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1741,7 +1741,7 @@
         $page_data['class_id']   =   $class_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function student_update($student_id = '', $param1='')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1753,7 +1753,7 @@
         $page_data['student_id'] =  $student_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function student_invoices($student_id = '', $param1='')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1765,7 +1765,7 @@
         $page_data['student_id'] =  $student_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function student_marks($student_id = '', $param1='')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1777,7 +1777,7 @@
         $page_data['student_id'] =  $student_id;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function student_attendance_report_selector()
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1790,7 +1790,7 @@
         $data['section_id'] = $this->input->post('section_id');
         redirect(base_url().'admin/student_profile_attendance/'.$this->input->post('student_id').'/'.$data['class_id'].'/'.$data['section_id'].'/'.$data['month'].'/'.$data['year'].'/','refresh');
     }
-    
+
     function student_profile_attendance($student_id = '', $param1='', $param2 = '', $param3 = '', $param4 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1806,7 +1806,7 @@
         $page_data['year'] =  $param4;
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function student_profile_report($student_id = '', $param1='')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1843,7 +1843,7 @@
         {
             $this->session->set_userdata('last_page' , current_url());
             redirect(base_url(), 'refresh');
-        }     
+        }
 
         include_once 'src/Google_Client.php';
         include_once 'src/contrib/Google_Oauth2Service.php';
@@ -1891,7 +1891,7 @@
         {
             $this->session->set_flashdata('flash_message' , get_phrase('facebook_true'));
             redirect(base_url() . 'admin/my_account/', 'refresh');
-        }  
+        }
         if($param1 == 'remove_google')
         {
             include_once 'src/Google_Client.php';
@@ -1907,17 +1907,17 @@
             $data['g_lname'] = "";
             $data['g_picture'] = "";
             $data['link'] = "";
-            $data['g_email'] = "";  
+            $data['g_email'] = "";
             $this->db->where('admin_id', $this->session->userdata('login_user_id'));
             $this->db->update('admin', $data);
-            
+
             unset($_SESSION['token']);
             unset($_SESSION['userData']);
             $gClient->revokeToken();
             $this->session->set_flashdata('flash_message' , get_phrase('google_delete'));
             redirect(base_url() . 'admin/my_account/', 'refresh');
         }
-        if ($param1 == 'update_profile') 
+        if ($param1 == 'update_profile')
         {
             $data['first_name']         = $this->input->post('first_name');
             $data['last_name']         = $this->input->post('last_name');
@@ -1926,7 +1926,7 @@
             $data['profession']        = $this->input->post('profession');
             $data['idcard']        = $this->input->post('idcard');
             if($this->input->post('datetimepicker') != ""){
-                $data['birthday']     = $this->input->post('datetimepicker');   
+                $data['birthday']     = $this->input->post('datetimepicker');
             }
             if(!empty($_FILES['userfile']['tmp_name'])){
                 $data['image']     = md5(date('d-m-y H:i:s')).str_replace(' ', '', $_FILES['userfile']['name']);
@@ -1935,7 +1935,7 @@
             $data['phone']     = $this->input->post('phone');
             $data['address']     = $this->input->post('address');
             if($this->input->post('password') != ""){
-                $data['password']     = sha1($this->input->post('password'));   
+                $data['password']     = sha1($this->input->post('password'));
             }
             $this->db->where('admin_id', $this->session->userdata('login_user_id'));
             $this->db->update('admin', $data);
@@ -1949,7 +1949,7 @@
         $data['page_title']             = get_phrase('profile');
         $this->load->view('backend/index', $data);
     }
-    
+
     function book_request($param1 = "", $param2 = "")
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -1992,7 +1992,7 @@
             $notify['status'] = 1;
             $this->db->where('id', $_GET['id']);
             $this->db->update('notification', $notify);
-        }           
+        }
         if ($param1 == "accept")
         {
             $teacher = $this->db->get_where('request', array('request_id' => $param2))->row()->teacher_id;
@@ -2011,7 +2011,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/request/', 'refresh');
         }
-                
+
         if ($param1 == "reject")
         {
             $teacher = $this->db->get_where('request', array('request_id' => $param2))->row()->teacher_id;
@@ -2030,7 +2030,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('rejected_successfully'));
             redirect(base_url() . 'admin/request/', 'refresh');
         }
-        
+
         $data['page_name']  = 'request';
         $data['page_title'] = get_phrase('permissions');
         $this->load->view('backend/index', $data);
@@ -2070,7 +2070,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/request/', 'refresh');
         }
-                
+
         if ($param1 == "reject")
         {
             $data['status'] = 2;
@@ -2114,9 +2114,9 @@
         $this->load->view('backend/index', $data);
     }
 
-    function create_report_message($code = '') 
+    function create_report_message($code = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
@@ -2127,11 +2127,11 @@
         $data['sender_type']    = $this->session->userdata('login_type');
         $data['sender_id']      = $this->session->userdata('login_user_id');
         return $this->db->insert('reporte_mensaje', $data);
-    }  
+    }
 
-    function view_report($param1 = '', $param2 = '', $param3 = '') 
+    function view_report($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
@@ -2162,9 +2162,9 @@
             redirect(base_url() . 'admin/online_exams/'.$data."/", 'refresh');
     }
 
-    function online_exams($param1 = '', $param2 = '', $param3 ='') 
+    function online_exams($param1 = '', $param2 = '', $param3 ='')
     {
-        if ($param1 == 'edit') 
+        if ($param1 == 'edit')
         {
             if ($this->input->post('class_id') > 0 && $this->input->post('section_id') > 0 && $this->input->post('subject_id') > 0) {
                 $this->crud_model->update_online_exam();
@@ -2176,13 +2176,13 @@
                 redirect(base_url() . 'admin/exam_edit/' . $this->input->post('online_exam_id'), 'refresh');
             }
         }
-        if ($param1 == 'questions') 
+        if ($param1 == 'questions')
         {
             $this->crud_model->add_questions();
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/exam_questions/' . $param2 , 'refresh');
         }
-        if ($param1 == 'delete_questions') 
+        if ($param1 == 'delete_questions')
         {
             $this->db->where('question_id', $param2);
             $this->db->delete('questions');
@@ -2200,26 +2200,26 @@
         $this->load->view('backend/index', $page_data);
     }
 
-    function exam_edit($exam_code= '') 
-    { 
-        if ($this->session->userdata('admin_login') != 1) 
+    function exam_edit($exam_code= '')
+    {
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
-        }   
+        }
         $page_data['online_exam_id'] = $exam_code;
         $page_data['page_name'] = 'exam_edit';
         $page_data['page_title'] = get_phrase('update_exam');
         $this->load->view('backend/index', $page_data);
     }
 
-    function exam_results($exam_code = '') 
-    { 
-        if ($this->session->userdata('admin_login') != 1) 
+    function exam_results($exam_code = '')
+    {
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
-        }   
+        }
         parse_str(substr(strrchr($_SERVER['REQUEST_URI'], "?"), 1), $_GET);
         if($_GET['id'] != "")
         {
@@ -2250,46 +2250,46 @@
 
     function homeworkroom($param1 = '' , $param2 = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'file') 
+        if ($param1 == 'file')
         {
             $page_data['room_page']    = 'homework_file';
             $page_data['homework_code'] = $param2;
-        }  
-        else if ($param1 == 'details') 
+        }
+        else if ($param1 == 'details')
         {
             $page_data['room_page'] = 'homework_details';
             $page_data['homework_code'] = $param2;
         }
-        else if ($param1 == 'edit') 
+        else if ($param1 == 'edit')
         {
             $page_data['room_page'] = 'homework_edit';
             $page_data['homework_code'] = $param2;
         }
         $page_data['homework_code'] =   $param1;
-        $page_data['page_name']   = 'homework_room'; 
+        $page_data['page_name']   = 'homework_room';
         $page_data['page_title']  = get_phrase('homework');
         $this->load->view('backend/index', $page_data);
     }
 
-    function homework_edit($homework_code = '') 
-    {   
-        if ($this->session->userdata('admin_login') != 1) 
+    function homework_edit($homework_code = '')
+    {
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
-        } 
+        }
         $page_data['homework_code'] = $homework_code;
         $page_data['page_name'] = 'homework_edit';
         $page_data['page_title'] = get_phrase('homework');
         $this->load->view('backend/index', $page_data);
     }
 
-    function single_homework($param1 = '', $param2 = '') 
+    function single_homework($param1 = '', $param2 = '')
     {
        if ($this->session->userdata('admin_login') != 1)
        {
@@ -2312,7 +2312,7 @@
         $page_data['page_title'] = get_phrase('homework_details');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function new_exam($data = '')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -2325,13 +2325,13 @@
         $this->load->view('backend/index', $page_data);
     }
 
-    function homework($param1 = '', $param2 = '', $param3 = '') 
+    function homework($param1 = '', $param2 = '', $param3 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description;
             $data['title'] = $this->input->post('title');
@@ -2398,7 +2398,7 @@
             $mark = $this->input->post('mark');
             $comment = $this->input->post('comment');
             $entries = sizeof($mark);
-            for($i = 0; $i < $entries; $i++) 
+            for($i = 0; $i < $entries; $i++)
             {
                 $data['mark']    = $mark[$i];
                 $data['teacher_comment'] = $comment[$i];
@@ -2432,7 +2432,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/single_homework/' . $this->input->post('id') , 'refresh');
         }
-        if ($param1 == 'edit') 
+        if ($param1 == 'edit')
         {
             $this->crud_model->update_homework($param2);
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
@@ -2450,9 +2450,9 @@
         $this->load->view('backend/index', $page_data);
     }
 
-    function forum($param1 = '', $param2 = '', $param3 = '') 
+    function forum($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['title'] = $this->input->post('title');
             $data['description'] = $this->input->post('description');
@@ -2462,7 +2462,7 @@
             if($this->input->post('post_status') != "1"){
                 $data['post_status'] = 0;
             }else{
-                $data['post_status'] = $this->input->post('post_status');   
+                $data['post_status'] = $this->input->post('post_status');
             }
             $data['publish_date'] = date('Y-m-d H:i:s');
             $data['upload_date'] = date('d M. H:iA');
@@ -2478,12 +2478,12 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/forum/' . $param2."/" , 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             if($this->input->post('post_status') != "1"){
                 $data['post_status'] = 0;
             }else{
-                $data['post_status'] = $this->input->post('post_status');   
+                $data['post_status'] = $this->input->post('post_status');
             }
             $data['title'] = $this->input->post('title');
             $data['description'] = $this->input->post('description');
@@ -2513,7 +2513,7 @@
         {
             $this->session->set_userdata('last_page' , current_url());
             redirect(base_url(), 'refresh');
-        } 
+        }
         if ($task == "create")
         {
             $year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description;
@@ -2557,61 +2557,61 @@
         $page_data['page_name']  = 'edit_forum';
         $page_data['page_title'] = get_phrase('update_forum');
         $page_data['code']   = $code;
-        $this->load->view('backend/index', $page_data);    
+        $this->load->view('backend/index', $page_data);
     }
 
     function forumroom($param1 = '' , $param2 = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'comment') 
+        if ($param1 == 'comment')
         {
             $page_data['room_page']    = 'comments';
-            $page_data['post_code'] = $param2; 
+            $page_data['post_code'] = $param2;
         }
-        else if ($param1 == 'posts') 
+        else if ($param1 == 'posts')
         {
             $page_data['room_page'] = 'post';
-            $page_data['post_code'] = $param2; 
+            $page_data['post_code'] = $param2;
         }
-        else if ($param1 == 'edit') 
+        else if ($param1 == 'edit')
         {
             $page_data['room_page'] = 'post_edit';
             $page_data['post_code'] = $param2;
         }
-        $page_data['page_name']   = 'forum_room'; 
+        $page_data['page_name']   = 'forum_room';
         $page_data['post_code']   = $param1;
         $page_data['page_title']  = get_phrase('forum');
         $this->load->view('backend/index', $page_data);
     }
 
-    function forum_message($param1 = '', $param2 = '', $param3 = '') 
+    function forum_message($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'add') 
+        if ($param1 == 'add')
         {
             $this->crud_model->create_post_message($this->input->post('post_code'));
         }
     }
-    
+
     function manage_multiple_choices_options() {
         $page_data['number_of_options'] = $this->input->post('number_of_options');
         $this->load->view('backend/admin/manage_multiple_choices_options', $page_data);
     }
-    
+
     function load_question_type($type, $online_exam_id) {
         $page_data['question_type'] = $type;
         $page_data['online_exam_id'] = $online_exam_id;
         $this->load->view('backend/admin/online_exam_add_'.$type, $page_data);
     }
-    
+
     function manage_online_exam_question($online_exam_id = "", $task = "", $type = ""){
         if ($this->session->userdata('admin_login') != 1){
             redirect(base_url(), 'refresh');
@@ -2632,20 +2632,20 @@
 
     function examroom($param1 = '' , $param2 = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
         }
-        $page_data['page_name']   = 'exam_room'; 
+        $page_data['page_name']   = 'exam_room';
         $page_data['online_exam_id']  = $param1;
         $page_data['page_title']  = get_phrase('online_exams');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function create_online_exam($info = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
@@ -2656,13 +2656,13 @@
         $data['wall_type'] = "exam";
         $data['uploader_id'] = $this->session->userdata('login_user_id');
         $data['upload_date'] = date('d M. H:iA');
-        
+
         $data['code']  = substr(md5(uniqid(rand(), true)), 0, 7);
         $data['title'] = html_escape($this->input->post('exam_title'));
         $data['class_id'] = $this->input->post('class_id');
         $data['section_id'] = $this->input->post('section_id');
         $data['subject_id'] = $this->input->post('subject_id');
-        
+
         $data['minimum_percentage'] = html_escape($this->input->post('minimum_percentage'));
         $data['instruction'] = html_escape($this->input->post('instruction'));
         $data['exam_date'] = strtotime(html_escape($this->input->post('exam_date')));
@@ -2682,9 +2682,9 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'bulk') 
+        if ($param1 == 'bulk')
         {
-            foreach ($this->input->post('student_id') as $id) 
+            foreach ($this->input->post('student_id') as $id)
             {
                 $data['student_id']         = $id;
                 $data['class_id']         = $this->input->post('class_id');
@@ -2712,7 +2712,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/students_payments/', 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['student_id']         = $this->input->post('student_id');
             $data['class_id']           = $this->input->post('class_id');
@@ -2749,15 +2749,15 @@
             $sms_status = $this->db->get_where('settings' , array('type' => 'sms_status'))->row()->description;
             if($notify == 1)
             {
-                if ($sms_status == 'msg91') 
+                if ($sms_status == 'msg91')
                 {
                     $result = $this->crud_model->send_sms_via_msg91($message, $parent_phone);
                 }
-                else if ($sms_status == 'twilio') 
+                else if ($sms_status == 'twilio')
                 {
                     $this->crud_model->twilio($message,"".$parent_phone."");
                 }
-                else if ($sms_status == 'clickatell') 
+                else if ($sms_status == 'clickatell')
                 {
                     $this->crud_model->clickatell($message,$parent_phone);
                 }
@@ -2765,15 +2765,15 @@
             $this->crud_model->parent_new_invoice($student_name, "".$parent_email."");
             if($notify2 == 1)
             {
-              if ($sms_status == 'msg91') 
+              if ($sms_status == 'msg91')
               {
                  $result = $this->crud_model->send_sms_via_msg91($message, $student_phone);
               }
-              else if ($sms_status == 'twilio') 
+              else if ($sms_status == 'twilio')
               {
                   $this->crud_model->twilio($message,"".$student_phone."");
               }
-              else if ($sms_status == 'clickatell') 
+              else if ($sms_status == 'clickatell')
               {
                   $this->crud_model->clickatell($message,$student_phone);
               }
@@ -2782,7 +2782,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/students_payments/', 'refresh');
         }
-        if ($param1 == 'do_update') 
+        if ($param1 == 'do_update')
         {
             $data['title']              = $this->input->post('title');
             $data['description']        = $this->input->post('description');
@@ -2793,12 +2793,12 @@
             $this->db->update('invoice', $data);
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/students_payments/', 'refresh');
-        }else if ($param1 == 'edit') 
+        }else if ($param1 == 'edit')
         {
             $page_data['edit_data'] = $this->db->get_where('invoice', array('invoice_id' => $param2))->result_array();
         }
 
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('invoice_id', $param2);
             $this->db->delete('invoice');
@@ -2810,13 +2810,13 @@
         $page_data['invoices'] = $this->db->get('invoice')->result_array();
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function get_class_students_mass($class_id = '')
     {
         $students = $this->db->get_where('enroll' , array('class_id' => $class_id , 'year' => $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description))->result_array();
         echo '
             <div class="col-sm-12">';
-            foreach ($students as $row) 
+            foreach ($students as $row)
             {
                 echo '<div class="custom-control custom-checkbox">';
                     echo '<input checked type="checkbox" name="student_id[]" id="' . $row['student_id'] . '" value="' . $row['student_id'] . '" class="custom-control-input"> <label for="' . $row['student_id'] . '" class="custom-control-label">' . $this->crud_model->get_name('student', $row['student_id'])  .'</label>';
@@ -2824,14 +2824,14 @@
         }
         echo '</div>';
     }
-    
+
     function delete_question_from_online_exam($question_id){
         $online_exam_id = $this->db->get_where('question_bank', array('question_bank_id' => $question_id))->row()->online_exam_id;
         $this->crud_model->delete_question_from_online_exam($question_id);
         $this->session->set_flashdata('flash_message' , "Eliminada");
             redirect(base_url() . 'admin/examroom/'.$online_exam_id, 'refresh');
     }
-    
+
     function update_online_exam_question($question_id = "", $task = "", $online_exam_id = "") {
         if ($this->session->userdata('admin_login') != 1)
             redirect(site_url('login'), 'refresh');
@@ -2855,8 +2855,8 @@
         $this->load->view('backend/index', $page_data);
     }
 
-    function search_query($search_key = '') 
-    {        
+    function search_query($search_key = '')
+    {
         if ($_POST)
         {
             redirect(base_url() . 'admin/search_results?query=' . base64_encode($this->input->post('search_key')), 'refresh');
@@ -2882,7 +2882,7 @@
 
     function invoice_details($id = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
@@ -2893,9 +2893,9 @@
         $this->load->view('backend/index', $page_data);
     }
 
-    function looking_report($report_code = '') 
+    function looking_report($report_code = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
@@ -2933,9 +2933,9 @@
             $objPHPExcel->getActiveSheet()->setCellValue('G1', get_phrase('class'));
             $objPHPExcel->getActiveSheet()->setCellValue('H1', get_phrase('section'));
             $objPHPExcel->getActiveSheet()->setCellValue('I1', get_phrase('parent'));
-    
+
             $a = 2; $b =2; $c =2; $d =2; $e =2; $f = 2;$g = 2;$h=2; $i = 2;
-    
+
             $query = $this->db->get_where('enroll', array('class_id' => $this->input->post('class_id'), 'section_id' => $this->input->post('section_id'), 'year' => $running_year))->result_array();
             foreach($query as $row)
             {
@@ -2951,7 +2951,7 @@
                 $objPHPExcel->getActiveSheet()->setCellValue('I'.$i++, $this->crud_model->get_name('parent',$parent_id));
             }
             $objPHPExcel->getActiveSheet()->setTitle('Estudiantes');
-        
+
             header("Pragma: public");
             header("Expires: 0");
             header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
@@ -2961,11 +2961,11 @@
             header('Content-Type: application/vnd.ms-excel');
             header('Content-Disposition: attachment;filename="export_students_'.date('d-m-y:h:i:s').'.xlsx"');
             header("Content-Transfer-Encoding: binary ");
-            $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel); 
+            $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
             $objWriter->setOffice2003Compatibility(true);
             $objWriter->save('php://output');
         }
-        if ($param1 == 'addmission') 
+        if ($param1 == 'addmission')
         {
             $md5 = md5(date('d-m-Y H:i:s'));
             $data['first_name']           = $this->input->post('first_name');
@@ -2984,7 +2984,8 @@
             $data['image']     = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
             if($this->input->post('account') != '1')
             {
-                $data['parent_id']      = $this->input->post('parent_id');    
+                $data['parent_id']      = $this->input->post('parent_id');
+                $data['parent2_id']      = $this->input->post('parent2_id');
             }else if($this->input->post('account') == '1'){
                 $data3['first_name']             = $this->input->post('parent_first_name');
                 $data3['last_name']              = $this->input->post('parent_last_name');
@@ -3003,7 +3004,7 @@
                 $data3['image']     = "";
                 $this->db->insert('parent', $data3);
                 $parent_id = $this->db->insert_id();
-                $data['parent_id']      = $parent_id;    
+                $data['parent_id']      = $parent_id;
             }
             $data['diseases']  = $this->input->post('diseases');
             $data['allergies']  = $this->input->post('allergies');
@@ -3017,7 +3018,7 @@
             $data4['student_id']     = $student_id;
             $data4['enroll_code']    = substr(md5(rand(0, 1000000)), 0, 7);
             $data4['class_id']       = $this->input->post('class_id');
-            if ($this->input->post('section_id') != '') 
+            if ($this->input->post('section_id') != '')
             {
                 $data4['section_id'] = $this->input->post('section_id');
             }
@@ -3029,7 +3030,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/new_student/', 'refresh');
         }
-        if ($param1 == 'do_update') 
+        if ($param1 == 'do_update')
         {
             $md5 = md5(date('d-m-Y H:i:s'));
             $data['first_name']      = $this->input->post('first_name');
@@ -3071,7 +3072,7 @@
             $this->crud_model->clear_cache();
             redirect(base_url() . 'admin/student_update/'. $param2.'/', 'refresh');
         }
-        if ($param1 == 'do_updates') 
+        if ($param1 == 'do_updates')
         {
             $md5 = md5(date('d-m-Y H:i:s'));
             $data['first_name']            = $this->input->post('first_name');
@@ -3098,7 +3099,7 @@
         if($param1 == 'accept')
         {
             $pending = $this->db->get_where('pending_users', array('user_id' => $param2))->result_array();
-            foreach ($pending as $row) 
+            foreach ($pending as $row)
             {
                 $data['first_name'] = $row['first_name'];
                 $data['last_name'] = $row['last_name'];
@@ -3137,7 +3138,7 @@
                $highestRow = $worksheet->getHighestRow();
                $highestColumn = $worksheet->getHighestColumn();
                for($row=2; $row <= $highestRow; $row++)
-               {                     
+               {
                     $data['first_name']    =  $worksheet->getCellByColumnAndRow(0, $row)->getValue();
                     $data['last_name']     =  $worksheet->getCellByColumnAndRow(1, $row)->getValue();
                     $data['email']         =  $worksheet->getCellByColumnAndRow(2, $row)->getValue();
@@ -3154,7 +3155,7 @@
                         $data2['enroll_code']   =   substr(md5(rand(0, 1000000)), 0, 7);
                         $data2['student_id']    =   $student_id;
                         $data2['class_id']      =   $this->input->post('class_id');
-                        if($this->input->post('section_id') != '') 
+                        if($this->input->post('section_id') != '')
                         {
                             $data2['section_id']    =   $this->input->post('section_id');
                         }
@@ -3176,12 +3177,12 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if($param1 == 'promote') 
+        if($param1 == 'promote')
         {
-            $running_year  =   $this->input->post('running_year');  
-            $from_class_id =   $this->input->post('promotion_from_class_id'); 
+            $running_year  =   $this->input->post('running_year');
+            $from_class_id =   $this->input->post('promotion_from_class_id');
             $students_of_promotion_class =   $this->db->get_where('enroll' , array('class_id' => $from_class_id , 'year' => $running_year))->result_array();
-            foreach($students_of_promotion_class as $row) 
+            foreach($students_of_promotion_class as $row)
             {
                 $enroll_data['enroll_code']     =   substr(md5(rand(0, 1000000)), 0, 7);
                 $enroll_data['student_id']      =   $row['student_id'];
@@ -3189,7 +3190,7 @@
                 $enroll_data['year']            =   $this->input->post('promotion_year');
                 $enroll_data['date_added']      =   strtotime(date("Y-m-d H:i:s"));
                 $this->db->insert('enroll' , $enroll_data);
-            } 
+            }
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_promoted'));
             redirect(base_url() . 'admin/student_promotion' , 'refresh');
         }
@@ -3219,10 +3220,10 @@
         $page_data['page_name']  = 'view_marks';
         $page_data['page_title'] = get_phrase('marks');
         $page_data['student_id']   = $student_id;
-        $this->load->view('backend/index', $page_data);    
+        $this->load->view('backend/index', $page_data);
     }
 
-    function subject_marks($data = '') 
+    function subject_marks($data = '')
      {
         if ($this->session->userdata('admin_login') != 1)
         {
@@ -3233,8 +3234,8 @@
          $page_data['page_title']   = get_phrase('subject_marks');
          $this->load->view('backend/index',$page_data);
      }
-     
-     function subject_dashboard($data = '') 
+
+     function subject_dashboard($data = '')
      {
          if ($this->session->userdata('admin_login') != 1)
         {
@@ -3252,7 +3253,7 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $md5 = md5(date('d-m-y H:i:s'));
             $data['name']       = $this->input->post('name');
@@ -3267,7 +3268,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/cursos/'.base64_encode($param2)."/", 'refresh');
         }
-        if ($param1 == 'update_labs') 
+        if ($param1 == 'update_labs')
         {
             $class_id = $this->db->get_where('subject', array('subject_id' => $param2))->row()->class_id;
             $data['la1'] = $this->input->post('la1');
@@ -3285,7 +3286,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/upload_marks/'.base64_encode($class_id."-".$this->input->post('section_id')."-".$param2).'/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $class_id = $this->db->get_where('subject', array('subject_id' => $param2))->row()->class_id;
             $md5 = md5(date('d-m-y H:i:s'));
@@ -3302,7 +3303,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/cursos/'.base64_encode($class_id."-".$this->input->post('section_id').'-'.$param2)."/", 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('subject_id', $param2);
             $this->db->delete('subject');
@@ -3320,8 +3321,8 @@
         $page_data['page_title'] = get_phrase('subjects');
         $this->load->view('backend/index', $page_data);
     }
-    
-    function online_exam_result($param1 = '', $param2 = '') 
+
+    function online_exam_result($param1 = '', $param2 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
         {
@@ -3340,7 +3341,7 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['name']         = $this->input->post('name');
             $data['teacher_id']   = $this->input->post('teacher_id');
@@ -3361,7 +3362,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/grados/', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('class_id', $param2);
             $this->db->delete('class');
@@ -3374,10 +3375,10 @@
         $this->load->view('backend/index', $page_data);
     }
 
-    function get_subject($class_id = '') 
+    function get_subject($class_id = '')
     {
         $subject = $this->db->get_where('subject' , array('class_id' => $class_id))->result_array();
-        foreach ($subject as $row) 
+        foreach ($subject as $row)
         {
             echo '<option value="' . $row['subject_id'] . '">' . $row['name'] . '</option>';
         }
@@ -3452,7 +3453,7 @@
         $page_data['page_name']  = 'section';
         $page_data['page_title'] = get_phrase('sections');
         $page_data['class_id']   = $class;
-        $this->load->view('backend/index', $page_data);    
+        $this->load->view('backend/index', $page_data);
     }
 
     function sections($param1 = '' , $param2 = '')
@@ -3461,7 +3462,7 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['name']       =   $this->input->post('name');
             $data['class_id']   =   $this->input->post('class_id');
@@ -3478,7 +3479,7 @@
             $this->db->update('section' , $data);
             redirect(base_url() . 'admin/section/' . $data['class_id'] , 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('section_id' , $param2);
             $this->db->delete('section');
@@ -3491,7 +3492,7 @@
     {
         $sections = $this->db->get_where('section' , array('class_id' => $class_id))->result_array();
         echo '<option value="">' . get_phrase('select') . '</option>';
-        foreach ($sections as $row) 
+        foreach ($sections as $row)
         {
             echo '<option value="' . $row['section_id'] . '">' . $row['name'] . '</option>';
         }
@@ -3500,7 +3501,7 @@
     function get_class_stundets($section_id = '')
     {
         $students = $this->db->get_where('enroll' , array('section_id' => $section_id))->result_array();
-        foreach ($students as $row) 
+        foreach ($students as $row)
         {
          echo '<option value="' . $row['student_id'] . '">' . $this->db->get_where('student', array('student_id'=> $row['student_id']))->row()->first_name." ".$this->db->get_where('student', array('student_id'=> $row['student_id']))->row()->last_name  . '</option>';
         }
@@ -3509,7 +3510,7 @@
     function get_class_subject($class_id = '')
     {
         $subjects = $this->db->get_where('subject' , array('class_id' => $class_id))->result_array();
-        foreach ($subjects as $row) 
+        foreach ($subjects as $row)
         {
             echo '<option value="' . $row['subject_id'] . '">' . $row['name'] . '</option>';
         }
@@ -3531,14 +3532,14 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['name']    = $this->input->post('name');
             $this->db->insert('exam', $data);
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/semesters/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $data['name']    = $this->input->post('name');
             $this->db->where('exam_id', $param2);
@@ -3546,7 +3547,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/semesters/', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('exam_id', $param2);
             $this->db->delete('exam');
@@ -3590,13 +3591,13 @@
         $data['subject_id'] = $ex[2];
         $data['year']       = $this->db->get_where('settings' , array('type'=>'running_year'))->row()->description;
         $students = $this->db->get_where('enroll' , array('class_id' => $data['class_id'] , 'section_id' => $data['section_id'] , 'year' => $data['year']))->result_array();
-        foreach($students as $row) 
+        foreach($students as $row)
         {
             $verify_data = array('exam_id' => $data['exam_id'],'class_id' => $data['class_id'],'section_id' => $data['section_id'],
             'student_id' => $row['student_id'],'subject_id' => $data['subject_id'], 'year' => $data['year']);
             $query = $this->db->get_where('mark' , $verify_data);
-            if($query->num_rows() < 1) 
-            {   
+            if($query->num_rows() < 1)
+            {
                 $data['student_id'] = $row['student_id'];
                 $this->db->insert('mark' , $data);
             }
@@ -3620,7 +3621,7 @@
         $data['subject_id'] = $this->input->post('subject_id');
         $data['year']       = $this->db->get_where('settings' , array('type'=>'running_year'))->row()->description;
         $students = $this->db->get_where('enroll' , array('class_id' => $data['class_id'] , 'section_id' => $data['section_id'] , 'year' => $data['year']))->result_array();
-        foreach($students as $row) 
+        foreach($students as $row)
         {
         $verify_data = array('exam_id' => $data['exam_id'],
                             'class_id' => $data['class_id'],
@@ -3630,8 +3631,8 @@
                                     'year' => $data['year']);
 
         $query = $this->db->get_where('mark' , $verify_data);
-        if($query->num_rows() < 1) 
-        {   
+        if($query->num_rows() < 1)
+        {
                 $data['student_id'] = $row['student_id'];
                 $this->db->insert('mark' , $data);
         }
@@ -3643,7 +3644,7 @@
     {
         $running_year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description;
         $marks_of_students = $this->db->get_where('mark' , array('exam_id' => $exam_id, 'class_id' => $class_id,'section_id' => $section_id, 'year' => $running_year,'subject_id' => $subject_id))->result_array();
-        foreach($marks_of_students as $row) 
+        foreach($marks_of_students as $row)
         {
             $obtained_marks = $this->input->post('marks_obtained_'.$row['mark_id']);
             $labouno = $this->input->post('lab_uno_'.$row['mark_id']);
@@ -3667,21 +3668,21 @@
         redirect(base_url().'admin/upload_marks/'.$info.'/'.$exam_id.'/' , 'refresh');
     }
 
-    function tab_sheet($class_id = '' , $exam_id = '', $section_id = '') 
+    function tab_sheet($class_id = '' , $exam_id = '', $section_id = '')
     {
         if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
-        if ($this->input->post('operation') == 'selection') 
+        if ($this->input->post('operation') == 'selection')
         {
             $page_data['exam_id']    = $this->input->post('exam_id');
             $page_data['section_id']    = $this->input->post('section_id');
             $page_data['class_id']   = $this->input->post('class_id');
-            if ($page_data['exam_id'] > 0 && $page_data['class_id'] > 0) 
+            if ($page_data['exam_id'] > 0 && $page_data['class_id'] > 0)
             {
                 redirect(base_url() . 'admin/tab_sheet/' . $page_data['class_id'] . '/' . $page_data['exam_id']. '/' . $page_data['section_id'] , 'refresh');
-            } else 
+            } else
             {
                 redirect(base_url() . 'admin/tab_sheet/', 'refresh');
             }
@@ -3695,7 +3696,7 @@
         $this->load->view('backend/index', $page_data);
     }
 
-    function tab_sheet_print($class_id  = '', $section_id = '', $subject_id = '') 
+    function tab_sheet_print($class_id  = '', $section_id = '', $subject_id = '')
     {
         if ($this->session->userdata('admin_login') != 1)
         {
@@ -3720,18 +3721,18 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['class_id']       = $this->input->post('class_id');
-            if($this->input->post('section_id') != '') 
+            if($this->input->post('section_id') != '')
             {
                 $data['section_id'] = $this->input->post('section_id');
             }
             $subject_id = $this->input->post('subject_id');
             $teacher_id = $this->db->get_where('subject', array('subject_id' => $subject_id))->row()->teacher_id;
             $data['subject_id']     = $this->input->post('subject_id');
-            $data['time_start']     = $this->input->post('time_start') + (12 * ($this->input->post('starting_ampm') - 1));
-            $data['time_end']       = $this->input->post('time_end') + (12 * ($this->input->post('ending_ampm') - 1));
+            $data['time_start']     = $this->input->post('time_start');
+            $data['time_end']       = $this->input->post('time_end');
             $data['time_start_min'] = $this->input->post('time_start_min');
             $data['time_end_min']   = $this->input->post('time_end_min');
             $data['day']            = $this->input->post('day');
@@ -3755,7 +3756,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/class_routine_view/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $data['time_start']     = $this->input->post('time_start') + (12 * ($this->input->post('starting_ampm') - 1));
             $data['time_end']       = $this->input->post('time_end') + (12 * ($this->input->post('ending_ampm') - 1));
@@ -3780,13 +3781,13 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/class_routine_view/', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('class_routine_id', $param2);
             $this->db->delete('class_routine');
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_deleted'));
             redirect(base_url() . 'admin/class_routine_view/' . $class_id, 'refresh');
-        } 
+        }
     }
 
     function exam_routine($param1 = '', $param2 = '', $param3 = '')
@@ -3795,10 +3796,10 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['class_id']       = $this->input->post('class_id');
-            if($this->input->post('section_id') != '') 
+            if($this->input->post('section_id') != '')
             {
                 $data['section_id'] = $this->input->post('section_id');
             }
@@ -3828,7 +3829,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/looking_routine/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             if($this->input->post('ending_ampm') == 1){
                 $sts = "AM";
@@ -3854,7 +3855,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/looking_routine/', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $class_id = $this->db->get_where('horarios_examenes' , array('horario_id' => $param2))->row()->class_id;
             $this->db->where('horario_id', $param2);
@@ -3975,19 +3976,19 @@
     function get_sectionss($class_id = '')
     {
         $sections = $this->db->get_where('section' , array('class_id' => $class_id))->result_array();
-        foreach ($sections as $row) 
+        foreach ($sections as $row)
         {
             echo '<option value="' . $row['section_id'] . '">' . $row['name'] . '</option>';
         }
     }
 
-    function get_section($class_id = '') 
+    function get_section($class_id = '')
     {
-          $page_data['class_id'] = $class_id; 
+          $page_data['class_id'] = $class_id;
           $this->load->view('backend/admin/manage_attendance_section_holder' , $page_data);
     }
 
-     function attendance_report($param1 = '', $param2 = '', $param3 = '', $param4 = '') 
+     function attendance_report($param1 = '', $param2 = '', $param3 = '', $param4 = '')
      {
         if($param1 == 'check')
         {
@@ -4005,16 +4006,16 @@
         $page_data['page_title']   = get_phrase('attendance_report');
         $this->load->view('backend/index',$page_data);
      }
-     
+
     function get_class_studentss($section_id = '')
     {
         $students = $this->db->get_where('enroll' , array('section_id' => $section_id))->result_array();
-        foreach ($students as $row) 
+        foreach ($students as $row)
         {
          echo '<option value="' . $row['student_id'] . '">' . $this->crud_model->get_name('student', $row['student_id'])  . '</option>';
         }
     }
-    
+
     function tabulation_report($param1 = '', $param2 = '')
     {
       if ($this->session->userdata('admin_login') != 1)
@@ -4028,7 +4029,7 @@
       $page_data['page_title']  = get_phrase('tabulation_report');
       $this->load->view('backend/index', $page_data);
     }
-    
+
     function accounting_report($param1 = '', $param2 = '')
     {
       if ($this->session->userdata('admin_login') != 1)
@@ -4039,7 +4040,7 @@
       $page_data['page_title']  = get_phrase('accounting_report');
       $this->load->view('backend/index', $page_data);
     }
-     
+
      function marks_report($param1 = '', $param2 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -4060,7 +4061,7 @@
         $this->load->view('backend/index', $page_data);
     }
 
-     function report_attendance_view($class_id = '' , $section_id = '', $month = '', $year = '') 
+     function report_attendance_view($class_id = '' , $section_id = '', $month = '', $year = '')
      {
         if($this->session->userdata('admin_login')!=1)
         {
@@ -4079,7 +4080,7 @@
 
     function create_report($param1 = '', $param2 = '')
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
@@ -4106,21 +4107,21 @@
             $this->db->insert('reports', $data);
             $this->crud_model->students_reports($this->input->post('student_id'),$parent_id);
             move_uploaded_file($_FILES["file_name"]["tmp_name"], 'uploads/report_files/'. $_FILES["file_name"]["name"]);
-            
+
             $notify = $this->db->get_where('settings' , array('type' => 'students_reports'))->row()->description;
             if($notify == 1)
             {
               $message = "A behavioral report has been created for " . $student_name;
               $sms_status = $this->db->get_where('settings' , array('type' => 'sms_status'))->row()->description;
-              if ($sms_status == 'msg91') 
+              if ($sms_status == 'msg91')
               {
                  $result = $this->crud_model->send_sms_via_msg91($message, $parent_phone);
               }
-              else if ($sms_status == 'twilio') 
+              else if ($sms_status == 'twilio')
               {
                   $this->crud_model->twilio($message,"".$parent_phone."");
               }
-              else if ($sms_status == 'clickatell') 
+              else if ($sms_status == 'clickatell')
               {
                   $this->crud_model->clickatell($message,$parent_phone);
               }
@@ -4176,7 +4177,7 @@
             redirect(base_url() . 'admin/looking_report/'.$param2, 'refresh');
         }
     }
-    
+
     function calendar($param1 = '', $param2 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -4209,12 +4210,12 @@
             {
                 $id = $_POST['id'];
                 $query = $this->db->query("DELETE FROM events WHERE id = $id");
-                if ($query == false) 
+                if ($query == false)
                 {
                     die ('Erreur prepare');
                 }
                 $res = $query;
-                if ($res == false) 
+                if ($res == false)
                 {
                     die ('Erreur execute');
                 }
@@ -4223,12 +4224,12 @@
                 $title = $_POST['title'];
                 $color = $_POST['color'];
                 $query = $this->db->query("UPDATE events SET  title = '$title', color = '$color' WHERE id = $id ");
-                if ($query == false) 
+                if ($query == false)
                 {
                     die ('Erreur prepare');
                 }
                 $sth = $query;
-                if ($sth == false) 
+                if ($sth == false)
                 {
                     die ('Erreur execute');
                 }
@@ -4254,12 +4255,12 @@
          }
         $page_data['page_name']  = 'calendar';
         $page_data['page_title'] = get_phrase('calendar');
-        $this->load->view('backend/index', $page_data); 
+        $this->load->view('backend/index', $page_data);
     }
 
     function attendance_report_selector()
     {
-       if ($this->session->userdata('admin_login') != 1) 
+       if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
@@ -4270,22 +4271,22 @@
         $data['section_id'] = $this->input->post('section_id');
         redirect(base_url().'admin/report_attendance_view/'.$data['class_id'].'/'.$data['section_id'].'/'.$data['month'].'/'.$data['year'],'refresh');
     }
-   
+
     function students_payments($param1 = '' , $param2 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
         {
             redirect(base_url(), 'refresh');
         }
-        
+
         $page_data['page_name']  = 'students_payments';
         $page_data['page_title'] = get_phrase('student_payments');
         $this->db->order_by('creation_timestamp', 'desc');
         $page_data['invoices'] = $this->db->get('invoice')->result_array();
-        $this->load->view('backend/index', $page_data); 
+        $this->load->view('backend/index', $page_data);
     }
 
-    function payments($param1 = '' , $param2 = '' , $param3 = '') 
+    function payments($param1 = '' , $param2 = '' , $param3 = '')
     {
         if ($this->session->userdata('admin_login') != 1)
         {
@@ -4293,7 +4294,7 @@
         }
         $page_data['page_name']  = 'payments';
         $page_data['page_title'] = get_phrase('payments');
-        $this->load->view('backend/index', $page_data); 
+        $this->load->view('backend/index', $page_data);
     }
 
     function expense($param1 = '' , $param2 = '')
@@ -4302,7 +4303,7 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['title']               =   $this->input->post('title');
             $data['expense_category_id'] =   $this->input->post('expense_category_id');
@@ -4319,7 +4320,7 @@
 
             redirect(base_url() . 'admin/expense', 'refresh');
         }
-        if ($param1 == 'edit') 
+        if ($param1 == 'edit')
         {
             $data['title']               =   $this->input->post('title');
             $data['expense_category_id'] =   $this->input->post('expense_category_id');
@@ -4341,7 +4342,7 @@
         }
         $page_data['page_name']  = 'expense';
         $page_data['page_title'] = get_phrase('expense');
-        $this->load->view('backend/index', $page_data); 
+        $this->load->view('backend/index', $page_data);
     }
 
     function expense_category($param1 = '' , $param2 = '')
@@ -4386,9 +4387,9 @@
         $this->load->view('backend/index', $page_data);
     }
 
-    function teacher_attendance_report() 
+    function teacher_attendance_report()
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
@@ -4401,7 +4402,7 @@
 
     function teacher_report_selector()
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
@@ -4412,7 +4413,7 @@
         redirect(base_url().'admin/teacher_report_view/'.$data['month'].'/'.$data['year'],'refresh');
     }
 
-    function teacher_report_view($month = '', $year = '') 
+    function teacher_report_view($month = '', $year = '')
     {
         if($this->session->userdata('admin_login')!=1)
         {
@@ -4427,7 +4428,7 @@
 
     function attendance_teacher()
     {
-        if ($this->session->userdata('admin_login') != 1) 
+        if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
@@ -4438,15 +4439,15 @@
         $newDate = date("d-m-Y", strtotime($originalDate));
         $data['timestamp']  = strtotime($newDate);
         $query = $this->db->get_where('teacher_attendance' ,array('year'=>$data['year'],'timestamp'=>$data['timestamp']));
-        if($query->num_rows() < 1) 
+        if($query->num_rows() < 1)
         {
             $teacher = $this->db->get_where('teacher')->result_array();
-            foreach($teacher as $row) 
+            foreach($teacher as $row)
             {
                 $attn_data['teacher_id']   = $row['teacher_id'];
                 $attn_data['year']       = $data['year'];
                 $attn_data['timestamp']  = $data['timestamp'];
-                $this->db->insert('teacher_attendance' , $attn_data);  
+                $this->db->insert('teacher_attendance' , $attn_data);
             }
         }
         redirect(base_url().'admin/teacher_attendance_view/'. $data['timestamp'],'refresh');
@@ -4454,14 +4455,14 @@
 
     function attendance_update2($timestamp = '')
     {
-         if ($this->session->userdata('admin_login') != 1) 
+         if ($this->session->userdata('admin_login') != 1)
         {
             $this->session->set_userdata('last_page', current_url());
             redirect(base_url(), 'refresh');
         }
         $running_year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description;
         $attendance_of = $this->db->get_where('teacher_attendance' , array('year'=>$running_year,'timestamp'=>$timestamp))->result_array();
-        foreach($attendance_of as $row) 
+        foreach($attendance_of as $row)
         {
             $attendance_status = $this->input->post('status_'.$row['attendance_id']);
             $this->db->where('attendance_id' , $row['attendance_id']);
@@ -4489,7 +4490,7 @@
         {
             redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['route_name']        = $this->input->post('route_name');
             $data['number_of_vehicle'] = $this->input->post('number_of_vehicle');
@@ -4501,7 +4502,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/school_bus/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $data['route_name']        = $this->input->post('route_name');
             $data['number_of_vehicle'] = $this->input->post('number_of_vehicle');
@@ -4514,7 +4515,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/school_bus', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('transport_id', $param2);
             $this->db->delete('transport');
@@ -4524,7 +4525,7 @@
         $page_data['transports'] = $this->db->get('transport')->result_array();
         $page_data['page_name']  = 'school_bus';
         $page_data['page_title'] = get_phrase('school_bus');
-        $this->load->view('backend/index', $page_data); 
+        $this->load->view('backend/index', $page_data);
     }
 
     function classrooms($param1 = '', $param2 = '', $param3 = '')
@@ -4534,7 +4535,7 @@
 
            redirect(base_url(), 'refresh');
         }
-        if ($param1 == 'create') 
+        if ($param1 == 'create')
         {
             $data['name']           = $this->input->post('name');
             $data['number']         = $this->input->post('number');
@@ -4542,7 +4543,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_added'));
             redirect(base_url() . 'admin/classrooms/', 'refresh');
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $data['name']           = $this->input->post('name');
             $this->db->where('dormitory_id', $param2);
@@ -4550,7 +4551,7 @@
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/classrooms/', 'refresh');
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('dormitory_id', $param2);
             $this->db->delete('dormitory');
@@ -4570,7 +4571,7 @@
             redirect(base_url(), 'refresh');
         }
         if($param1 == 'login')
-        {   
+        {
             $data['description'] = $this->input->post('social_login');
             $this->db->where('type' , 'social_login');
             $this->db->update('settings' , $data);
@@ -4595,7 +4596,7 @@
             redirect(base_url(), 'refresh');
         }
 
-        if ($param1 == 'do_update') 
+        if ($param1 == 'do_update')
         {
             $data['description'] = $this->input->post('system_name');
             $this->db->where('type' , 'system_name');
@@ -4604,11 +4605,11 @@
             $data['description'] = $this->input->post('system_name');
             $this->db->where('type' , 'system_name');
             $this->db->update('settings' , $data);
-            
+
             $data['description'] = $this->input->post('language');
             $this->db->where('type' , 'language');
             $this->db->update('settings' , $data);
-            
+
             $data['description'] = $this->input->post('timezone');
             $this->db->where('type' , 'timezone');
             $this->db->update('settings' , $data);
@@ -4628,27 +4629,27 @@
             $data['description'] = $this->input->post('phone');
             $this->db->where('type' , 'phone');
             $this->db->update('settings' , $data);
-            
+
             $data['description'] = $this->input->post('facebook');
             $this->db->where('type' , 'facebook');
             $this->db->update('settings' , $data);
-            
+
             $data['description'] = $this->input->post('twitter');
             $this->db->where('type' , 'twitter');
             $this->db->update('settings' , $data);
-            
+
             $data['description'] = $this->input->post('instagram');
             $this->db->where('type' , 'instagram');
             $this->db->update('settings' , $data);
-            
+
             $data['description'] = $this->input->post('youtube');
             $this->db->where('type' , 'youtube');
             $this->db->update('settings' , $data);
-            
+
             $data['description'] = $this->input->post('currency');
             $this->db->where('type' , 'currency');
             $this->db->update('settings' , $data);
-            
+
             $data['description'] = $this->input->post('paypal_email');
             $this->db->where('type' , 'paypal_email');
             $this->db->update('settings' , $data);
@@ -4661,14 +4662,14 @@
             $data['description'] = $this->input->post('running_year');
             $this->db->where('type' , 'running_year');
             $this->db->update('settings' , $data);
-        
+
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/system_settings/', 'refresh');
         }
         if($param1 == 'skin')
         {
             $md5 = md5(date('d-m-y H:i:s'));
-            
+
             if($_FILES['favicon']['size'] > 0)
             {
                 $data['description'] = $md5.str_replace(' ', '', $_FILES['favicon']['name']);
@@ -4676,7 +4677,7 @@
                 $this->db->update('settings' , $data);
                 move_uploaded_file($_FILES['favicon']['tmp_name'], 'uploads/' . $md5.str_replace(' ', '', $_FILES['favicon']['name']));
             }
-            
+
             if($_FILES['logow']['size'] > 0)
             {
                 $data['description'] = $md5.str_replace(' ', '', $_FILES['logow']['name']);
@@ -4684,7 +4685,7 @@
                 $this->db->update('settings' , $data);
                 move_uploaded_file($_FILES['logow']['tmp_name'], 'uploads/' . $md5.str_replace(' ', '', $_FILES['logow']['name']));
             }
-            
+
             if($_FILES['icon_white']['size'] > 0)
             {
                 $data['description'] = $md5.str_replace(' ', '', $_FILES['icon_white']['name']);
@@ -4692,7 +4693,7 @@
                 $this->db->update('settings' , $data);
                 move_uploaded_file($_FILES['icon_white']['tmp_name'], 'uploads/' . $md5.str_replace(' ', '', $_FILES['icon_white']['name']));
             }
-            
+
             if($_FILES['userfile']['size'] > 0)
             {
                 $data['description'] = $md5.str_replace(' ', '', $_FILES['userfile']['name']);
@@ -4700,15 +4701,15 @@
                 $this->db->update('settings' , $data);
                 move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/' . $md5.str_replace(' ', '', $_FILES['userfile']['name']));
             }
-            
+
             if($_FILES['bglogin']['size'] > 0)
             {
                 $data['description'] = $md5.str_replace(' ', '', $_FILES['bglogin']['name']);
                 $this->db->where('type' , 'bglogin');
                 $this->db->update('settings' , $data);
-                move_uploaded_file($_FILES['bglogin']['tmp_name'], 'uploads/' . $md5.str_replace(' ', '', $_FILES['bglogin']['name']));
+                move_uploaded_file($_FILES['bglogin']['tmp_name'], 'uploads/bg' . $md5.str_replace(' ', '', $_FILES['bglogin']['name']));
             }
-            
+
             if($_FILES['logocolor']['size'] > 0)
             {
                 $data['description'] = $md5.str_replace(' ', '', $_FILES['logocolor']['name']);
@@ -4716,7 +4717,7 @@
                 $this->db->update('settings' , $data);
                 move_uploaded_file($_FILES['logocolor']['tmp_name'], 'uploads/' . $md5.str_replace(' ', '', $_FILES['logocolor']['name']));
             }
-            
+
             $this->session->set_flashdata('flash_message' , get_phrase('successfully_updated'));
             redirect(base_url() . 'admin/system_settings/', 'refresh');
         }
@@ -4757,7 +4758,7 @@
         $page_data['page_title'] = get_phrase('classes');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function cursos($class_id = '')
     {
         if ($this->session->userdata('admin_login') != 1)
@@ -4774,15 +4775,15 @@
     {
         if ($this->session->userdata('admin_login') != 1){
              redirect(base_url(), 'refresh');
-        } 
-        if ($param1 == 'create') 
+        }
+        if ($param1 == 'create')
         {
             $fileTypes = array('pdf', 'doc', 'docx', '.mp3', 'wav', 'mp4', 'mov', 'wmv', 'txt'); // Allowed file extensions
             $fileParts = pathinfo($_FILES['file_name']['name']);
             if($this->input->post('type')  == 'virtual')
             {
-                if (in_array(strtolower($fileParts['extension']), $fileTypes)) 
-                {               
+                if (in_array(strtolower($fileParts['extension']), $fileTypes))
+                {
                     $data['name']        = $this->input->post('name');
                     $data['description'] = $this->input->post('description');
                     $data['price']       = $this->input->post('price');
@@ -4796,7 +4797,7 @@
                     $this->db->insert('book', $data);
 
                     $notify['notify'] = "<strong>". $this->crud_model->get_name($this->session->userdata('login_type'), $this->session->userdata('login_user_id'))."</strong>". " ". get_phrase('book_added')." <b>".$this->db->get_where('class', array('class_id' => $this->input->post('class_id')))->row()->name."</b>";
-            
+
                     $students = $this->db->get_where('enroll', array('class_id' => $this->input->post('class_id')))->result_array();
                     foreach($students as $row1)
                     {
@@ -4813,8 +4814,8 @@
                     }
                     $this->session->set_flashdata('flash_message' , get_phrase('successfully_uploaded'));
                     redirect(base_url() . 'admin/library', 'refresh');
-                } 
-                else 
+                }
+                else
                 {
                     $this->session->set_flashdata('error_message' , "Extension not allowed.");
                     redirect(base_url() . 'admin/library/' , 'refresh');
@@ -4832,7 +4833,7 @@
                 $this->db->insert('book', $data);
 
                  $notify['notify'] = "<strong>". $this->crud_model->get_name($this->session->userdata('login_type'), $this->session->userdata('login_user_id'))."</strong>". " ". get_phrase('book_added')." <b>".$this->db->get_where('class', array('class_id' => $this->input->post('class_id')))->row()->name."</b>";
-            
+
                 $students = $this->db->get_where('enroll', array('class_id' => $this->input->post('class_id')))->result_array();
                 foreach($students as $row1)
                 {
@@ -4851,7 +4852,7 @@
                 redirect(base_url() . 'admin/library', 'refresh');
             }
         }
-        if ($param1 == 'update') 
+        if ($param1 == 'update')
         {
             $fileTypes = array('pdf', 'doc', 'docx', '.mp3', 'wav', 'mp4', 'mov', 'wmv', 'txt'); // Allowed file extensions
             $fileParts = pathinfo($_FILES['file_name']['name']);
@@ -4887,7 +4888,7 @@
                 redirect(base_url() . 'admin/update_book/'.$param2, 'refresh');
             }
         }
-        if ($param1 == 'delete') 
+        if ($param1 == 'delete')
         {
             $this->db->where('book_id', $param2);
             $this->db->delete('book');
@@ -4905,7 +4906,7 @@
         $this->load->view('backend/index', $page_data);
     }
 
-     function marks_print_view($student_id  = '', $exam_id = '') 
+     function marks_print_view($student_id  = '', $exam_id = '')
      {
         if ($this->session->userdata('admin_login') != 1)
         {
@@ -4921,7 +4922,7 @@
         $page_data['exam_id']    =   $exam_id;
         $this->load->view('backend/admin/marks_print_view', $page_data);
     }
-    
+
     function upload_file($param1 = '', $param2 = '')
     {
         $page_data['token']  = $param1;
@@ -4929,7 +4930,7 @@
         $page_data['page_title'] = get_phrase('library');
         $this->load->view('backend/index', $page_data);
     }
-    
+
     function folders($task = '', $param2 = '')
     {
       if ($this->session->userdata('admin_login') != 1)
@@ -4941,7 +4942,7 @@
         $user_folder = md5($this->session->userdata('login_user_id'));
         $old_folder = $this->db->get_where('folder', array('folder_id' => $param2))->row()->name;
         rename('uploads/users/admin/'.$user_folder.'/'.$old_folder,'uploads/users/admin/'.$user_folder.'/'.$this->input->post('name'));
-        
+
         $data['name'] = $this->input->post('name');
         $data['token'] = base64_encode($this->input->post('name'));
         $this->db->where('folder_id', $param2);
@@ -4964,7 +4965,7 @@
       $page_data['page_name']   = 'folders';
       $this->load->view('backend/index', $page_data);
     }
-    
+
     function deleteDir($path  = '') {
         return is_file($path) ? @unlink($path) :
         array_map(__FUNCTION__, glob($path.'/*')) == @rmdir($path);
@@ -4976,7 +4977,7 @@
         {
             $this->session->set_userdata('last_page' , current_url());
             redirect(base_url(), 'refresh');
-        }       
+        }
         if($task == 'download'){
             $user_folder = md5($this->session->userdata('login_user_id'));
             $file_name = $this->db->get_where('file', array('file_id' => $code))->row()->name;
@@ -4997,7 +4998,7 @@
             if (!file_exists('uploads/users/'.$this->session->userdata('login_type').'/'.$folder)) {
                 mkdir('uploads/users/'.$this->session->userdata('login_type').'/'.$folder, 0777, true);
             }
-            if (!file_exists('uploads/users/'.$this->session->userdata('login_type').'/'.$folder.'/'.$this->input->post('name'))) 
+            if (!file_exists('uploads/users/'.$this->session->userdata('login_type').'/'.$folder.'/'.$this->input->post('name')))
             {
                 $data['name'] = $this->input->post('name');
                 $data['user_id'] = $this->session->userdata('login_user_id');
@@ -5016,7 +5017,7 @@
         if ($task == 'delete')
         {
             $user_folder = md5($this->session->userdata('login_user_id'));
-            
+
             $file_name = $this->db->get_where('file', array('file_id' => $code))->row()->name;
             $folder = $this->db->get_where('file', array('file_id' => $code))->row()->folder_token;
             $folder_name = $this->db->get_where('folder', array('token' => $folder))->row()->name;

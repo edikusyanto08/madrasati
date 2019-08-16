@@ -1,18 +1,18 @@
-<?php 
+<?php
     $running_year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description;
-$student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array(); 
+$student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array();
     foreach($student_info as $row): ?>
-<div class="content-w"> 
+<div class="content-w">
   <?php include 'fancy.php';?>
   <div class="header-spacer"></div>
   <div class="content-i">
     <div class="content-box">
       <div class="conty">
-           <div class="back" style="margin-top:-20px;margin-bottom:10px">		
-	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/students/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>	
+           <div class="back" style="margin-top:-20px;margin-bottom:10px">
+	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/students/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>
 	            </div>
           <div class="row">
-              <main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">                
+              <main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
                   <div id="newsfeed-items-grid">
                 <div class="ui-block paddingtel">
                       <div class="user-profile">
@@ -33,12 +33,12 @@ $student_info = $this->db->get_where('student' , array('student_id' => $student_
                           <div class="row">
                               <div class="col-lg-6">
                                   <div class="value-pair">
-                                      <div>Tipo de cuenta:</div>
+                                      <div><?php echo get_phrase('account_type');?>:</div>
                                           <div class="value badge badge-pill badge-primary"><?php echo get_phrase('student');?></div>
                                   </div>
                                   <div class="value-pair">
                                       <div><?php echo get_phrase('member_since');?>:</div>
-                                      <div class="value"><?php echo $row['since'];?>.</div>
+                                      <div class="value" style="direction: ltr;"><?php echo $row['since'];?>.</div>
                                   </div>
                                   <div class="value-pair">
                                       <div><?php echo get_phrase('roll');?>:</div>
@@ -48,7 +48,7 @@ $student_info = $this->db->get_where('student' , array('student_id' => $student_
                           </div>
                         </div>
                         <div class="ui-block">
-                    <div class="ui-block-title">    
+                    <div class="ui-block-title">
                       <h6 class="title"><?php echo get_phrase('behavior');?></h6>
                     </div>
                     <div class="ui-block-content">

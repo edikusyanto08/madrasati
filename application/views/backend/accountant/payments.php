@@ -1,5 +1,5 @@
 <?php $running_year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description; ?>
-<div class="content-w" > 
+<div class="content-w" >
     <?php include 'fancy.php';?>
     <div class="header-spacer"></div>
       <div class="conty">
@@ -24,7 +24,7 @@
 	                  	<div class="content-i" >
                     		<div class="content-box" >
                       			<div class="app-em ail-w">
-                      				<div class="ae-conte nt-w">                          
+                      				<div class="ae-conte nt-w">
                             			<div class="aec-full-m essage-w">
                                 			<div class="aec-full -message" style="background-color:#f2f4f8;">
                                   				<div class="container- fluid">
@@ -39,7 +39,7 @@
 						<div class="friend-avatar">
 						    <br><br>
 						    <i class="picons-thin-icon-thin-0383_graph_columns_growth_statistics" style="font-size:45px; color: #99bf2d;"></i>
-							<h1 style="font-weight:bold;"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?><?php $this->db->where('year' , $running_year); $this->db->where('status', 'completed'); $invoices  = $this->db->get('invoice')->result_array(); $to = 0; foreach($invoices as $r){$to+=$r['amount'];} echo number_format($to);?></h1>
+							<h1 style="font-weight:bold;"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?> <?php $this->db->where('year' , $running_year); $this->db->where('status', 'completed'); $invoices  = $this->db->get('invoice')->result_array(); $to = 0; foreach($invoices as $r){$to+=$r['amount'];} echo number_format($to);?></h1>
 							<div class="author-content">
 								<div class="country"><b> <?php echo get_phrase('total_income');?></b></div>
 							</div>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 			<div class="ui-block list" data-mh="friend-groups-item" style="">
 				<div class="friend-item friend-groups">
@@ -56,7 +56,7 @@
 						<div class="friend-avatar">
 						    <br><br>
 						    <i class="picons-thin-icon-thin-0384_graph_columns_drop_statistics" style="font-size:45px; color: #dd2979;"></i>
-							<h1 style="font-weight:bold;"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?><?php $this->db->where('payment_type' , 'expense'); $this->db->where('year' , $running_year); $expenses = $this->db->get('payment')->result_array(); $t=0;
+							<h1 style="font-weight:bold;"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?> <?php $this->db->where('payment_type' , 'expense'); $this->db->where('year' , $running_year); $expenses = $this->db->get('payment')->result_array(); $t=0;
             	            foreach ($expenses as $rows){$t+= $rows['amount'];} echo number_format($t);?></h1>
 							<div class="author-content">
 								<div class="country"><b> <?php echo get_phrase('total_expense');?></b></div>
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 			<div class="ui-block list" data-mh="friend-groups-item" style="">
 				<div class="friend-item friend-groups">
@@ -83,7 +83,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 			<div class="ui-block list" data-mh="friend-groups-item" style="">
 				<div class="friend-item friend-groups">
@@ -94,7 +94,7 @@
 							<h1 style="font-weight:bold;"><?php $this->db->where('status', 'completed'); echo $this->db->count_all_results('invoice');?></h1>
 							<div class="author-content">
 								<div class="country"><b> <?php echo get_phrase('completed_payments');?></b></div>
-							</div> 
+							</div>
 						</div>
 					</div>
 				</div>
@@ -102,7 +102,7 @@
 		</div>
 	</div>
     <hr>
-    <div class="row"> 
+    <div class="row">
 		<div class="col-sm-6">
 			<div class="element-wrapper">
 			    <h6 class="element-header"><?php echo get_phrase('recent_income');?></h6>
@@ -137,7 +137,7 @@
                                 <a href="<?php echo base_url();?>accountant/invoice_details/<?php echo $row['invoice_id'];?>/" style="color:grey;"><img alt="" src="<?php echo $this->crud_model->get_image_url('student', $row['student_id']);?>" style="height: 25px;"><span> <?php echo $this->crud_model->get_name('student', $row['student_id']);?></span></a>
                             </td>
                             <td><?php echo $row['title'];?></td>
-                            <td><a class="badge badge-primary" href="javascript:void(0);"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?><?php echo $row['amount'];?></a></td>
+                            <td><a class="badge badge-primary" href="javascript:void(0);"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?> <?php echo $row['amount'];?></a></td>
                         </tr>
                         <?php endforeach;?>
                       </tbody>
@@ -146,8 +146,8 @@
                 </div>
               </div>
 		</div>
-		
-	 
+
+
 		<div class="col-sm-6">
 		   <div class="element-wrapper">
               <h6 class="element-header"><?php echo get_phrase('recent_expense');?></h6>
@@ -163,7 +163,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                    <?php 
+                    <?php
             	            $this->db->limit(10);
             	            $this->db->where('payment_type' , 'expense');
             	            $this->db->where('year' , $running_year);
@@ -173,12 +173,12 @@
         	            ?>
                         <tr>
                             <td><?php echo $row['title'];?></td>
-                            <td><a class="btn btn-sm btn-rounded btn-purple text-white"><?php 
+                            <td><a class="btn btn-sm btn-rounded btn-purple text-white"><?php
             if ($row['expense_category_id'] != 0 || $row['expense_category_id'] != '')
             echo $this->db->get_where('expense_category' , array('expense_category_id' => $row['expense_category_id']))->row()->name;
                 ?></a></td>
-                            <td><?php echo $this->db->get_where('settings' , array('type' =>'currency'))->row()->description;?><?php echo $row['amount'];?></td>
-                            <td><a class="btn nc btn-rounded btn-sm btn-primary" style="color:white"><?php 
+                            <td><?php echo $this->db->get_where('settings' , array('type' =>'currency'))->row()->description;?> <?php echo $row['amount'];?></td>
+                            <td><a class="btn nc btn-rounded btn-sm btn-primary" style="color:white"><?php
                     if ($row['method'] == 1) echo get_phrase('cash');
                     if ($row['method'] == 2) echo get_phrase('check');
                     if ($row['method'] == 3) echo get_phrase('card');
@@ -193,8 +193,8 @@
 		</div>
 		</div>
 
-                                      			<br>                                      
- 
+                                      			<br>
+
                                   			</div>
 
                                 		</div>
@@ -203,7 +203,7 @@
 
                       			</div>
 
-                			</div>  
+                			</div>
 
                     	</div>
 

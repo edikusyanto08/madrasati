@@ -1,4 +1,4 @@
-<?php 
+<?php
    require_once "face/config.php";
    $redirectURL = base_url()."auth/loginfacebook/";
    $permissions = ['email'];
@@ -27,6 +27,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="<?php echo base_url();?>style/custom.css" media="all" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cairo:400,700,900&display=swap&subset=arabic,latin-ext" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo get_phrase('login');?> | <?php echo $title;?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style/login/css/bootstrap.min.css">
@@ -43,7 +45,7 @@
                     <div class="form-items">
                         <center><img class="logo-size" src="<?php echo base_url();?>uploads/<?php echo $this->db->get_where('settings', array('type' => 'logo'))->row()->description;?>" alt="" style="width:120px;"></center>
                         <br><h5><?php echo get_phrase('login_to_your_account');?></h5><br>
-                         <?php if($this->session->userdata('error') == '1'):?>    
+                         <?php if($this->session->userdata('error') == '1'):?>
                             <div class="form-login-error">
                                 <center><div class="alert alert-danger"><?php echo get_phrase('login_error');?></div></center>
                             </div>

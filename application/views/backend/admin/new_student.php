@@ -15,38 +15,38 @@
         						</div>
         						<div class="step-contents">
           							<div class="step-content active" id="stepContent1">
-									    <div class="row">									
+									    <div class="row">
     										<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 											    <div class="form-group label-floating">
     												<label class="control-label"><?php echo get_phrase('first_name');?></label>
 												    <input class="form-control" name="first_name" type="text" required="">
 											    </div>
-						    			    </div>							
+						    			    </div>
 										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('last_name');?></label>
 												    <input class="form-control" name="last_name" type="text" required="">
-											    </div>								
-						   				    </div>						   	
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+											    </div>
+						   				    </div>
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group date-time-picker label-floating">
 												    <label class="control-label"><?php echo get_phrase('birthday');?></label>
                                                     <input type='text' class="datepicker-here" data-position="bottom left" data-language='en' name="datetimepicker" data-multiple-dates-separator="/"/>
 											    </div>
 						    			    </div>
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('email');?></label>
 												    <input class="form-control" name="email" type="email">
 											    </div>
-						    			    </div>							
-										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+						    			    </div>
+										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('phone');?></label>
 												    <input class="form-control" name="phone" type="text">
 											    </div>
-						   				    </div>	
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">							
+						   				    </div>
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     						   					<div class="form-group label-floating is-select">
                             					    <label class="control-label"><?php echo get_phrase('gender');?></label>
                             					    <div class="select">
@@ -56,34 +56,34 @@
 	                                    				    <option value="F"><?php echo get_phrase('female');?></option>
                                 					    </select>
 	                            				    </div>
-                            					</div>	
-                        				    </div>					   
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+                            					</div>
+                        				    </div>
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('username');?></label>
 												    <input class="form-control" name="username" autocomplete="false" required="" type="text" id="user_student">
 												    <small><span id="result_student"></span></small>
 											    </div>
-						   				    </div>								   
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+						   				    </div>
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('password');?></label>
 												    <input class="form-control" name="password" required="" autocomplete="false" type="password">
 											    </div>
-						   				    </div>		
-										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+						   				    </div>
+										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('address');?></label>
 												    <input class="form-control" name="address" type="text">
 											    </div>
-										    </div>							
+										    </div>
 										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('roll');?></label>
-												    <input class="form-control" name="roll" type="text">
+                            <input class="form-control" name="roll" type="text">
 											    </div>
-						   				    </div>						   	
-						    			    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+						   				    </div>
+						    			    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating is-select">
 	                            				    <label class="control-label"><?php echo get_phrase('class');?></label>
                             					    <div class="select">
@@ -96,9 +96,9 @@
                											    <?php endforeach;?>
                                 					    </select>
                             					    </div>
-                        					    </div>								
+                        					    </div>
                         				    </div>
-                        				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">							
+                        				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating is-select">
                             					    <label class="control-label"><?php echo get_phrase('section');?></label>
                             					    <div class="select">
@@ -106,15 +106,15 @@
 	                                    				    <option value=""><?php echo get_phrase('select');?></option>
                                 					    </select>
 	                            				    </div>
-                        					    </div>	
-                        				    </div>		
-                        				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">								
+                        					    </div>
+                        				    </div>
+                        				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating is-select">
 	                            				    <label class="control-label"><?php echo get_phrase('transport');?></label>
                             					    <div class="select">
     	                                				<select name="transport_id">
                                     					    <option value=""><?php echo get_phrase('select');?></option>
-                                    					    <?php 
+                                    					    <?php
     											                $bus = $this->db->get('transport')->result_array();
                   											    foreach($bus as $trans):
                											    ?>
@@ -122,15 +122,15 @@
                											    <?php endforeach;?>
                                 					    </select>
                             					    </div>
-                        					    </div>							
+                        					    </div>
                         				    </div>
-                        				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">							
+                        				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating is-select">
 	                            				    <label class="control-label"><?php echo get_phrase('classroom');?></label>
                             					    <div class="select">
     	                                				<select name="dormitory_id">
                                     					    <option value=""><?php echo get_phrase('select');?></option>
-                                    					    <?php 
+                                    					    <?php
     	                  										$classroom = $this->db->get('dormitory')->result_array();
                   											    foreach($classroom as $room):
                											    ?>
@@ -140,7 +140,7 @@
                             					    </div>
                         					    </div>
 										    </div>
-										    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">								
+										    <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
     											<div class="form-group">
 												    <label class="control-label"><?php echo get_phrase('photo');?></label>
 												    <input class="form-control" placeholder="" name="userfile" type="file">
@@ -149,7 +149,7 @@
 									    </div>
                 					    <div class="form-buttons-w text-right">
                   						    <a class="btn btn-rounded btn-success btn-lg step-trigger-btn" href="#stepContent2"><?php echo get_phrase('next');?></a>
-            					        </div>			
+            					        </div>
           					        </div>
           					        <div class="step-content" id="stepContent2">
     									<div class="row">
@@ -164,7 +164,7 @@
 												    </div>
 											    </div>
 										    </div>
-										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12" id="initial">							
+										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12" id="initial">
     						   					<div class="form-group label-floating is-select">
                             					    <label class="control-label"><?php echo get_phrase('select_parent');?></label>
                             					    <div class="select">
@@ -177,13 +177,26 @@
                											    <?php endforeach;?>
                                 					    </select>
 	                            				    </div>
-                        					    </div>	
+                        					    </div>
+                            <div class="form-group label-floating is-select">
+                            					    <label class="control-label"><?php echo get_phrase('select_parent2');?></label>
+                            					    <div class="select">
+                                    					<select name="parent2_id">
+                                              	 <option value=""><?php echo get_phrase('select');?></option>
+                                              	<?php $parents = $this->db->get('parent')->result_array();
+                            								foreach($parents as $parent):
+                        									?>
+                         											<option value="<?php echo $parent['parent_id'];?>"><?php echo $parent['first_name']." ".$parent['last_name'];?></option>
+                         								 <?php endforeach;?>
+                                          		  </select>
+          	                            				    </div>
+                                  					    </div>
                         				    </div>
                         				</div>
                         				<div class="row" id="new_parent">
 										    <div class="ui-block-title" style="margin-bottom:10px;">
     											<h6 class="title"><?php echo get_phrase('parent_details');?></h6>
-										    </div>       	
+										    </div>
 						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 											    <div class="form-group label-floating">
     												<label class="control-label"><?php echo get_phrase('first_name');?></label>
@@ -196,7 +209,7 @@
 												    <input class="form-control" name="parent_last_name" type="text" >
 											    </div>
 						   				    </div>
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">							
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     						   					<div class="form-group label-floating is-select">
                             					    <label class="control-label"><?php echo get_phrase('gender');?></label>
                             					    <div class="select">
@@ -206,22 +219,22 @@
 	                                    				    <option value="F"><?php echo get_phrase('female');?></option>
                                 					    </select>
 	                            				    </div>
-                        					    </div>	
+                        					    </div>
                         				    </div>
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">					
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('email');?></label>
 												    <input class="form-control" name="parent_email" type="email">
 											    </div>
 						    			    </div>
-						    			    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">					
+						    			    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('username');?></label>
 												    <input class="form-control" name="parent_username" autocomplete="false" type="text" id="parent_username">
 												    <small><span id="result"></span></small>
 											    </div>
 						    			    </div>
-										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">					
+										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('password');?></label>
 												    <input class="form-control" name="parent_password" autocomplete="false" type="password">
@@ -233,24 +246,24 @@
 												    <input class="form-control" name="parent_phone" type="text">
     											</div>
 						   				    </div>
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">	
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('identification');?></label>
 												    <input class="form-control" name="parent_idcard" type="text" >
-											    </div>		
+											    </div>
 						    			    </div>
-										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">							
+										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('profession');?></label>
 												    <input class="form-control" name="parent_profession" type="text">
 											    </div>
 						   				    </div>
-						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">	
+						   				    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     							   				<div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('address');?></label>
 												    <input class="form-control" name="parent_address" type="text">
-											    </div>			
-						    			    </div>							
+											    </div>
+						    			    </div>
     										<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 											    <div class="form-group label-floating">
     												<label class="control-label"><?php echo get_phrase('home_phone');?></label>
@@ -261,7 +274,7 @@
 											    <div class="form-group label-floating">
 												    <label class="control-label"><?php echo get_phrase('business_work');?></label>
 												    <input class="form-control" name="parent_business" type="text">
-											    </div>						   
+											    </div>
 						    			    </div>
 										    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     											<div class="form-group label-floating">
@@ -275,7 +288,7 @@
             				            </div>
           				            </div>
           				            <div class="step-content" id="stepContent3">
-							            <div class="row">					
+							            <div class="row">
 						   		            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 									            <div class="form-group label-floating">
 										            <label class="control-label"><?php echo get_phrase('conditions_or_diseases');?></label>
@@ -287,8 +300,8 @@
 										            <label class="control-label"><?php echo get_phrase('allergies');?></label>
 										            <input class="form-control" name="allergies" type="text" >
 									            </div>
-						   		            </div>						   
-						   		            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">					
+						   		            </div>
+						   		            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 									            <div class="form-group label-floating">
 										            <label class="control-label"><?php echo get_phrase('personal_doctor');?></label>
 										            <input class="form-control" name="doctor" type="text" >
@@ -300,24 +313,24 @@
 										            <input class="form-control" name="doctor_phone" type="text">
 									            </div>
 						   		            </div>
-						   		            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">					
+						   		            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 									            <div class="form-group label-floating">
 										            <label class="control-label"><?php echo get_phrase('athorized_person');?></label>
 										            <input class="form-control" name="auth_person" type="text" >
 									            </div>
-						    	            </div>						   
+						    	            </div>
 						   		            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 									            <div class="form-group label-floating">
 										            <label class="control-label"><?php echo get_phrase('phone_authorized_person');?></label>
 										            <input class="form-control" name="auth_phone" type="text">
 									            </div>
-						   		            </div>						   
+						   		            </div>
 						   		            <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
 									            <div class="form-group label-floating">
 										            <label class="control-label"><?php echo get_phrase('notes');?>:</label>
 										            <textarea class="form-control" name="note"></textarea>
 									            </div>
-								            </div>	
+								            </div>
 							            </div>
                     	                <div class="form-buttons-w text-right">
                         		            <button class="btn btn-rounded btn-success btn-lg" type="submit" id="sub_form"><?php echo get_phrase('register');?></button>
@@ -325,7 +338,7 @@
             		                </div>
         		            </div>
         		        </div>
-        		        <?php echo form_close();?>  
+        		        <?php echo form_close();?>
 		            </div>
 	            </div>
 	        </div>
@@ -334,11 +347,11 @@
 </div>
 
 <script>
-    $(document).ready(function(){         
-      var query;          
+    $(document).ready(function(){
+      var query;
       $("#user_student").keyup(function(e){
              query = $("#user_student").val();
-             $("#result_student").queue(function(n) {                     
+             $("#result_student").queue(function(n) {
                         $.ajax({
                               type: "POST",
                               url: '<?php echo base_url();?>register/search_user',
@@ -348,31 +361,31 @@
                                     alert("¡Error!");
                               },
                               success: function(data)
-                              { 
-                                if (data == "success") 
-                                {            
-                                    texto = "<b style='color:#ff214f'><?php echo get_phrase('already_exist');?></b>"; 
+                              {
+                                if (data == "success")
+                                {
+                                    texto = "<b style='color:#ff214f'><?php echo get_phrase('already_exist');?></b>";
                                     $("#result_student").html(texto);
                                     $('#sub_form').attr('disabled','disabled');
                                 }
-                                else { 
-                                    texto = ""; 
+                                else {
+                                    texto = "";
                                     $("#result_student").html(texto);
                                     $('#sub_form').removeAttr('disabled');
                                 }
                                 n();
                               }
-                  });                           
-             });                       
-      });                       
+                  });
+             });
+      });
 });
 </script>
 <script type="text/javascript">
-$(document).ready(function(){         
-      var query;          
+$(document).ready(function(){
+      var query;
       $("#parent_username").keyup(function(e){
              query = $("#parent_username").val();
-             $("#result").queue(function(n) {                     
+             $("#result").queue(function(n) {
                         $.ajax({
                               type: "POST",
                               url: '<?php echo base_url();?>register/search_user',
@@ -382,27 +395,27 @@ $(document).ready(function(){
                                     alert("¡Error!");
                               },
                               success: function(data)
-                              { 
-                                if (data == "success") 
-                                {            
-                                    texto = "<b style='color:#ff214f'><?php echo get_phrase('already_exist');?></b>"; 
+                              {
+                                if (data == "success")
+                                {
+                                    texto = "<b style='color:#ff214f'><?php echo get_phrase('already_exist');?></b>";
                                     $("#result").html(texto);
                                     $('#sub_form').attr('disabled','disabled');
                                 }
-                                else { 
-                                    texto = ""; 
+                                else {
+                                    texto = "";
                                     $("#result").html(texto);
                                     $('#sub_form').removeAttr('disabled');
                                 }
                                 n();
                               }
-                  });                           
-             });                       
-      });                       
+                  });
+             });
+      });
 });
 </script>
 <script type="text/javascript">
-function get_class_sections(class_id) 
+function get_class_sections(class_id)
     {
         $.ajax({
             url: '<?php echo base_url();?>admin/get_class_section/' + class_id ,

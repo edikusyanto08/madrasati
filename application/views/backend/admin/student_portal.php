@@ -1,16 +1,16 @@
-<?php $student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array(); 
+<?php $student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array();
     foreach($student_info as $row): ?>
-<div class="content-w"> 
+<div class="content-w">
 	<?php include 'fancy.php';?>
 	<div class="header-spacer"></div>
 	<div class="content-i">
 		<div class="content-box">
 			<div class="conty">
-			    <div class="back" style="margin-top:-20px;margin-bottom:10px">		
-	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/students/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>	
+			    <div class="back" style="margin-top:-20px;margin-bottom:10px">
+	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/students/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>
 	            </div>
     			<div class="row">
-        			<main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">                
+        			<main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
             			<div id="newsfeed-items-grid">
     						<div class="ui-block paddingtel">
           						<div class="user-profile">
@@ -36,7 +36,7 @@
           								        </div>
           								        <div class="value-pair">
           								            <div><?php echo get_phrase('member_since');?>:</div>
-          								            <div class="value"><?php echo $row['since'];?>.</div>
+          								            <div class="value" style="direction: ltr;"><?php echo $row['since'];?>.</div>
           								        </div>
           								        <div class="value-pair">
           								            <div><?php echo get_phrase('roll');?>:</div>
@@ -46,7 +46,7 @@
           								</div>
           							</div>
           							<div class="ui-block">
-										<div class="ui-block-title">		
+										<div class="ui-block-title">
 											<h6 class="title"><?php echo get_phrase('personal_information');?></h6>
 										</div>
 										<div class="ui-block-content">
@@ -79,7 +79,7 @@
 															<span class="title"><?php echo get_phrase('classroom');?>:</span>
 															<span class="text"><?php echo $this->db->get_where('dormitory', array('dormitory_id' => $row['dormitory_id']))->row()->name;?></span>
 														</li>
-														
+
 														<li>
 															<span class="title"><?php echo get_phrase('allergies');?>:</span>
 															<span class="text"><?php echo $row['allergies'];?></span>
@@ -103,6 +103,10 @@
 														<li>
 															<span class="title"><?php echo get_phrase('parent');?>:</span>
 															<span class="text"><?php echo $this->db->get_where('parent', array('parent_id' => $row['parent_id']))->row()->first_name." ".$this->db->get_where('parent', array('parent_id' => $row['parent_id']))->row()->last_name;?></span>
+														</li>
+                            <li>
+															<span class="title"><?php echo get_phrase('parent2');?>:</span>
+															<span class="text"><?php echo $this->db->get_where('parent', array('parent_id' => $row['parent2_id']))->row()->first_name." ".$this->db->get_where('parent', array('parent_id' => $row['parent2_id']))->row()->last_name;?></span>
 														</li>
 														<li>
 															<span class="title"><?php echo get_phrase('phone');?>:</span>

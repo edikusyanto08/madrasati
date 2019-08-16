@@ -19,7 +19,7 @@
                           </div>
                         </div>
                         <div class="profile-section" style="background-color: #fff;">
-                          <div class="control-block-button">                                    
+                          <div class="control-block-button">
                           </div>
                         </div>
                       </div>
@@ -36,7 +36,7 @@
                             <option value=""><?php echo get_phrase('select');?></option>
                             <?php $cl = $this->db->get('class')->result_array();
                                 foreach($cl as $row):
-                  	        ?>      
+                  	        ?>
                                 <option value="<?php echo $row['class_id'];?>" <?php if($id == $row['class_id']) echo 'selected';?>><?php echo $row['name'];?></option>
                             <?php endforeach;?>
                         </select>
@@ -63,7 +63,7 @@
 			            </tr>
                       </thead>
                       <tbody>
-                       <?php $count = 1; 
+                       <?php $count = 1;
 				$book = $this->db->get_where('book', array('class_id' => $id))->result_array();
 			foreach($book as $row):?>
 			<tr>
@@ -85,7 +85,13 @@
 					<div class="status-pill green" data-title="<?php echo get_phrase('available');?>" data-toggle="tooltip"></div>
 				<?php endif;?>
 				</td>
-				<td><a class="btn btn-rounded btn-sm btn-success" style="color:white"><?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?><?php echo $row['price'];?></a></td>
+        <td>
+        <?php if($row['price'] == 0):?>
+          <a class="btn btn-rounded btn-sm btn-success" style="color:white"><?php echo get_phrase('free');?></a>
+        <?php else:?>
+          <a class="btn btn-rounded btn-sm btn-success" style="color:white"><?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?>&nbsp<?php echo $row['price'];?></a>
+        <?php endif;?>
+        </td>
 				<td style="color:grey">
 				<?php if($row['type'] == 'virtual' && $row['file_name'] != ""):?>
 					<a class="btn btn-rounded btn-sm btn-primary" style="color:white" href="<?php echo base_url();?>uploads/library/<?php echo $row['file_name'];?>"><i class="picons-thin-icon-thin-0042_attachment"></i> <?php echo get_phrase('download');?></a>
@@ -102,7 +108,7 @@
               </div>
       </div>
       </div>
-    </div>      
+    </div>
   </div>
 </div>
 <div class="display-type"></div>

@@ -1,7 +1,7 @@
-<?php 
+<?php
     $system_name        =	$this->db->get_where('settings' , array('type'=>'system_name'))->row()->description;
 	$system_title       =	$this->db->get_where('settings' , array('type'=>'system_title'))->row()->description;
-    $account_type = $this->session->userdata('login_type'); 
+    $account_type = $this->session->userdata('login_type');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +15,9 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <link href="<?php echo base_url();?>uploads/<?php echo $this->db->get_where('settings', array('type' => 'favicon'))->row()->description;?>" rel="icon">
     <link href="<?php echo base_url();?>style/cms/css/main.css" media="all" rel="stylesheet">
-    <?php include 'topcss.php';?>	
+    <link href="<?php echo base_url();?>style/custom.css" media="all" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cairo:400,700,900&display=swap&subset=arabic,latin-ext" rel="stylesheet">
+    <?php include 'topcss.php';?>
 </head>
 <body class="menu-position-side menu-side-left full-screen with-content-panel">
   <div class="with-side-panel">

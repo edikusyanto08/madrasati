@@ -1,8 +1,8 @@
-<?php 
+<?php
 	$invoice_info = $this->db->get_where('invoice', array('invoice_id' => $invoice_id))->result_array();
 	foreach($invoice_info as $row):
 ?>
-<div class="content-w" > 
+<div class="content-w" >
     <?php include 'fancy.php';?>
     <div class="header-spacer"></div>
       <div class="conty">
@@ -58,13 +58,13 @@
 				  <tr>
 				  	<td><?php echo $row['title'];?></td>
 					<td><?php echo $row['description'];?></td>
-					<td class="text-right"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?><?php echo $row['amount'];?></td>
+					<td class="text-right"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?> <?php echo $row['amount'];?></td>
 				  </tr>
 				</tbody>
 				<tfoot>
 				  <tr>
 					<td><?php echo get_phrase('total');?></td>
-					<td class="text-right" colspan="2"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?><?php echo $row['amount'];?></td>
+					<td class="text-right" colspan="2"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?> <?php echo $row['amount'];?></td>
 				  </tr>
 				</tfoot>
 			  </table>
@@ -86,7 +86,7 @@
 </div>
 <?php endforeach;?>
 <script>
-    function Print(div) 
+    function Print(div)
     {
      var printContents = document.getElementById(div).innerHTML;
      var originalContents = document.body.innerHTML;

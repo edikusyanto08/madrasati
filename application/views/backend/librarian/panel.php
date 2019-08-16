@@ -1,34 +1,34 @@
-<div class="content-w"> 
+<div class="content-w">
   <?php include 'fancy.php';?>
   <div class="header-spacer"></div>
     <div class="content-i">
       <div class="content-box">
         <div class="conty">
-          <div class="row">        
+          <div class="row">
             <main class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
                 <div id="panel">
-                <?php 
+                <?php
                     $db = $this->db->query('SELECT description, publish_date, type,news_id FROM news UNION SELECT question,publish_date,type,id FROM polls ORDER BY publish_date DESC')->result_array();
                     foreach($db as $wall):
                 ?>
                   <?php if($wall['type'] == 'news'):?>
-                    <div class="ui-block paddingtel">    
-                    <?php 
+                    <div class="ui-block paddingtel">
+                    <?php
                         $news_code = $this->db->get_where('news', array('news_id' => $wall['news_id']))->row()->news_code;
                         $admin_id = $this->db->get_where('news', array('news_id' => $wall['news_id']))->row()->admin_id;
-                    ?>    
+                    ?>
                       <article class="hentry post has-post-thumbnail thumb-full-width">
                         <div class="post__author author vcard inline-items">
-                          <img src="<?php echo $this->crud_model->get_image_url('admin', $admin_id);?>">                
+                          <img src="<?php echo $this->crud_model->get_image_url('admin', $admin_id);?>">
                           <div class="author-date">
                             <a class="h6 post__author-name fn" href="javascript:void(0);"><?php echo $this->crud_model->get_name('admin', $admin_id);?></a>
-                            <div class="post__date">
+                            <div class="post__date"style="direction: ltr;">
                               <time class="published" style="color: #0084ff;"><?php echo $this->db->get_where('news', array('news_id' => $wall['news_id']))->row()->date." ".$this->db->get_where('news', array('news_id' => $wall['news_id']))->row()->date2;?></time>
                             </div>
-                          </div>                
+                          </div>
                         </div><hr>
                         <p><?php echo $wall['description'];?></p>
-                        <?php 
+                        <?php
                           $file = base_url('uploads/news_images/'.$news_code.'.jpg');?>
                           <?php if (@getimagesize($file)):?>
                             <div class="post-thumb">
@@ -47,14 +47,14 @@
 
                   <?php if($wall['type'] == 'polls'):?>
                       <?php echo form_open(base_url() . 'librarian/polls/response/' , array('enctype' => 'multipart/form-data'));?>
-                    <?php 
+                    <?php
                         $usrdb = $this->db->get_where('polls', array('id' => $wall['news_id']))->row()->user;
                         $poll_code = $this->db->get_where('polls', array('id' => $wall['news_id']))->row()->poll_code;
                         $admin_id = $this->db->get_where('polls', array('id' => $wall['news_id']))->row()->admin_id;
                         $options = $this->db->get_where('polls', array('id' => $wall['news_id']))->row()->options;
-                    ?>  
+                    ?>
                     <?php if($usrdb == 'librarian' || $usrdb == 'all'):?>
-                      <?php 
+                      <?php
                         $type = 'librarian';
                         $id = $this->session->userdata('login_user_id');
                         $user = $type. "-".$id;
@@ -68,7 +68,7 @@
                                 <img src="<?php echo $this->crud_model->get_image_url('admin', $admin_id);?>" alt="author">
                                 <div class="author-date">
                                     <a class="h6 post__author-name fn" href="javascript:void(0);"><?php echo $this->crud_model->get_name('admin', $admin_id);?></a>
-                                    <div class="post__date">
+                                    <div class="post__date"style="direction: ltr;">
                                         <time class="published" style="color: #0084ff;"><?php echo $this->db->get_where('polls', array('id' => $wall['news_id']))->row()->date." ".$this->db->get_where('polls', array('id' => $wall['news_id']))->row()->date2;?></time>
                                     </div>
                                 </div>
@@ -78,13 +78,13 @@
                                 <a href="javascript:void(0);" class="btn btn-control" style="background-color:#99bf2d; color:#fff;" data-toggle="tooltip" data-placement="top" data-original-title="<?php echo get_phrase('polls');?>">
                                     <i class="picons-thin-icon-thin-0385_graph_pie_chart_statistics"></i>
                                 </a>
-                            </div> 
+                            </div>
                           <div>
                         <ul class="widget w-pool">
                           <li>
                             <h4><?php echo $wall['description'];?></h4>
                           </li><br>
-                        <?php 
+                        <?php
                           $array = ( explode(',' , $options));
                           for($i = 0 ; $i<count($array)-1; $i++):
                         ?>
@@ -100,7 +100,7 @@
                                 </span>
                               </span>
                               </div>
-                            </div>  
+                            </div>
                           </li>
                       <?php endfor;?>
                         </ul>
@@ -116,7 +116,7 @@
                             <img src="<?php echo $this->crud_model->get_image_url('admin', $admin_id);?>" alt="author">
                             <div class="author-date">
                                 <a class="h6 post__author-name fn" href="javascript:void(0);"><?php echo $this->crud_model->get_name('admin', $admin_id);?></a>
-                                <div class="post__date">
+                                <div class="post__date"style="direction: ltr;">
                                     <time class="published" style="color: #0084ff;"><?php echo $this->db->get_where('polls', array('id' => $wall['news_id']))->row()->date." ".$this->db->get_where('polls', array('id' => $wall['news_id']))->row()->date2;?>
                                     </time>
                                 </div>
@@ -133,7 +133,7 @@
                     <li>
                       <h4><?php echo $wall['description'];?></h4>
                     </li><br>
-                    <?php 
+                    <?php
                       $this->db->where('poll_code', $poll_code);
                       $polls = $this->db->count_all_results('poll_response');
                       $array = ( explode(',' , $options));
@@ -141,7 +141,7 @@
                       $op = 0;
                       for($i = 0 ; $i<count($array)-1; $i++):
                     ?>
-                    <?php 
+                    <?php
                       $this->db->group_by('poll_code');
                       $po = $this->db->get_where('poll_response', array('poll_code' => $poll_code))->result_array();
                       foreach($po as $p):
@@ -150,13 +150,13 @@
                       <div class="skills-item">
                         <div class="skills-item-info">
                           <span class="skills-item-title">
-                            <?php 
+                            <?php
                               $this->db->where('answer', $array[$i]);
                               $res = $this->db->count_all_results('poll_response');
                           ?>
                             <h6><label><?php echo $array[$i];?></label></h6>
                           </span>
-                          <?php 
+                          <?php
                             $response = $res/$polls;
                             $response2 = $response*100;
                           ?>
@@ -213,7 +213,7 @@
                           <div class="pipeline white lined-success">
                             <div class="element-wrapper" >
                             <h6 class="element-header"><?php echo get_phrase('online_users');?></h6>
-                            <?php 
+                            <?php
                                 if(!isset($_SESSION)){
                                     session_start();
                                 }
@@ -223,7 +223,7 @@
                                 $this->db->where('session', $session);
                                 $count = $this->db->get('online_users')->num_rows();
                                 if($count == 0)
-                                { 
+                                {
                                     $data['time'] = $time;
                                     $data['type'] = $this->session->userdata('login_type');
                                     $data['id_usuario'] = $this->session->userdata('login_user_id');
@@ -231,7 +231,7 @@
                                     $data['session'] = $session;
                                     $this->db->insert('online_users',$data);
                                 }
-                                else 
+                                else
                                 {
                                     $data['session'] = $session;
                                     $data['time'] = $time;
@@ -240,15 +240,15 @@
                                     $data['type'] = $this->session->userdata('login_type');
                                     $this->db->where('session', $session);
                                     $this->db->update('online_users', $data);
-                                }  
+                                }
                                 $this->db->where('time <', $time_check);
                                 $this->db->delete('online_users');
-                            ?>          
+                            ?>
                                 <div class="full-ch at-w">
                                     <div class="chat-content-w min">
-                                        <div class="chat-content min">  
+                                        <div class="chat-content min">
                                             <div class="users-list-w">
-                                                <?php  
+                                                <?php
                                                     $this->db->group_by('gp');
                                                     $usuarios = $this->db->get('online_users')->result_array();
                                                     foreach($usuarios as $row):
@@ -275,13 +275,13 @@
                                                                 <span class="badge badge-purple"><?php echo get_phrase('parent');?></span>
                                                             <?php endif;?>
                                                             <?php if($row['type'] == 'admin'):?>
-                                                                <span class="badge badge-primary"><?php echo get_phrase('admin');?></span> 
+                                                                <span class="badge badge-primary"><?php echo get_phrase('admin');?></span>
                                                             <?php endif;?>
                                                             <?php if($row['type'] == 'teacher'):?>
                                                                 <span class="badge badge-success"><?php echo get_phrase('teacher');?></span>
                                                             <?php endif;?>
                                                         </div>
-                                                    </div>            
+                                                    </div>
                                                 </div>
 
                                             <?php endforeach;?>
@@ -311,7 +311,7 @@
                             <div class="list">
                                 <?php $date = date('Y-m-d')." "."00:00:00";
                                     $events = $this->db->get_where('events', array('start' => $date)); ?>
-                                         
+
                                 <div id="accordion-1" role="tablist" aria-multiselectable="true" class="day-event" data-month="12" data-day="2">
                                     <?php  if($events->num_rows() > 0):?>
                                     <?php
@@ -326,7 +326,7 @@
                                                 </a>
                                             </h5>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                     <?php endforeach;?>
@@ -338,14 +338,14 @@
                               </div></center>
                             <?php endif;?>
                                 </div>
-                                 
+
                             </div>
                         </div>
                     </div>
                     <div class="ui-block paddingtel">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                <?php 
+                                <?php
                                     $var = 0;
                                     $var1 = 0;
                                     $birthdays = $this->crud_model->get_birthdays();
@@ -380,7 +380,7 @@
                     </div>
                     <br>
                   </div>
-                </div> 
+                </div>
               </div>
             </div>
           </div>
@@ -393,10 +393,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
 <script type="text/javascript">
    var blank_student_entry = '';
-    $(document).ready(function() 
+    $(document).ready(function()
     {
         blank_student_entry = $('#student_entry').html();
-        for ($i = 1; $i < 1; $i++) 
+        for ($i = 1; $i < 1; $i++)
         {
           $("#student_entry").append(blank_student_entry);
         }
@@ -416,10 +416,10 @@
     $("#new_post").show(500);
     $("#new_poll").hide(500);
   }
-  
+
   function poll()
   {
-    $("#new_post").hide(500);    
+    $("#new_post").hide(500);
     $("#new_poll").show(500);
   }
 </script>
@@ -442,7 +442,7 @@ var myChart = new Chart(ctx, {
             ],
             borderWidth: 1
         }]
-    }, 
+    },
     options: {
             scales: {
                 yAxes: [{
@@ -506,7 +506,7 @@ function number_format(number, decimals, dec_point, thousands_point) {
             position: 'top-end',
             showConfirmButton: false,
             timer: 8000
-            }); 
+            });
             Toast.fire({
             type: 'success',
             title: post_response

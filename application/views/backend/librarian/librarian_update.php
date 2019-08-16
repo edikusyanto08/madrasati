@@ -1,4 +1,4 @@
-<?php 
+<?php
    require_once "face/config.php";
    $redirectURL = base_url()."auth/facebook/";
    $permissions = ['email'];
@@ -7,14 +7,14 @@
 <?php $info = $this->db->get_where('librarian', array('librarian_id' => $this->session->userdata('login_user_id')))->result_array();
 foreach($info as $row):
 ?>
-<div class="content-w"> 
+<div class="content-w">
 	<?php include 'fancy.php';?>
 	<div class="header-spacer"></div>
 	<div class="content-i">
 		<div class="content-box">
 			<div class="conty">
     			<div class="row">
-        			<main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">                
+        			<main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
             			<div id="newsfeed-items-grid">
     						<div class="ui-block paddingtel">
           						<div class="user-profile">
@@ -40,18 +40,18 @@ foreach($info as $row):
           								        </div>
           								        <div class="value-pair">
           								            <div><?php echo get_phrase('member_since');?>:</div>
-          								            <div class="value"><?php echo $row['since'];?>.</div>
+          								            <div class="value" style="direction: ltr;"><?php echo $row['since'];?>.</div>
           								        </div>
           								    </div>
           								</div>
           							</div>
           							<div class="ui-block">
-										<div class="ui-block-title">		
+										<div class="ui-block-title">
 											<h6 class="title"><?php echo get_phrase('update_information');?></h6>
 										</div>
 										<div class="ui-block-content">
 										    <?php echo form_open(base_url() . 'librarian/my_profile/update_profile/', array('enctype' => 'multipart/form-data'));?>
-                                			<div class="row">   
+                                			<div class="row">
                                 				<div class="col-sm-6">
                                     				<div class="form-group label-floating">
                                         				<label class="control-label"><?php echo get_phrase('first_name');?></label>
@@ -60,8 +60,8 @@ foreach($info as $row):
                                     					<span class="material-input"></span>
                                     				</div>
                                 				</div>
-                                
-                                				<div class="col-sm-6"> 
+
+                                				<div class="col-sm-6">
                                     				<div class="form-group label-floating">
                                         				<label class="control-label"><?php echo get_phrase('last_name');?></label>
                                         				<input class="form-control"  type="text" disabled value="<?php echo $row['last_name'];?>">
@@ -70,7 +70,7 @@ foreach($info as $row):
                                     				</div>
                                 				</div>
 
-                                				<div class="col-sm-6"> 
+                                				<div class="col-sm-6">
                                     				<div class="form-group label-floating">
                                         				<label class="control-label"><?php echo get_phrase('username');?></label>
                                         				<input class="form-control"  type="text" value="<?php echo $row['username'];?>" disabled>
@@ -79,7 +79,7 @@ foreach($info as $row):
                                     				</div>
                                 				</div>
 
-                                				<div class="col-sm-6"> 
+                                				<div class="col-sm-6">
                                     				<div class="form-group label-floating">
                                         				<label class="control-label"><?php echo get_phrase('email');?></label>
                                         				<input class="form-control"  type="text" name="email" value="<?php echo $row['email'];?>">
@@ -88,7 +88,7 @@ foreach($info as $row):
                                     				</div>
                                 				</div>
 
-                                				<div class="col-sm-6"> 
+                                				<div class="col-sm-6">
                                     				<div class="form-group label-floating">
                                         				<label class="control-label"><?php echo get_phrase('phone');?></label>
                                         				<input class="form-control"  type="text" name="phone" value="<?php echo $row['phone'];?>">
@@ -97,7 +97,7 @@ foreach($info as $row):
                                     				</div>
                                 				</div>
 
-                                				<div class="col-sm-6"> 
+                                				<div class="col-sm-6">
                                     				<div class="form-group label-floating">
                                         				<label class="control-label"><?php echo get_phrase('identification');?></label>
                                         				<input class="form-control"  type="text" name="idcard" value="<?php echo $row['idcard'];?>">
@@ -106,7 +106,7 @@ foreach($info as $row):
                                     				</div>
                                 				</div>
 
-                    						<div class="col-sm-6"> 
+                    						<div class="col-sm-6">
                                     				<div class="form-group label-floating">
                                         				<label class="control-label"><?php echo get_phrase('update_password');?></label>
                                         				<input class="form-control"  type="password" name="password">
@@ -114,7 +114,7 @@ foreach($info as $row):
                                     					<span class="material-input"></span>
                                     				</div>
                                 				</div>
-                								
+
                 								<div class="col-sm-6">
                                     				<div class="form-group">
                                         				<label class="control-label"><?php echo get_phrase('photo');?></label>
@@ -132,7 +132,7 @@ foreach($info as $row):
 	                    								<span class="material-input"></span>
                     								</div>
                 								</div>
-                                
+
                                 				<div class="col-sm-12">
 	                                    			<div style="float:right;">
                                         				<button class="btn btn-success btn-rounded pull-right" type="submit"> <?php echo get_phrase('update');?></button>

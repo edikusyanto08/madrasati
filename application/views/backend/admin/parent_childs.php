@@ -2,17 +2,17 @@
     $info = $this->db->get_where('parent', array('parent_id' => $parent_id))->result_array();
     foreach($info as $row):
 ?>
-<div class="content-w"> 
+<div class="content-w">
 	<?php include 'fancy.php';?>
 	<div class="header-spacer"></div>
 	<div class="content-i">
 		<div class="content-box">
 			<div class="conty">
-			    <div class="back" style="margin-top:-20px;margin-bottom:10px">		
-	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/parents/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>	
+			    <div class="back" style="margin-top:-20px;margin-bottom:10px">
+	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/parents/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>
 	            </div>
     			<div class="row">
-        			<main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">                
+        			<main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
             			<div id="newsfeed-items-grid">
     						<div class="ui-block paddingtel">
           						<div class="user-profile">
@@ -38,13 +38,13 @@
           								        </div>
           								        <div class="value-pair">
           								            <div><?php echo get_phrase('member_since');?>:</div>
-          								            <div class="value"><?php echo $row['since'];?>.</div>
+          								            <div class="value" style="direction: ltr;"><?php echo $row['since'];?>.</div>
           								        </div>
           								    </div>
           								</div>
           							</div>
           							<div class="ui-block">
-										<div class="ui-block-title">		
+										<div class="ui-block-title">
 											<h6 class="title"><?php echo get_phrase('students');?></h6>
 										</div>
 										<div class="ui-block-content">
@@ -62,7 +62,16 @@
                                                         foreach ($students as $subject): ?>
                                                         <tr>
                                                             <?php $class_id = $this->db->get_where('enroll', array('student_id' => $subject['student_id']))->row()->class_id;?>
-                                                            <td style="text-align: left;"><img alt="" src="<?php echo $this->crud_model->get_image_url('student', $subject['student_id']);?>" width="25px" style="border-radius: 10px;margin-right:5px;"><?php echo $subject['first_name']." ".$subject['last_name'];?></td>
+                                                            <td style="text-align: left;"><img alt="" src="<?php echo $this->crud_model->get_image_url('student', $subject['student_id']);?>" width="25px" style="border-radius: 10px;margin-right:5px;"><a href="<?php echo base_url();?>admin/student_portal/<?php echo $subject['student_id'];?>/" class="h6 author-name"><?php echo $subject['first_name']." ".$subject['last_name'];?></a></td>
+                                                            <td style="text-align: center;"><a class="btn btn-rounded btn-sm btn-primary" style="color:white"><?php echo $this->db->get_where('class', array('class_id' => $class_id))->row()->name;?></a></td>
+                                                            <td style="text-align: center;"><a class="btn btn-rounded btn-sm btn-purple" style="color:white"><?php echo $this->db->get_where('section', array('class_id' => $class_id))->row()->name;?></a></td>
+                                                        </tr>
+                                                    <?php endforeach;?>
+                                                    <?php $students = $this->db->get_where('student', array('parent2_id' => $parent_id))->result_array();
+                                                        foreach ($students as $subject): ?>
+                                                        <tr>
+                                                            <?php $class_id = $this->db->get_where('enroll', array('student_id' => $subject['student_id']))->row()->class_id;?>
+                                                            <td style="text-align: left;"><img alt="" src="<?php echo $this->crud_model->get_image_url('student', $subject['student_id']);?>" width="25px" style="border-radius: 10px;margin-right:5px;"><a href="<?php echo base_url();?>admin/student_portal/<?php echo $subject['student_id'];?>/" class="h6 author-name"><?php echo $subject['first_name']." ".$subject['last_name'];?></a></td>
                                                             <td style="text-align: center;"><a class="btn btn-rounded btn-sm btn-primary" style="color:white"><?php echo $this->db->get_where('class', array('class_id' => $class_id))->row()->name;?></a></td>
                                                             <td style="text-align: center;"><a class="btn btn-rounded btn-sm btn-purple" style="color:white"><?php echo $this->db->get_where('section', array('class_id' => $class_id))->row()->name;?></a></td>
                                                         </tr>

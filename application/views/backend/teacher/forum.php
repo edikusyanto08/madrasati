@@ -19,7 +19,7 @@ foreach($sub as $row):
         <h3 class="cta-header"><?php echo $row['name'];?> - <small><?php echo get_phrase('forum');?></small></h3>
         <small style="font-size:0.90rem; color:#fff;"><?php echo $this->db->get_where('class', array('class_id' => $ex[0]))->row()->name;?> "<?php echo $this->db->get_where('section', array('section_id' => $ex[1]))->row()->name;?>"</small>
       </div>
-    </div> 
+    </div>
     <div class="os-tabs-w menu-shad">
       <div class="os-tabs-controls">
         <ul class="navs navs-tabs upper">
@@ -48,12 +48,12 @@ foreach($sub as $row):
       <div class="content-box">
         <div class="row">
           <main class="col col-xl-12 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
-            <div id="newsfeed-items-grid">                
+            <div id="newsfeed-items-grid">
                 <div class="element-wrapper">
                     <div class="element-box-tp">
                     <h6 class="element-header">
                     <?php echo get_phrase('forum');?>
-                    <div style="margin-top:auto;float:right;"><a href="#" data-target="#new_post" data-toggle="modal" class="text-white btn btn-control btn-grey-lighter btn-success"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
+                    <div style="margin-top:auto;float:left;"><a href="#" data-target="#new_post" data-toggle="modal" class="text-white btn btn-control btn-grey-lighter btn-success"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
                     </h6>
                   <div class="table-responsive">
                     <table class="table table-padded">
@@ -103,10 +103,10 @@ foreach($sub as $row):
           </div>
         </div>
       </div>
-      
-      
-      
-     
+
+
+
+
 <div class="modal fade" id="new_post" tabindex="-1" role="dialog" aria-labelledby="new_post" aria-hidden="true">
   <div class="modal-dialog window-popup edit-my-poll-popup" role="document">
     <div class="modal-content">
@@ -133,7 +133,7 @@ foreach($sub as $row):
                             <div class="description-toggle-content">
                                 <div class="h6"><?php echo get_phrase('show_students');?></div>
                                 <p><?php echo get_phrase('show_message');?></p>
-                            </div>          
+                            </div>
                             <div class="togglebutton">
                                 <label><input name="post_status" value="1" type="checkbox"></label>
                             </div>
@@ -144,7 +144,7 @@ foreach($sub as $row):
                   			<label class="control-label"><?php echo get_phrase('description');?></label>
                   			<textarea class="form-control" id="ckeditor1" name="description"></textarea>
                 		</div>
-              		</div> 
+              		</div>
               		<div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                 		<div class="form-group">
                   			<label class="control-label"><?php echo get_phrase('file');?></label>
@@ -155,7 +155,7 @@ foreach($sub as $row):
           		<div class="form-buttons-w text-right">
 	             	<center><button class="btn btn-rounded btn-success btn-lg" type="submit"><?php echo get_phrase('save');?></button></center>
           		</div>
-          	<?php echo form_close();?>        
+          	<?php echo form_close();?>
         </div>
       </div>
     </div>

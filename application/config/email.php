@@ -2,8 +2,8 @@
 $config["useragent"] = "CodeIgniter";
 $config["protocol"]  = "smtp";
 $config["smtp_host"] ="ssl://smtp.googlemail.com";
-$config["smtp_user"] ="";
-$config["smtp_pass"] ="";
+$config["smtp_user"] ="northwavesaps@gmail.com";
+$config["smtp_pass"] ="Admin@1234";
 $config["smtp_port"] ="465";
 $config["smtp_timeout"] ="5";
 $config["wordwrap"]  = "TRUE";

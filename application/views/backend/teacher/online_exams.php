@@ -17,7 +17,7 @@ foreach($sub as $row):
         <h3 class="cta-header"><?php echo $row['name'];?> - <small><?php echo get_phrase('online_exams');?></small></h3>
         <small style="font-size:0.90rem; color:#fff;"><?php echo $this->db->get_where('class', array('class_id' => $ex[0]))->row()->name;?> "<?php echo $this->db->get_where('section', array('section_id' => $ex[1]))->row()->name;?>"</small>
       </div>
-    </div> 
+    </div>
     <div class="os-tabs-w menu-shad">
       <div class="os-tabs-controls">
         <ul class="navs navs-tabs upper">
@@ -46,12 +46,12 @@ foreach($sub as $row):
       <div class="content-box">
         <div class="row">
           <main class="col col-xl-12 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
-            <div id="newsfeed-items-grid">                
+            <div id="newsfeed-items-grid">
                 <div class="element-wrapper">
                     <div class="element-box-tp">
                     <h6 class="element-header">
                     <?php echo get_phrase('online_exams');?>
-                    <div style="margin-top:auto;float:right;"><a href="<?php echo base_url();?>teacher/new_exam/<?php echo $data;?>/" class="text-white btn btn-control btn-grey-lighter btn-success"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
+                    <div style="margin-top:auto;float:left;"><a href="<?php echo base_url();?>teacher/new_exam/<?php echo $data;?>/" class="text-white btn btn-control btn-grey-lighter btn-success"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
                     </h6>
                   <div class="table-responsive">
                     <table class="table table-padded">

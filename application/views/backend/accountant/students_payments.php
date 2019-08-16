@@ -18,7 +18,7 @@
             </ul>
           </div>
         </div><br>
-  <div class="content-i"> 
+  <div class="content-i">
     <div class="content-box">
 	<div class="element-wrapper">
 		 <div class="tab-content">
@@ -60,7 +60,7 @@
                             </td>
                             <td><?php echo $this->crud_model->get_type_name_by_id('class',$row['class_id']);?></td>
                             <td><?php echo $row['title'];?></td>
-                            <td><a class="badge badge-primary" href="javascript:void(0);"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?><?php echo $row['amount'];?></a></td>
+                            <td><a class="badge badge-primary" href="javascript:void(0);"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?> <?php echo $row['amount'];?></a></td>
                             <td><span><?php echo $row['creation_timestamp'];?></span></td>
                             <td class="bolder">
                                 <a href="<?php echo base_url();?>accountant/invoice_details/<?php echo $row['invoice_id'];?>/" style="color:grey;"><i style="font-size:20px;" class="picons-thin-icon-thin-0424_money_payment_dollar_cash" data-toggle="tooltip" data-placement="top" data-original-title="<?php echo get_phrase('view_invoice');?>"></i></a>

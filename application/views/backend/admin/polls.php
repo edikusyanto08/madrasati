@@ -4,7 +4,7 @@
       	<div class="conty">
         	<div class="all-wrapper no-padding-content solid-bg-all">
 	            <div class="layout-w">
-              		<div class="content-w"> 
+              		<div class="content-w">
                   		<div class="content-i">
                     		<div class="content-box">
                       			<div class="app-email-w">
@@ -38,7 +38,7 @@
 		                                                <div class="row">
 			                                                <div class="col col-xl-10 col-lg-10 col-md-12 col-sm-12  m-auto">
 				                                                <ul class="table-careers">
-				                                                    <?php 
+				                                                    <?php
 				                                                        $this->db->order_by('id', 'desc');
 				                                                        $polls = $this->db->get('polls')->result_array();
 				                                                        foreach($polls as $poll):
@@ -53,7 +53,7 @@
 								                                                    </div>
 							                                                    </div>
 						                                                    </div>
-					                                                        <strong class="btnss successs pull-right" style="margin-top:-65px; margin-right:-10px; font-size:15px; border-radius:25px; padding:7px; box-shadow: 0 2px 30px 0 rgba(153, 191, 45, 0.20);"><?php $this->db->where('poll_code', $poll['poll_code']); echo $this->db->count_all_results('poll_response');?> <?php echo get_phrase('votes');?></strong>
+					                                                        <strong class="btnss successs pull-right" style="direction:ltr; margin-top:-65px; margin-right:-10px; font-size:15px; border-radius:25px; padding:7px; box-shadow: 0 2px 30px 0 rgba(153, 191, 45, 0.20);"><?php $this->db->where('poll_code', $poll['poll_code']); echo $this->db->count_all_results('poll_response');?> <?php echo get_phrase('votes');?></strong>
 						                                                    <a href="<?php echo base_url();?>admin/view_poll/<?php echo $poll['poll_code'];?>/"><h3><span class="bold"><?php echo $poll['question'];?></span></h3></a>
 						                                                    <a onClick="return confirm('<?php echo get_phrase('confirm_delete');?>')" href="<?php echo base_url();?>admin/polls/delete2/<?php echo $poll['poll_code'];?>"><i style="font-size:18px;" class="picons-thin-icon-thin-0057_bin_trash_recycle_delete_garbage_full"></i></a>
 					                                                    </li>
@@ -63,10 +63,10 @@
 		                                                </div>
 	                                                </div>
             									</div>
-        									</div>      
-		    							</div>	
+        									</div>
+		    							</div>
   									</div>
-								</div>  
+								</div>
 							</div>
                   		</div>
               		</div>

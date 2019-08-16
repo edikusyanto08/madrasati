@@ -35,7 +35,7 @@
 			</div>
 			<?php endif;?>
 			<?php if($row['status'] == 0):?><br><br>
-			 <div class="b-t padded-v-big"><a class="btn btn-rounded btn-sm btn-success" onClick="return confirm('<?php echo get_phrase('confirm_solved');?>')" href="<?php echo base_url();?>director/create_report/update/<?php echo $row['code'];?>" style="color:white"><i class="os-icon picons-thin-icon-thin-0154_ok_successful_check"></i> <?php echo get_phrase('mark_solved');?></a></div>
+			 <div class="b-t padded-v-big"><a class="btn btn-rounded btn-sm btn-success" onClick="return confirm('<?php echo get_phrase('confirm_solved');?>')" href="<?php echo base_url();?>admin/create_report/update/<?php echo $row['code'];?>" style="color:white"><i class="os-icon picons-thin-icon-thin-0154_ok_successful_check"></i> <?php echo get_phrase('mark_solved');?></a></div>
 			<?php endif;?>
 		</div>
 		<div class="element-box shadow lined-success">
@@ -49,11 +49,11 @@
 				</div>
     	<?php endif;?>
     	<?php if($row['status'] == 1):?>
-	    	<center><div class="alert alert-success" role="alert"><strong><?php echo get_phrase('success');?>!</strong> <?php echo get_phrase('solved');?></div></center>
+	    	<center><div class="alert alert-success" role="alert"><?php echo get_phrase('solved');?> <strong><?php echo get_phrase('success');?>!</strong></div></center>
     	<?php endif;?><br>
     	<div id="panel">
 		<?php
-            $this->db->order_by('message_id' , 'desc'); 
+            $this->db->order_by('message_id' , 'desc');
             $news_messages = $this->db->get_where('report_response' , array('report_code' => $row['code']))->result_array();
             foreach ($news_messages as $row2):
         ?>
@@ -73,7 +73,7 @@
 	  </div>
 	</div>
 	<div class="col-sm-4">
-	    
+
 	    <div class="ui-block paddingtel lined-danger">
 	        <div class="ui-block-title">
 			    <h6 class="title"><?php echo get_phrase('student');?></h6>
@@ -90,8 +90,8 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        
+
+
                         <div class="ui-block paddingtel lined-danger">
 	        <div class="ui-block-title">
 			    <h6 class="title"><?php echo get_phrase('teacher');?></h6>
@@ -131,7 +131,7 @@
             position: 'top-end',
             showConfirmButton: false,
             timer: 8000
-            }); 
+            });
             Toast.fire({
             type: 'success',
             title: post_message

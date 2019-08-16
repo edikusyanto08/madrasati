@@ -20,7 +20,7 @@
 	<div class="os-tabs-w">
 			<div class="os-tabs-controls">
 			  <ul class="navs navs-tabs upper">
-			  	<?php 
+			  	<?php
 			  	$n = 1;
 			  	$children_of_parent = $this->db->get_where('student' , array('parent_id' => $this->session->userdata('parent_id')))->result_array();
                    foreach ($children_of_parent as $row):
@@ -34,20 +34,20 @@
 			</div>
 		  </div>
       	  <div class="tab-content">
-      	  	<?php 
+      	  	<?php
 			  	$n = 1;
 			  	$children_of_parent = $this->db->get_where('student' , array('parent_id' => $this->session->userdata('parent_id')))->result_array();
                 foreach ($children_of_parent as $row2):
                 $class_id = $this->db->get_where('enroll' , array('student_id' => $row2['student_id'] , 'year' => $running_year))->row()->class_id;
 	    		$section_id = $this->db->get_where('enroll' , array('student_id' => $row2['student_id'] , 'year' => $running_year))->row()->section_id;
             ?>
-        	<?php $active = $n++;?> 
+        	<?php $active = $n++;?>
 	 		<div class="tab-pane <?php if($active == 1) echo 'active';?>" id="<?php echo $row2['username'];?>">
 			          <div class="element-wrapper">
 			            <div class="element-box table-responsive lined-primary shadow" id="print_area<?php echo $row2['student_id'];?>">
 						<div class="row m-b">
 							<div style="display:inline-block">
-							<img style="max-height:80px;margin:0px 10px 20px 20px" src="<?php echo base_url();?>uploads/<?php echo $this->db->get_where('settings', array('type' => 'logo'))->row()->description;?>" alt=""/>		
+							<img style="max-height:80px;margin:0px 10px 20px 20px" src="<?php echo base_url();?>uploads/<?php echo $this->db->get_where('settings', array('type' => 'logo'))->row()->description;?>" alt=""/>
 							</div>
 							<div style="padding-left:20px;display:inline-block;">
 							<h5><?php echo $this->crud_model->get_name('student', $row2['student_id']);?></h5>
@@ -55,21 +55,31 @@
 							</div>
 						</div>
 						<table class="table table-bordered table-schedule table-hover" cellpadding="0" cellspacing="0" width="100%">
-						<?php 
-			                $days = $this->db->get_where('academic_settings', array('type' => 'routine'))->row()->description; 
-			        		if($days == 2) { $nday = 6;}else{$nday = 7;}
-			        		for($d=$days; $d <= $nday; $d++):
-			                if($d==1)$day = 'Sunday';
-							else if($d==2) $day ='Monday';
-							else if($d==3) $day = 'Tuesday';
-							else if($d==4) $day ='Wednesday';
-							else if($d==5) $day ='Thursday';
-							else if($d==6) $day ='Friday';
-							else if($d==7) $day ='Saturday';
-						?>
+              <?php
+                $days = $this->db->get_where('academic_settings', array('type' => 'routine'))->row()->description;
+                if($days == 2) { $nday = 6;}else{$nday = 7;}
+                for($d=$days; $d <= $nday; $d++):
+                if($d==1)$day = 'Saturday';
+                else if($d==2) $day ='Sunday';
+                else if($d==3) $day = 'Monday';
+                else if($d==4) $day ='Tuesday';
+                else if($d==5) $day ='Wednesday';
+                else if($d==6) $day ='Thursday';
+                else if($d==7) $day ='Friday';
+              ?>
 							<tr>
 							<table class="table table-schedule table-hover" cellpadding="0" cellspacing="0">
-								<td width="120" height="90" style="text-align: center;" class="bg-primary text-white"><strong><?php echo ucwords($day);?></strong></td>
+								<td width="120" height="90" style="text-align: center;" class="bg-primary text-white"><strong>
+                  <?php
+                    if($day=='Saturday') echo get_phrase('saturday');
+                    else if($day=='Sunday') echo get_phrase('sunday');
+                    else if($day=='Monday') echo get_phrase('monday');
+                    else if($day=='Tuesday') echo get_phrase('tuesday');
+                    else if($day=='Wednesday') echo get_phrase('wednesday');
+                    else if($day=='Thursday') echo get_phrase('thursday');
+                    else if($day=='Friday') echo get_phrase('friday');
+                  ?>
+                </strong></td>
 								 <?php
 			                        $this->db->order_by("time_start", "asc");
 			                        $this->db->where('day' , $day);
@@ -87,22 +97,22 @@
 			                    <?php endforeach;?>
 							</table>
 							</tr>
-							<?php endfor;?>  
+							<?php endfor;?>
 							</table>
 			            </div>
 			            <button class="btn btn-rounded btn-success pull-right" onclick="printDiv('print_area<?php echo $row2['student_id'];?>')" ><?php echo get_phrase('print');?></button><br><br><br>
 			          </div>
-				</div>  
+				</div>
 				<?php endforeach;?>
 			</div>
 		</div>
 		</div>
-		
+
 	</div>
 </div>
 
 	<script>
- function printDiv(nombreDiv) 
+ function printDiv(nombreDiv)
  {
      var contenido= document.getElementById(nombreDiv).innerHTML;
      var contenidoOriginal= document.body.innerHTML;
@@ -110,4 +120,4 @@
      window.print();
      document.body.innerHTML = contenidoOriginal;
 }
-</script> 
+</script>

@@ -1,5 +1,5 @@
 <?php $running_year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description; ?>
-<?php 
+<?php
     $current_homework = $this->db->get_where('homework' , array('homework_code' => $homework_code))->result_array();
     foreach ($current_homework as $row):
 ?>
@@ -19,8 +19,8 @@
 	  </div>
   <div class="content-i">
     <div class="content-box">
-	<div class="back" style="margin-top:-20px;margin-bottom:10px">		
-	<a href="<?php echo base_url();?>student/homework/<?php echo base64_encode($row['class_id'].'-'.$row['section_id'].'-'.$row['subject_id']);?>/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>	
+	<div class="back" style="margin-top:-20px;margin-bottom:10px">
+	<a href="<?php echo base_url();?>student/homework/<?php echo base64_encode($row['class_id'].'-'.$row['section_id'].'-'.$row['subject_id']);?>/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>
 	</div>
 	<div class="row">
 	<div class="col-sm-8">
@@ -66,7 +66,7 @@
 			<?php echo form_open(base_url() . 'student/delivery/text/'.$homework_code);?>
 			<div class="b-t padded-v-big">
 			  <textarea cols="80" id="ckeditor1" required="" name="reply" rows="10"></textarea>
-			  <input type="hidden" name="class_id" value="<?php echo $row['class_id'];?>"> 
+			  <input type="hidden" name="class_id" value="<?php echo $row['class_id'];?>">
 			  <input type="hidden" name="section_id" value="<?php echo $row['section_id'];?>">
 			  <input type="hidden" name="subject_id" value="<?php echo $row['subject_id'];?>">
 			  <br>
@@ -84,7 +84,7 @@
 			<?php endif;?>
 		</div>
 		</div>
-	
+
 	<div class="col-sm-4">
 		<div class="pipeline white lined-secondary">
 		  <div class="pipeline-header">
@@ -123,7 +123,7 @@
 				  <b><?php echo get_phrase('limit_date');?></b>:
 				</th>
 				<td>
-				  <?php echo get_phrase('allowed_deliveries');?> <?php echo $row['date_end'];?> <?php echo $row['time_end'];?>.
+				  <?php echo get_phrase('allowed_deliveries');?> <?php echo $row['date_end'];?> <?php echo get_phrase('hour');?> <?php echo $row['time_end'];?>.
 				</td>
 			  </tr>
 			  <tr>

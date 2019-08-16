@@ -3,20 +3,20 @@
     <?php include 'fancy.php';?>
     <div class="header-spacer"></div>
     <div class="conty">
-        <div class="os-tabs-w menu-shad">		
-		<div class="os-tabs-controls">		  
-			<ul class="navs navs-tabs upper">			
-				<li class="navs-item">			  
+        <div class="os-tabs-w menu-shad">
+		<div class="os-tabs-controls">
+			<ul class="navs navs-tabs upper">
+				<li class="navs-item">
 					<a class="navs-links active" href="<?php echo base_url();?>librarian/library/"><i class="os-icon picons-thin-icon-thin-0017_office_archive"></i>
 					<span><?php echo get_phrase('library');?></span></a>
 				</li>
-				<li class="navs-item">			  
+				<li class="navs-item">
 					<a class="navs-links" href="<?php echo base_url();?>librarian/book_request/"><i class="os-icon picons-thin-icon-thin-0086_import_file_load"></i>
 					<span><?php echo get_phrase('book_request');?></span></a>
 				</li>
-			</ul>		
+			</ul>
 		</div>
-	</div>  
+	</div>
         <div class="content-box">
             <div class="row">
              <div class="col col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
@@ -35,7 +35,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="col col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
 			<div class="ui-block list" data-mh="friend-groups-item" style="">
 				<div class="friend-item friend-groups">
@@ -52,7 +52,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="col col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
 			<div class="ui-block list" data-mh="friend-groups-item" style="">
 				<div class="friend-item friend-groups">
@@ -76,7 +76,7 @@
             <div class="element-wrapper">
                 <h6 class="element-header">
                   <?php echo get_phrase('library');?>
-                  <div style="margin-top:auto;float:right;"><a href="#" data-target="#addroutine" data-toggle="modal" class="btn btn-control btn-grey-lighter btn-success"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
+                  <div style="margin-top:auto;float:left;"><a href="#" data-target="#addroutine" data-toggle="modal" class="btn btn-control btn-grey-lighter btn-success"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
                 </h6>
                 <div class="element-box-tp">
                   <div class="table-responsive">
@@ -95,7 +95,7 @@
 			            </tr>
                       </thead>
                       <tbody>
-                       <?php $count = 1; 
+                       <?php $count = 1;
 				$book = $this->db->get_where('book')->result_array();
 			foreach($book as $row):?>
 			<tr>
@@ -118,7 +118,13 @@
 					<div class="status-pill green" data-title="<?php echo get_phrase('available');?>" data-toggle="tooltip"></div>
 				<?php endif;?>
 				</td>
-				<td><a class="btn btn-rounded btn-sm btn-success" style="color:white"><?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?><?php echo $row['price'];?></a></td>
+        <td>
+        <?php if($row['price'] == 0):?>
+          <a class="btn btn-rounded btn-sm btn-success" style="color:white"><?php echo get_phrase('free');?></a>
+        <?php else:?>
+          <a class="btn btn-rounded btn-sm btn-success" style="color:white"><?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?>&nbsp<?php echo $row['price'];?></a>
+        <?php endif;?>
+        </td>
 				<td style="color:grey">
 				<?php if($row['type'] == 'virtual' && $row['file_name'] != ""):?>
 					<a class="btn btn-rounded btn-sm btn-primary" style="color:white" href="<?php echo base_url();?>uploads/library/<?php echo $row['file_name'];?>"><i class="picons-thin-icon-thin-0042_attachment"></i> <?php echo get_phrase('download');?></a>
@@ -139,7 +145,7 @@
               </div>
       </div>
       </div>
-    </div>      
+    </div>
   </div>
 </div>
 <div class="display-type"></div>
@@ -165,7 +171,7 @@
                         <span class="material-input"></span>
                       </div>
                     </div>
-                    
+
                   <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group label-floating is-empty">
                             <label class="control-label"><?php echo get_phrase('author');?></label>
@@ -173,7 +179,7 @@
                         <span class="material-input"></span>
                       </div>
                     </div>
-                    
+
                     <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="form-group label-floating is-empty">
                             <label class="control-label"><?php echo get_phrase('price');?></label>
@@ -196,7 +202,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="form-group label-floating is-empty">
                             <label class="control-label">Copias totales</label>
@@ -204,7 +210,7 @@
                         <span class="material-input"></span>
                       </div>
                     </div>
-                    
+
                     <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="form-group label-floating is-empty">
                             <label class="control-label"><?php echo get_phrase('description');?></label>
@@ -212,25 +218,25 @@
                         <span class="material-input"></span>
                       </div>
                     </div>
-                    
+
                     <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="description-toggle">
                                 <div class="description-toggle-content">
                                   <div class="h6"><?php echo get_phrase('available');?></div>
                                   <p><?php echo get_phrase('available_message');?></p>
-                                </div>          
+                                </div>
                                 <div class="togglebutton">
                                   <label><input name="status" value="1" type="checkbox" checked=""></label>
                                 </div>
                               </div>
                     </div>
-          
+
                     <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="description-toggle">
                                 <div class="description-toggle-content">
                                   <div class="h6"><?php echo get_phrase('virtual');?></div>
                                   <p><?php echo get_phrase('virtual_message');?></p>
-                                </div>          
+                                </div>
                                 <div class="togglebutton">
                                   <label><input name="type" value="virtual" type="checkbox"></label>
                                 </div>
@@ -244,12 +250,12 @@
                         <span class="material-input"></span>
                       </div>
                     </div>
-                   
+
                     </div>
                     <div class="form-buttons-w text-right">
                         <center><button class="btn btn-rounded btn-success" type="submit"><?php echo get_phrase('save');?></button></center>
                     </div>
-                <?php echo form_close();?>        
+                <?php echo form_close();?>
             </div>
         </div>
         </div>

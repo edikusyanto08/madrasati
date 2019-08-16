@@ -4,7 +4,7 @@
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
         -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility; 
+        text-rendering: optimizeLegibility;
     }
 </style>
   <head>
@@ -19,6 +19,8 @@
     <link href="<?php echo base_url();?>style/cms/icon_fonts_assets/picons-thin/style.css" rel="stylesheet">
     <link href="<?php echo base_url();?>uploads/<?php echo $this->db->get_where('settings', array('type' => 'favicon'))->row()->description;?>" rel="icon">
     <link href="<?php echo base_url();?>style/cms/css/main.css?version=3.3" rel="stylesheet">
+    <link href="<?php echo base_url();?>style/custom.css" media="all" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cairo:400,700,900&display=swap&subset=arabic,latin-ext" rel="stylesheet">
   </head>
   <body class="auth-wrapper login" style="background: url('<?php echo base_url();?>uploads/bglogin.jpg');background-size: cover;background-repeat: no-repeat;">
       <div class="auth-box-w wider">

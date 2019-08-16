@@ -1,4 +1,4 @@
-<div class="content-w"> 
+<div class="content-w">
   <?php include 'fancy.php';?>
   <div class="header-spacer"></div>
   <div class="conty">
@@ -26,8 +26,8 @@
                       <div class="aec-full-message">
                         <div class="message-head">
                           <div class="user-w with-status status-green">
-                            <div class="back" style="margin-top:20px;margin-bottom:10px">   
-                              <a href="<?php echo base_url();?>admin/folders/<?php echo $token;?>"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>  
+                            <div class="back" style="margin-top:20px;margin-bottom:10px">
+                              <a href="<?php echo base_url();?>admin/folders/<?php echo $token;?>"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>
                             </div>
                             <div class="user-name">
                               <h6 class="user-title"><?php if($token != "") {echo $this->db->get_where('folder', array('token' => $token))->row()->name;} else echo get_phrase('root_folder');?></h6>
@@ -40,18 +40,18 @@
                             <form action="<?php echo base_url();?>dropzone/upload?folder_key=<?php echo $token;?>" class="dropzone needsclick dz-clickable" id="demo-upload" style="border:0px;">
                               <input type="hidden" name="token_key" id="token_key" value="<?php echo $token;?>">
                               <div class="dz-message needsclick" id="dropzonePreview" style="min-height: 500px;">
-                                <p><img src="https://wsg.com.gt/edu/uploads/drop.svg" style="width: 35%;"></p>
+                                <p><img src="<?php echo base_url();?>uploads/drop.svg" style="width: 35%;"></p>
                                 <h3><?php echo get_phrase('drag_your_files_here');?><br></h3>
                                 <span class="note needsclick">(<?php echo get_phrase('your_files_message');?>).</span>
                               </div>
                             </form>
-                          </div> 
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>  
+              </div>
             </div>
           </div>
         </div>
@@ -82,15 +82,15 @@
 
 <script>
  var key = document.getElementById("token_key").value;
- $(function() 
+ $(function()
  {
-    Dropzone.options.mydropzone = 
+    Dropzone.options.mydropzone =
     {
-        url: '<?php echo base_url();?>dropzone/upload?folder_key='+key, 
+        url: '<?php echo base_url();?>dropzone/upload?folder_key='+key,
         addRemoveLinks: true,
         autoProcessQueue: true,
         autoDiscover: false,
-        paramName: 'file', 
+        paramName: 'file',
         previewsContainer: '#dropzonePreview',
         clickable: '#dropzonePreview',
         accept: function(file, done) {

@@ -73,8 +73,8 @@
 	.ui-block.list:hover button{
 		visibility: visible;
 	}
-	
-	
+
+
 .circle {
   width: 40px;
   height: 40px;
@@ -87,9 +87,9 @@
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 700;
-  
-  
-  
+
+
+
 }
 .no_border{
         border-radius:0px;
@@ -138,7 +138,7 @@ select::-ms-expand {
   bottom: 0;
   color:#9a9fbf;
   padding: 0 1em;
-  
+
   pointer-events: none;
 }
 /* Transition */
@@ -338,38 +338,38 @@ select::-ms-expand {
   margin-right: 29px;
   fill: #fff;
   margin-top: -9px; }
-  
+
   @media only screen and (max-width: 400px) {
       .control-icon {
     margin-right: 29px;
     fill: #fff;
-    margin-top: 10px; }  
+    margin-top: 10px; }
     .imgs{
         margin-top:20px;
     }
-  } 
-  
-  
+  }
+
+
   @media only screen and (min-width: 768px) {
       .control-icon {
     margin-right: 29px;
     fill: #fff;
-    margin-top: 8px; }  
-  } 
-  
-  
+    margin-top: 8px; }
+  }
+
+
   @media only screen and (min-width: 992px) {
     .control-icon {
     margin-right: 29px;
     fill: #fff;
-    margin-top: 8px; }    
-  } 
-  
+    margin-top: 8px; }
+  }
+
   @media only screen and (min-width: 1200px) {
 .control-icon {
   margin-right: 29px;
   fill: #fff;
-  margin-top: 8px; }    
+  margin-top: 8px; }
 }
 
   .control-icon i {
@@ -529,13 +529,13 @@ select::-ms-expand {
 
 .account-settings a {
   padding: 13px 0; }
-  
+
 
 .account-settings i {
   margin-right: 15px;
   color: #9a9fbf;
   font-size: 1.5rem;
-  font-weight: 700; }  
+  font-weight: 700; }
 	  .account-settings i:hover {
       color: #1b55e2; }
 
@@ -1838,7 +1838,7 @@ select::-ms-expand {
       -webkit-transform: translateX(0);
               transform: translateX(0); }
   .top-header.top-header-favorit .author-name {
-    font-size: 18px; 
+    font-size: 18px;
   }
   .header-spacer--standard {
     height: 103px; } }
@@ -2692,7 +2692,7 @@ section {
 ul {
   list-style: none;
   padding: 0; }
- 
+
   a:hover {
     color: #1b55e2; }
 
@@ -2816,7 +2816,7 @@ a > svg {
 svg {
   transition: all .3s ease; }
 
- 
+
 button.btn-md {
   padding: 1rem 3.5rem;
   font-size: 0.75rem;
@@ -2908,7 +2908,7 @@ img {
 .number-spinner.input-group.number-spinner--green .input-group-btn > .btn {
   background-color: #1ed760; }
 
- 
+
 .modal-content {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
@@ -3077,11 +3077,11 @@ img {
     margin-top: 15px; } }
 
 /*------------- #BUTTONS --------------*/
- 
- 
+
+
 
 .btn-control {
-  border-radius: 100%;
+  /*border-radius: 100%;*/
   width: 50px;
   height: 50px;
   line-height: 54px;
@@ -3158,7 +3158,7 @@ img {
       height: 22px;
       width: 22px; }
 
-  
+
 .btn-market {
   text-transform: none;
   text-align: left;
@@ -4164,7 +4164,7 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
 		.left-menu a:hover i {
         fill: #1b55e2; }
 
-		
+
 .btm-post i {
     font-size: 1.3rem;
 	font-weight: 600; }
@@ -4176,7 +4176,7 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
 		.btm-post a:hover i {
         fill: #1b55e2; }
 
-		
+
 .profile-completion {
   padding: 15px 25px 25px;
   transition: all .3s ease; }
@@ -6381,6 +6381,7 @@ ol ol li {
     width: 25px  !important;
     height:25px;}
 .post__author {
+  text-align: right;
   margin-bottom: 20px; }
   .post__author img {
     width: 40px;
@@ -6819,7 +6820,7 @@ ol ol li {
 .cat-list-bg-style {
   margin: 5px 0;
   padding: 0;
-  list-style: none; 
+  list-style: none;
     overflow-x: scroll;
    overflow-y: hidden;
    white-space: nowrap;
@@ -9629,7 +9630,7 @@ ol ol li {
 
 .c-google {
   color: #ea4235; }
-  
+
 .c-twitter {
   color: #38bff1; }
 
@@ -10885,7 +10886,7 @@ ol ol li {
   text-align: center;
   padding-top: 10px;
   border-top: 1px solid rgba(0, 0, 0, 0.05); }
-  
+
 .w-about img {
 	margin: auto;
     width: 50%;
@@ -11354,9 +11355,9 @@ select.selectpicker {
 .bootstrap-select.without-border .form-group {
   margin-bottom: 0; }
 
- 
-      
- 
+
+
+
 .ranges {
   font-size: 11px;
   float: none;
@@ -11388,9 +11389,9 @@ select.selectpicker {
   background-color: #08c;
   border: 1px solid #08c;
   color: #fff; }
- 
-    
- 
+
+
+
 /* perfect-scrollbar v0.7.0 */
 .ps {
   -ms-touch-action: auto;
@@ -13318,15 +13319,15 @@ input[type=checkbox] {
 /**
  * Swiper 3.3.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
- * 
+ *
  * http://www.idangero.us/swiper/
- * 
+ *
  * Copyright 2016, Vladimir Kharlampidi
  * The iDangero.us
  * http://www.idangero.us/
- * 
+ *
  * Licensed under MIT
- * 
+ *
  * Released on: February 7, 2016
  */
 .swiper-container {
@@ -13902,7 +13903,7 @@ input[type=checkbox] {
 }
 
 #container-floating:hover .nds{
-  
+
   animation: bounce-nds 0.1s linear;
   animation-fill-mode:  forwards;
 }
@@ -13950,4 +13951,3 @@ input[type=checkbox] {
   margin: auto;
   right: 20px;
 }
-

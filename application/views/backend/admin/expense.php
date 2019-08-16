@@ -18,7 +18,7 @@
             </ul>
           </div>
         </div><br>
-  <div class="content-i"> 
+  <div class="content-i">
     <div class="content-box">
 	<div class="element-wrapper">
 		<div class="os-tabs-w">
@@ -35,7 +35,7 @@
 		  </div>
 		 <div class="tab-content">
 		<div class="tab-pane active" id="expenses">
-		    <div style="margin: auto 0;float:right;"><button class="btn btn-success btn-rounded btn-upper" data-target="#new_expense" data-toggle="modal" type="button">+ <?php echo get_phrase('new_expense');?></button></div><br>
+		    <div style="margin: auto 0;float:left;"><button class="btn btn-success btn-rounded btn-upper" data-target="#new_expense" data-toggle="modal" type="button">+ <?php echo get_phrase('new_expense');?></button></div><br>
           <div class="element-wrapper">
               <h6 class="element-header"><?php echo get_phrase('expenses');?></h6>
                 <div class="element-box-tp">
@@ -53,7 +53,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                    <?php 
+                    <?php
             	        $count = 1;
             	            $this->db->where('payment_type' , 'expense');
             	            $this->db->where('year' , $running_year);
@@ -65,13 +65,13 @@
                             <td><?php echo $row['title'];?></td>
                             <td><?php echo $row['description'];?></td>
                             <td><a class="btn btn-sm btn-rounded btn-purple text-white">
-                            <?php 
+                            <?php
                                 if ($row['expense_category_id'] != 0 || $row['expense_category_id'] != '')
                                 echo $this->db->get_where('expense_category' , array('expense_category_id' => $row['expense_category_id']))->row()->name;
                             ?></a>
                             </td>
-                            <td><?php echo $this->db->get_where('settings' , array('type' =>'currency'))->row()->description;?><?php echo $row['amount'];?></td>
-                            <td><a class="btn nc btn-rounded btn-sm btn-primary" style="color:white"><?php 
+                            <td><?php echo $this->db->get_where('settings' , array('type' =>'currency'))->row()->description;?> <?php echo $row['amount'];?></td>
+                            <td><a class="btn nc btn-rounded btn-sm btn-primary" style="color:white"><?php
                                 if ($row['method'] == 1) echo get_phrase('cash');
                                 if ($row['method'] == 2) echo get_phrase('check');
                                 if ($row['method'] == 3) echo get_phrase('card');
@@ -90,7 +90,7 @@
               </div>
           </div>
 		  <div class="tab-pane" id="categories">
-		      <div style="margin: auto 0;float:right;"><button class="btn btn-success btn-rounded btn-upper" data-target="#addcategory" data-toggle="modal" type="button">+ <?php echo get_phrase('new_category');?></button></div><br>
+		      <div style="margin: auto 0;float:left;"><button class="btn btn-success btn-rounded btn-upper" data-target="#addcategory" data-toggle="modal" type="button">+ <?php echo get_phrase('new_category');?></button></div><br>
 		      <div class="element-wrapper">
 		          <h6 class="element-header"><?php echo get_phrase('categories');?></h6>
                 <div class="element-box-tp">
@@ -103,7 +103,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                    <?php 
+                    <?php
 	                        $expenses = $this->db->get('expense_category')->result_array();
             	            foreach ($expenses as $row):
         	            ?>
@@ -150,8 +150,8 @@
         </div>
       </div>
     </div>
-    
-    
+
+
     <div class="modal fade" id="new_expense" tabindex="-1" role="dialog" aria-labelledby="new_expense" aria-hidden="true">
       <div class="modal-dialog window-popup create-friend-group create-friend-group-1" role="document">
         <div class="modal-content">
@@ -172,7 +172,7 @@
                 <div class="select">
                     <select name="expense_category_id" required="">
                         <option value=""><?php echo get_phrase('select');?></option>
-                        <?php 
+                        <?php
 						    $categories = $this->db->get('expense_category')->result_array();
                             foreach ($categories as $row):
                         ?>

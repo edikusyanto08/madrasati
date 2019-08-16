@@ -15,7 +15,7 @@
             <li class="navs-item">
               <a class="navs-links" href="<?php echo base_url();?>admin/looking_routine/"><i class="os-icon picons-thin-icon-thin-0016_bookmarks_reading_book"></i><span><?php echo get_phrase('exam_routine');?></span></a>
             </li>
-          </ul>     
+          </ul>
         </div>
       </div>
       <div class="content-box">
@@ -41,12 +41,12 @@
               <button class="btn btn-rounded btn-success btn-upper" data-target="#addroutine" data-toggle="modal" type="button">+ <?php echo get_phrase('add_schedule');?></button>
             </div>
           </div>
-        </div>               
+        </div>
         <div class="" style="padding-top:25px; padding-left:18px;">
           <div class="os-tabs-w">
             <div class="os-tabs-controls">
               <ul class="navs navs-tabs upper">
-              <?php $query = $this->db->get_where('section' , array('class_id' => $id)); 
+              <?php $query = $this->db->get_where('section' , array('class_id' => $id));
                 if ($query->num_rows() > 0):
                 $sections = $query->result_array();
                 foreach ($sections as $rows):?>
@@ -69,7 +69,7 @@
               <div class="element-box table-responsive lined-primary shadow" id="print_area<?php echo $row['section_id'];?>">
                 <div class="row m-b">
                   <div style="display:inline-block">
-                    <img style="max-height:80px;margin:0px 10px 20px 20px" src="<?php echo base_url();?>uploads/<?php echo $this->db->get_where('settings', array('type' => 'logo'))->row()->description;?>"/>    
+                    <img style="max-height:80px;margin:0px 10px 20px 20px" src="<?php echo base_url();?>uploads/<?php echo $this->db->get_where('settings', array('type' => 'logo'))->row()->description;?>"/>
                   </div>
                   <div style="padding-left:20px;display:inline-block;">
                     <h5><?php echo get_phrase('class_routine');?></h5>
@@ -78,20 +78,28 @@
                 </div>
                 <table class="table table-bordered table-schedule table-hover" cellpadding="0" cellspacing="0" width="100%">
                 <?php
-                  $days = $this->db->get_where('academic_settings', array('type' => 'routine'))->row()->description; 
+                  $days = $this->db->get_where('academic_settings', array('type' => 'routine'))->row()->description;
                   if($days == 2) { $nday = 6;}else{$nday = 7;}
                   for($d=$days; $d <= $nday; $d++):
-                  if($d==1)$day = 'Sunday';
-                  else if($d==2) $day ='Monday';
-                  else if($d==3) $day = 'Tuesday';
-                  else if($d==4) $day ='Wednesday';
-                  else if($d==5) $day ='Thursday';
-                  else if($d==6) $day ='Friday';
-                  else if($d==7) $day ='Saturday';
+                  if($d==1)$day = 'Saturday';
+                  else if($d==2) $day ='Sunday';
+                  else if($d==3) $day = 'Monday';
+                  else if($d==4) $day ='Tuesday';
+                  else if($d==5) $day ='Wednesday';
+                  else if($d==6) $day ='Thursday';
+                  else if($d==7) $day ='Friday';
                 ?>
                 <tr>
                   <table class="table table-schedule table-hover" cellpadding="0" cellspacing="0">
-                    <td width="120" class="bg-primary text-white" height="100" style="text-align: center;"><strong><?php echo ucwords($day);?></strong></td>
+                    <td width="120" class="bg-primary text-white" height="100" style="text-align: center;"><strong><?php
+                    if($day=='Saturday') echo get_phrase('saturday');
+                    else if($day=='Sunday') echo get_phrase('sunday');
+                    else if($day=='Monday') echo get_phrase('monday');
+                    else if($day=='Tuesday') echo get_phrase('tuesday');
+                    else if($day=='Wednesday') echo get_phrase('wednesday');
+                    else if($day=='Thursday') echo get_phrase('thursday');
+                    else if($day=='Friday') echo get_phrase('friday');
+                    ?></strong></td>
                     <?php
                     $this->db->order_by("time_start", "asc");
                     $this->db->where('day' , $day);
@@ -113,7 +121,7 @@
                         </div>
                         <ul>
                           <li>
-                            <a onclick="showAjaxModal('<?php echo base_url();?>modal/popup/modal_routine/<?php echo $row2['class_routine_id'];?>');" href="javascript:void(0);"><i class="os-icon  picons-thin-icon-thin-0001_compose_write_pencil_new"></i><span><?php echo get_phrase('edit');?></span></a> 
+                            <a onclick="showAjaxModal('<?php echo base_url();?>modal/popup/modal_routine/<?php echo $row2['class_routine_id'];?>');" href="javascript:void(0);"><i class="os-icon  picons-thin-icon-thin-0001_compose_write_pencil_new"></i><span><?php echo get_phrase('edit');?></span></a>
                           </li>
                           <li>
                             <a onClick="return confirm('<?php echo get_phrase('confirm_delete');?>')" href="<?php echo base_url();?>admin/class_routine/delete/<?php echo $row2['class_routine_id'];?>"><i class="os-icon picons-thin-icon-thin-0056_bin_trash_recycle_delete_garbage_empty"></i><span><?php echo get_phrase('delete');?></span></a>
@@ -123,20 +131,20 @@
                     </div>
                   </div>
                   <?php echo $row2['time_start'].":".$row2['time_start_min']." " ."<b>".$row2['amstart']."</b>". ' - ' . $row2['time_end'].":".$row2['time_end_min']." "."<b>".$row2['amend']."</b>";?>
-                    <br><b><?php echo $this->crud_model->get_subject_name_by_id($row2['subject_id']);?></b><br><small><?php echo $this->db->get_where('teacher', array('teacher_id' => $teacher_id))->row()->first_name." ".$this->db->get_where('teacher', array('teacher_id' => $teacher_id))->row()->last_name;?></small><br> <br> 
+                    <br><b><?php echo $this->crud_model->get_subject_name_by_id($row2['subject_id']);?></b><br><small><?php echo $this->db->get_where('teacher', array('teacher_id' => $teacher_id))->row()->first_name." ".$this->db->get_where('teacher', array('teacher_id' => $teacher_id))->row()->last_name;?></small><br> <br>
                 </td>
               <?php endforeach;?>
               </table>
             </tr>
-          <?php endfor;?>  
+          <?php endfor;?>
           </table>
           </div>
           <button class="btn btn-rounded btn-primary pull-right" onclick="printDiv('print_area<?php echo $row['section_id'];?>')" ><?php echo get_phrase('print');?></button><br><br><br>
-        </div>  
+        </div>
       </div>
       <?php endforeach;?>
       <?php endif;?>
-    </div>      
+    </div>
   </div>
 </div>
 <div class="display-type"></div>
@@ -194,23 +202,23 @@
                                 <select name="day" required="">
                                     <option value=""><?php echo get_phrase('select');?></option>
                                     <?php
-                                    $days = $this->db->get_where('academic_settings', array('type' => 'routine'))->row()->description; 
+                                    $days = $this->db->get_where('academic_settings', array('type' => 'routine'))->row()->description;
                                     if($days == 1):?>
-                                        <option value="Sunday"><?php echo get_phrase('sunday');?></option>
+                                        <option value="Saturday"><?php echo get_phrase('saturday');?></option>
                                     <?php endif;?>
+                                    <option value="Sunday"><?php echo get_phrase('sunday');?></option>
                                     <option value="Monday"><?php echo get_phrase('monday');?></option>
                                     <option value="Tuesday"><?php echo get_phrase('tuesday');?></option>
                                     <option value="Wednesday"><?php echo get_phrase('wednesday');?></option>
                                     <option value="Thursday"><?php echo get_phrase('thursday');?></option>
-                                    <option value="Friday"><?php echo get_phrase('friday');?></option>
                                     <?php if($days == 1):?>
-                                        <option value="Saturday"><?php echo get_phrase('saturday');?></option>
+                                        <option value="Friday"><?php echo get_phrase('friday');?></option>
                                     <?php endif;?>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-sm-12"><legend><span style="font-size:15px;"><?php echo get_phrase('start');?></span></legend></div>
                         <div class="col col-lg-4 col-md-4 col-sm-12 col-12">
                             <div class="form-group label-floating is-select">
@@ -291,7 +299,7 @@
               <div class="form-buttons-w text-right">
                 <center><button class="btn btn-rounded btn-success btn-lg" type="submit"><?php echo get_phrase('add');?></button></center>
               </div>
-            <?php echo form_close();?>        
+            <?php echo form_close();?>
         </div>
       </div>
     </div>
@@ -299,7 +307,7 @@
 </div>
 
 <script type="text/javascript">
-    function get_class_sections(class_id) 
+    function get_class_sections(class_id)
     {
         $.ajax({
             url: '<?php echo base_url();?>admin/get_class_section/' + class_id ,
@@ -322,7 +330,7 @@
     }
 </script>
 <script>
- function printDiv(nombreDiv) 
+ function printDiv(nombreDiv)
  {
      var contenido= document.getElementById(nombreDiv).innerHTML;
      var contenidoOriginal= document.body.innerHTML;
@@ -330,4 +338,4 @@
      window.print();
      document.body.innerHTML = contenidoOriginal;
 }
-</script> 
+</script>

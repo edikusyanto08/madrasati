@@ -1,4 +1,4 @@
-<?php $running_year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description; 
+<?php $running_year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description;
   $class_id = $this->db->get_where('enroll', array('student_id' => $this->session->userdata('login_user_id'), 'year' => $running_year))->row()->class_id;
   $section_id = $this->db->get_where('enroll' , array('student_id' => $this->session->userdata('login_user_id'),'class_id' => $class_id,'year' => $running_year))->row()->section_id;
 ?>
@@ -23,7 +23,7 @@
                           </div>
                         </div>
                         <div class="profile-section" style="background-color: #fff;">
-                          <div class="control-block-button">                                    
+                          <div class="control-block-button">
                           </div>
                         </div>
                       </div>
@@ -32,7 +32,7 @@
             <div class="os-tabs-w">
       <div class="os-tabs-controls">
         <ul class="navs navs-tabs upper">
-          <?php 
+          <?php
             $n = 1;
             $children_of_parent = $this->db->get_where('student' , array('parent_id' => $this->session->userdata('parent_id')))->result_array();
             foreach ($children_of_parent as $row): ?>
@@ -46,7 +46,7 @@
         </div>
         <br>
         <div class="tab-content">
-            <?php 
+            <?php
           $n = 1;
           $children_of_parent = $this->db->get_where('student' , array('parent_id' => $this->session->userdata('parent_id')))->result_array();
                 foreach ($children_of_parent as $row2):
@@ -71,7 +71,7 @@
                   </tr>
                       </thead>
                       <tbody>
-                       <?php $count = 1; 
+                       <?php $count = 1;
         $book = $this->db->get_where('book', array('class_id' => $class_id))->result_array();
       foreach($book as $row):?>
       <tr>
@@ -93,7 +93,13 @@
           <div class="status-pill green" data-title="<?php echo get_phrase('available');?>" data-toggle="tooltip"></div>
         <?php endif;?>
         </td>
-        <td><a class="btn btn-rounded btn-sm btn-success" style="color:white"><?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?><?php echo $row['price'];?></a></td>
+        <td>
+        <?php if($row['price'] == 0):?>
+          <a class="btn btn-rounded btn-sm btn-success" style="color:white"><?php echo get_phrase('free');?></a>
+        <?php else:?>
+          <a class="btn btn-rounded btn-sm btn-success" style="color:white"><?php echo $this->db->get_where('settings', array('type' => 'currency'))->row()->description;?>&nbsp<?php echo $row['price'];?></a>
+        <?php endif;?>
+        </td>
         <td style="color:grey">
         <?php if($row['type'] == 'virtual' && $row['file_name'] != ""):?>
           <a class="btn btn-rounded btn-sm btn-primary" style="color:white" href="<?php echo base_url();?>uploads/library/<?php echo $row['file_name'];?>"><i class="picons-thin-icon-thin-0042_attachment"></i> <?php echo get_phrase('download');?></a>
@@ -110,7 +116,7 @@
               </div>
       </div>
       <?php endforeach;?>
-    </div>      
+    </div>
   </div>
 </div>
 <div class="display-type"></div>

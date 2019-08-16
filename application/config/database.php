@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
-$query_builder = TRUE; 
+$query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'dbhostname', 
-	'username' => 'dbusername',
-	'password' => 'dbpassword',
-	'database' => 'dbname',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => 'pedestrianism98marguerites',
+	'database' => 'moonlight_madrasati',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

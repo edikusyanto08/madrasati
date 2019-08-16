@@ -10,7 +10,7 @@
 		    <div class="element-wrapper">
                 <h6 class="element-header">
                   <?php echo get_phrase('teacher_reports');?>
-                  <div style="margin-top:auto;text-align:right;"><a href="#" data-target="#addroutine" data-toggle="modal" class="btn btn-control btn-grey-lighter btn-purple"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
+                  <div style="margin-top:auto;float:left;"><a href="#" data-target="#addroutine" data-toggle="modal" class="btn btn-control btn-grey-lighter btn-purple"><i class="picons-thin-icon-thin-0001_compose_write_pencil_new"></i><div class="ripple-container"></div></a></div>
                 </h6>
                 <div class="element-box-tp">
                   <div class="table-responsive">
@@ -56,7 +56,7 @@
 					</td>
 					<td class="row-actions">
 						<a class="btn btn-rounded btn-sm btn-primary" style="color:white" href="<?php echo base_url();?>student/view_report/<?php echo $row['report_code'];?>"><i class="picons-thin-icon-thin-0043_eye_visibility_show_visible"></i> <?php echo get_phrase('view');?></</a>
-					</td>	
+					</td>
                         </tr>
                         <?php endforeach;?>
                       </tbody>
@@ -72,8 +72,8 @@
      </div>
      </div>
 	 </div>
-	 
-	 
+
+
 	 <div class="modal fade" id="addroutine" tabindex="-1" role="dialog" aria-labelledby="addroutine" aria-hidden="true">
   <div class="modal-dialog window-popup edit-my-poll-popup" role="document">
     <div class="modal-content">
@@ -99,7 +99,7 @@
                             <div class="select">
                                 <select name="teacher_id" required="">
                                     	<option value=""><?php echo get_phrase('select');?></option>
-					  <?php 
+					  <?php
                         $teachers = $this->db->get('teacher')->result_array();
                         foreach($teachers as $row): ?>
                         <option value="<?php echo $row['teacher_id'];?>"><?php echo $this->crud_model->get_name('teacher', $row['teacher_id']);?></option>
@@ -137,10 +137,9 @@
                     <div class="form-buttons-w text-right">
                         <center><button class="btn btn-rounded btn-success" type="submit"><?php echo get_phrase('save');?></button></center>
                     </div>
-                <?php echo form_close();?>        
+                <?php echo form_close();?>
             </div>
         </div>
         </div>
     </div>
 </div>
-

@@ -26,14 +26,14 @@
                           </div>
                         </div>
                         <div class="profile-section" style="background-color: #fff;">
-                          <div class="control-block-button">                                    
+                          <div class="control-block-button">
                           </div>
                         </div>
                       </div>
                             <div class="aec-full-message-w">
                                 <div class="aec-full-message">
                                     <div class="container-fluid" style="background-color: #f2f4f8;"><br>
-                                      <div class="col-sm- 12">     
+                                      <div class="col-sm- 12">
                                         <div class="row">
                                         <?php if($this->db->get_where('account_role', array('type' => 'admins'))->row()->permissions == 1 || $admin_type == 1):?>
                                         <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -64,7 +64,7 @@
                                       <?php endif;?>
                                       <?php if($this->db->get_where('account_role', array('type' => 'teachers'))->row()->permissions == 1 || $admin_type == 1):?>
                                       <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                          <div class="ui-block" data-mh="friend-groups-item">        
+                                          <div class="ui-block" data-mh="friend-groups-item">
                                             <div class="friend-item friend-groups">
                                                 <div class="friend-item-content">
                                                   <div class="friend-avatar">
@@ -75,17 +75,17 @@
                                                         <a href="<?php echo base_url();?>admin/teachers/" class="h5 author-name"><?php echo get_phrase('teachers');?></a>
                                                         <div class="country"><?php echo $this->db->count_all_results('teacher');?> <?php echo get_phrase('teachers');?></div>
                                                       </div>
-                                                  </div>        
+                                                  </div>
                                                 </div>
-                                            </div>        
+                                            </div>
                                           </div>
                                       </div>
                                       <?php endif;?>
                                       <?php if($this->db->get_where('account_role', array('type' => 'students'))->row()->permissions == 1 || $admin_type == 1):?>
                                       <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                          <div class="ui-block" data-mh="friend-groups-item">                
+                                          <div class="ui-block" data-mh="friend-groups-item">
                                             <div class="friend-item friend-groups">
-                                                <div class="friend-item-content">        
+                                                <div class="friend-item-content">
                                                   <div class="friend-avatar">
                                                       <div class="author-thumb">
                                                         <img src="<?php echo base_url();?>uploads/icons/students.svg" width="110px" style="background-color:#fff;padding:15px; border-radius:0px;">
@@ -96,15 +96,15 @@
                                                       </div>
                                                   </div>
                                                 </div>
-                                            </div>        
+                                            </div>
                                           </div>
                                       </div>
                                       <?php endif;?>
                                       <?php if($this->db->get_where('account_role', array('type' => 'parents'))->row()->permissions == 1 || $admin_type == 1):?>
                                       <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                          <div class="ui-block" data-mh="friend-groups-item">        
-                                            <div class="friend-item friend-groups">        
-                                                <div class="friend-item-content">        
+                                          <div class="ui-block" data-mh="friend-groups-item">
+                                            <div class="friend-item friend-groups">
+                                                <div class="friend-item-content">
                                                   <div class="friend-avatar">
                                                       <div class="author-thumb">
                                                         <img src="<?php echo base_url();?>uploads/icons/parents.svg" width="110px" style="background-color:#fff;padding:15px; border-radius:0px;">
@@ -121,9 +121,9 @@
                                       <?php endif;?>
                                       <?php if($this->db->get_where('account_role', array('type' => 'accountants'))->row()->permissions == 1 || $admin_type == 1):?>
                                       <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                          <div class="ui-block" data-mh="friend-groups-item">        
-                                            <div class="friend-item friend-groups">        
-                                                <div class="friend-item-content">        
+                                          <div class="ui-block" data-mh="friend-groups-item">
+                                            <div class="friend-item friend-groups">
+                                                <div class="friend-item-content">
                                                   <div class="friend-avatar">
                                                       <div class="author-thumb">
                                                         <img src="<?php echo base_url();?>uploads/icons/accountant.svg" width="110px" style="background-color:#fff;padding:15px; border-radius:0px;">
@@ -141,9 +141,9 @@
                                       <?php endif;?>
                                       <?php if($this->db->get_where('account_role', array('type' => 'librarians'))->row()->permissions == 1 || $admin_type == 1):?>
                                       <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                          <div class="ui-block" data-mh="friend-groups-item">        
-                                            <div class="friend-item friend-groups">        
-                                                <div class="friend-item-content">        
+                                          <div class="ui-block" data-mh="friend-groups-item">
+                                            <div class="friend-item friend-groups">
+                                                <div class="friend-item-content">
                                                   <div class="friend-avatar">
                                                       <div class="author-thumb">
                                                         <img src="<?php echo base_url();?>uploads/icons/librarian.svg" width="110px" style="background-color:#fff;padding:15px; border-radius:0px;">
@@ -153,7 +153,7 @@
                                                         <div class="country"><?php echo $this->db->count_all_results('librarian');?> <?php echo get_phrase('librarians');?></div>
                                                       </div>
                                                   </div>
-                                                   
+
                                                 </div>
                                             </div>
                                           </div>
@@ -161,9 +161,9 @@
                                       <?php endif;?>
                                       <?php if($this->db->get_where('settings', array('type' => 'register'))->row()->description == 1):?>
                                       <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                          <div class="ui-block" data-mh="friend-groups-item">        
-                                            <div class="friend-item friend-groups">        
-                                                <div class="friend-item-content">        
+                                          <div class="ui-block" data-mh="friend-groups-item">
+                                            <div class="friend-item friend-groups">
+                                                <div class="friend-item-content">
                                                   <div class="friend-avatar">
                                                       <div class="author-thumb">
                                                         <img src="<?php echo base_url();?>uploads/icons/pendings.svg" width="110px" style="background-color:#fff;padding:15px; border-radius:0px;">
@@ -182,10 +182,10 @@
                                   </div>
                                   </div>
                               </div>
-                          </div>      
-                      </div>  
+                          </div>
+                      </div>
                     </div>
-                </div>  
+                </div>
               </div>
                       </div>
                   </div>
@@ -428,7 +428,7 @@
 
 
 <script type="text/javascript">
-    function get_class_sections(class_id) 
+    function get_class_sections(class_id)
     {
         $.ajax({
             url: '<?php echo base_url();?>admin/get_class_section/' + class_id ,
@@ -438,7 +438,7 @@
             }
         });
     }
-    function get_class_sections2(class_id) 
+    function get_class_sections2(class_id)
     {
         $.ajax({
             url: '<?php echo base_url();?>admin/get_class_section/' + class_id ,

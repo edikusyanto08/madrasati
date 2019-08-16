@@ -1,16 +1,16 @@
-<?php $student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array(); 
+<?php $student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array();
     foreach($student_info as $row): ?>
-<div class="content-w"> 
+<div class="content-w">
   <?php include 'fancy.php';?>
   <div class="header-spacer"></div>
   <div class="content-i">
     <div class="content-box">
       <div class="conty">
-           <div class="back" style="margin-top:-20px;margin-bottom:10px">		
-	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/students/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>	
+           <div class="back" style="margin-top:-20px;margin-bottom:10px">
+	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/students/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>
 	            </div>
           <div class="row">
-              <main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">                
+              <main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
                   <div id="newsfeed-items-grid">
                 <div class="ui-block paddingtel">
                       <div class="user-profile">
@@ -36,7 +36,7 @@
                                   </div>
                                   <div class="value-pair">
                                       <div><?php echo get_phrase('member_since');?>:</div>
-                                      <div class="value"><?php echo $row['since'];?>.</div>
+                                      <div class="value" style="direction: ltr;"><?php echo $row['since'];?>.</div>
                                   </div>
                                   <div class="value-pair">
                                       <div><?php echo get_phrase('roll');?>:</div>
@@ -48,43 +48,43 @@
                         </div>
                         </div>
                         <div class="ui-block">
-                    <div class="ui-block-title">    
+                    <div class="ui-block-title">
                       <h6 class="title"><?php echo get_phrase('update_information');?></h6>
                     </div>
                     <?php echo form_open(base_url() . 'admin/student/do_update/'.$row['student_id'] , array('enctype' => 'multipart/form-data'));?>
                     <div class="ui-block-content">
-                      <div class="row">                 
+                      <div class="row">
                         <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating">
                             <label class="control-label"><?php echo get_phrase('first_name');?></label>
                             <input class="form-control" name="first_name" value="<?php echo $row['first_name'];?>" type="text" required="">
                           </div>
-                          </div>              
+                          </div>
                         <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating">
                             <label class="control-label"><?php echo get_phrase('last_name');?></label>
                             <input class="form-control" name="last_name" value="<?php echo $row['last_name'];?>" type="text" required="">
-                          </div>                
-                          </div>                
-                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">                
+                          </div>
+                          </div>
+                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group date-time-picker label-floating">
                             <label class="control-label"><?php echo get_phrase('birthday');?></label>
                             <input type='text' class="datepicker-here" data-position="top left" data-language='en' name="datetimepicker" data-multiple-dates-separator="/" value="<?php echo $row['birthday'];?>"/>
                           </div>
                           </div>
-                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">                
+                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating">
                             <label class="control-label"><?php echo get_phrase('email');?></label>
                             <input class="form-control" name="email" value="<?php echo $row['email'];?>" type="email">
                           </div>
-                          </div>              
-                        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">                
+                          </div>
+                        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating">
                             <label class="control-label"><?php echo get_phrase('phone');?></label>
                             <input class="form-control" name="phone" value="<?php echo $row['phone'];?>" type="text">
                           </div>
-                          </div>  
-                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">              
+                          </div>
+                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="form-group label-floating is-select">
                                           <label class="control-label"><?php echo get_phrase('gender');?></label>
                                           <div class="select">
@@ -94,9 +94,9 @@
                                                   <option value="F" <?php if($row['sex'] == 'F') echo "selected";?>><?php echo get_phrase('female');?></option>
                                               </select>
                                           </div>
-                                      </div>  
-                                    </div> 
-                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">              
+                                      </div>
+                                    </div>
+                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="form-group label-floating is-select">
                                           <label class="control-label"><?php echo get_phrase('status');?></label>
                                           <div class="select">
@@ -106,33 +106,33 @@
                                                   <option value="0" <?php if($row['student_session'] == 0) echo "selected";?>><?php echo get_phrase('inactive');?></option>
                                               </select>
                                           </div>
-                                      </div>  
-                                    </div>             
-                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">                
+                                      </div>
+                                    </div>
+                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating">
                             <label class="control-label"><?php echo get_phrase('username');?></label>
                             <input class="form-control" name="username" value="<?php echo $row['username'];?>" autocomplete="false" required="" type="text">
                           </div>
-                          </div>                   
-                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">                
+                          </div>
+                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating">
                             <label class="control-label"><?php echo get_phrase('update_password');?></label>
                             <input class="form-control" name="password" type="password">
                           </div>
-                          </div>    
-                        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">                
+                          </div>
+                        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating">
                             <label class="control-label"><?php echo get_phrase('address');?></label>
                             <input class="form-control" name="address" value="<?php echo $row['address'];?>" type="text">
                           </div>
-                        </div>              
+                        </div>
                         <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating">
                             <label class="control-label"><?php echo get_phrase('roll');?></label>
                             <input class="form-control" name="roll" value="<?php echo $this->db->get_where('enroll', array('student_id' => $row['student_id']))->row()->roll;?>" type="text">
                           </div>
-                          </div>                
-                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">                
+                          </div>
+                          <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating is-select">
                                           <label class="control-label"><?php echo get_phrase('class');?></label>
                                           <div class="select">
@@ -145,9 +145,9 @@
                                         <?php endforeach;?>
                                               </select>
                                           </div>
-                                      </div>                
+                                      </div>
                                     </div>
-                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">              
+                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                                       <div class="form-group label-floating is-select">
                                         <label class="control-label"><?php echo get_phrase('section');?></label>
                                           <div class="select">
@@ -161,15 +161,15 @@
                                               <?php endforeach;?>
                                               </select>
                                           </div>
-                                      </div>  
+                                      </div>
                                     </div>
-                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">                
+                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating is-select">
                                           <label class="control-label"><?php echo get_phrase('parent');?></label>
                                           <div class="select">
                                               <select name="parent_id">
                                                   <option value=""><?php echo get_phrase('select');?></option>
-                                                  <?php 
+                                                  <?php
                                                     $parents = $this->db->get('parent')->result_array();
                                                     foreach($parents as $parent):
                                                   ?>
@@ -177,15 +177,29 @@
                                                   <?php endforeach;?>
                                               </select>
                                           </div>
-                                      </div>                
-                                    </div>    
-                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">                
+                                      </div>
+                                      <div class="form-group label-floating is-select">
+                                                      <label class="control-label"><?php echo get_phrase('parent2');?></label>
+                                                      <div class="select">
+                                                          <select name="parent2_id">
+                                                              <option value=""><?php echo get_phrase('select');?></option>
+                                                              <?php
+                                                                $parents = $this->db->get('parent')->result_array();
+                                                                foreach($parents as $parent):
+                                                              ?>
+                                                                <option value="<?php echo $parent['parent_id'];?>" <?php if($parent['parent_id'] == $row['parent2_id']) echo "selected";?>><?php echo $this->crud_model->get_name('parent', $parent['parent_id']);?></option>
+                                                              <?php endforeach;?>
+                                                          </select>
+                                                      </div>
+                                                  </div>
+                                    </div>
+                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                                       <div class="form-group label-floating is-select">
                                           <label class="control-label"><?php echo get_phrase('transport');?></label>
                                           <div class="select">
                                               <select name="transport_id">
                                                   <option value=""><?php echo get_phrase('select');?></option>
-                                                  <?php 
+                                                  <?php
                                           $bus = $this->db->get('transport')->result_array();
                                             foreach($bus as $trans):
                                         ?>
@@ -193,15 +207,15 @@
                                         <?php endforeach;?>
                                               </select>
                                           </div>
-                                      </div>              
+                                      </div>
                                     </div>
-                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">              
+                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                           <div class="form-group label-floating is-select">
                                           <label class="control-label"><?php echo get_phrase('classroom');?></label>
                                           <div class="select">
                                               <select name="dormitory_id">
                                                   <option value=""><?php echo get_phrase('select');?></option>
-                                                  <?php 
+                                                  <?php
                                             $classroom = $this->db->get('dormitory')->result_array();
                                             foreach($classroom as $room):
                                         ?>
@@ -222,8 +236,8 @@
                                 <label class="control-label"><?php echo get_phrase('allergies');?></label>
                                 <input class="form-control" name="allergies" type="text" value="<?php echo $row['allergies'];?>">
                               </div>
-                              </div>               
-                              <div class="col col-lg-6 col-md-6 col-sm-12 col-12">          
+                              </div>
+                              <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                               <div class="form-group label-floating">
                                 <label class="control-label"><?php echo get_phrase('personal_doctor');?></label>
                                 <input class="form-control" name="doctor" type="text" value="<?php echo $row['doctor'];?>">
@@ -235,40 +249,40 @@
                                 <input class="form-control" name="doctor_phone" type="text" value="<?php echo $row['doctor_phone'];?>">
                               </div>
                               </div>
-                              <div class="col col-lg-6 col-md-6 col-sm-12 col-12">          
+                              <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                               <div class="form-group label-floating">
                                 <label class="control-label"><?php echo get_phrase('authorized_person');?></label>
                                 <input class="form-control" name="auth_person" type="text" value="<?php echo $row['authorized_person'];?>">
                               </div>
-                              </div>               
+                              </div>
                               <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                               <div class="form-group label-floating">
                                 <label class="control-label"><?php echo get_phrase('authorized_person_phone');?></label>
                                 <input class="form-control" name="auth_phone" type="text" value="<?php echo $row['authorized_phone'];?>">
                               </div>
-                              </div>               
+                              </div>
                               <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                               <div class="form-group label-floating">
                                 <label class="control-label"><?php echo get_phrase('notes');?>:</label>
                                 <textarea class="form-control" name="note"><?php echo $row['note'];?></textarea>
                               </div>
-                            </div>  
-                        <div class="col col-lg-12 col-md-12 col-sm-12 col-12">                
+                            </div>
+                        <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                           <div class="form-group">
                             <label class="control-label"><?php echo get_phrase('photo');?></label>
                             <input class="form-control" placeholder="" name="userfile" type="file">
                           </div>
                           </div>
-                          <div class="col col-lg-12 col-md-12 col-sm-12 col-12">                
+                          <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                               <div class="form-buttons-w">
                                                     <button class="btn btn-rounded btn-success" type="submit"> <?php echo get_phrase('update');?></button>
                                                 </div>
                                             </div>
                       </div>
                     </div>
-                
+
                   </div>
-                     
+
                   </div>
               </main>
               <div class="col col-xl-3 order-xl-1 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12 ">

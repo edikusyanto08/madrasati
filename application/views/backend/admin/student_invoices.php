@@ -1,18 +1,18 @@
-<?php 
+<?php
     $running_year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description;
-$student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array(); 
+$student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array();
     foreach($student_info as $row): ?>
-<div class="content-w"> 
+<div class="content-w">
   <?php include 'fancy.php';?>
   <div class="header-spacer"></div>
   <div class="content-i">
     <div class="content-box">
       <div class="conty">
-           <div class="back" style="margin-top:-20px;margin-bottom:10px">		
-	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/students/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>	
+           <div class="back" style="margin-top:-20px;margin-bottom:10px">
+	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/students/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>
 	            </div>
           <div class="row">
-              <main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">                
+              <main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
                   <div id="newsfeed-items-grid">
                 <div class="ui-block paddingtel">
                       <div class="user-profile">
@@ -48,7 +48,7 @@ $student_info = $this->db->get_where('student' , array('student_id' => $student_
                           </div>
                         </div>
                         <div class="ui-block">
-                    <div class="ui-block-title">    
+                    <div class="ui-block-title">
                       <h6 class="title"><?php echo get_phrase('payments_and_invoices');?></h6>
                     </div>
                     <div class="ui-block-content">
@@ -81,7 +81,7 @@ $student_info = $this->db->get_where('student' , array('student_id' => $student_
                                 <img alt="" src="<?php echo $this->crud_model->get_image_url('student', $row2['student_id']);?>" style="height: 25px;"><span> <?php echo $this->crud_model->get_name('student', $row2['student_id']);?></span>
                             </td>
                             <td><?php echo $row2['title'];?></td>
-                            <td><a class="badge badge-primary" href="javascript:void(0);"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?><?php echo $row2['amount'];?></a></td>
+                            <td><a class="badge badge-primary" href="javascript:void(0);"><?php echo $this->db->get_where('settings' , array('type'=>'currency'))->row()->description; ?> <?php echo $row2['amount'];?></a></td>
                         </tr>
                         <?php endforeach;?>
                       </tbody>

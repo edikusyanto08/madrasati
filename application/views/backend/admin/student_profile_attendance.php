@@ -1,21 +1,21 @@
 <?php $min = $this->db->get_where('academic_settings' , array('type' =>'minium_mark'))->row()->description;?>
-<?php 
+<?php
     $running_year = $this->db->get_where('settings' , array('type' => 'running_year'))->row()->description;
-$student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array(); 
+$student_info = $this->db->get_where('student' , array('student_id' => $student_id))->result_array();
     foreach($student_info as $row): ?>
     <?php $class_id = $this->db->get_where('enroll', array('student_id' => $row['student_id']))->row()-class_id;?>
     <?php $section_id = $this->db->get_where('enroll', array('student_id' => $row['student_id']))->row()-section_id;?>
-<div class="content-w"> 
+<div class="content-w">
   <?php include 'fancy.php';?>
   <div class="header-spacer"></div>
   <div class="content-i">
     <div class="content-box">
       <div class="conty">
-           <div class="back" style="margin-top:-20px;margin-bottom:10px">		
-	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/students/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>	
+           <div class="back" style="margin-top:-20px;margin-bottom:10px">
+	                <a title="<?php echo get_phrase('return');?>" href="<?php echo base_url();?>admin/students/"><i class="picons-thin-icon-thin-0131_arrow_back_undo"></i></a>
 	            </div>
           <div class="row">
-              <main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">                
+              <main class="col col-xl-9 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
                   <div id="newsfeed-items-grid">
                 <div class="ui-block paddingtel">
                       <div class="user-profile">
@@ -41,7 +41,7 @@ $student_info = $this->db->get_where('student' , array('student_id' => $student_
                                   </div>
                                   <div class="value-pair">
                                       <div><?php echo get_phrase('member_since');?>:</div>
-                                      <div class="value"><?php echo $row['since'];?>.</div>
+                                      <div class="value" style="direction: ltr;"><?php echo $row['since'];?>.</div>
                                   </div>
                                   <div class="value-pair">
                                       <div><?php echo get_phrase('roll');?>:</div>
@@ -50,17 +50,17 @@ $student_info = $this->db->get_where('student' , array('student_id' => $student_
                               </div>
                           </div>
                         </div>
-                        
+
                       </div>
                       <br>
-                        <div class="container">         
-			            <?php echo form_open(base_url() . 'admin/student_attendance_report_selector/', array('class' => 'form m-b')); ?>   
-					        <div class="row">                
+                        <div class="container">
+			            <?php echo form_open(base_url() . 'admin/student_attendance_report_selector/', array('class' => 'form m-b')); ?>
+					        <div class="row">
 							<input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
 							<input type="hidden" name="student_id" value="<?php echo $row['student_id']; ?>">
     						<input type="hidden" name="section_id" value="<?php echo $section_id; ?>">
     						<input type="hidden" name="operation" value="selection">
-						<div class="col-sm-5">    
+						<div class="col-sm-5">
 						 <div class="form-group label-floating is-select">
                                                                         <label class="control-label"><?php echo get_phrase('month');?></label>
                                                                         <div class="select">
@@ -86,7 +86,7 @@ $student_info = $this->db->get_where('student' , array('student_id' => $student_
                                                                             </select>
                                                                         </div>
                                                                     </div>
-						</div>       
+						</div>
 						 <div class="col-md-5">
 						      <div class="form-group label-floating is-select">
                                                                         <label class="control-label"><?php echo get_phrase('year');?></label>
@@ -98,39 +98,39 @@ $student_info = $this->db->get_where('student' , array('student_id' => $student_
                                                                             </select>
                                                                         </div>
                                                                     </div>
-              </div>         
-						<div class="col-sm-2">                 
-							<div class="form-group"> 
+              </div>
+						<div class="col-sm-2">
+							<div class="form-group">
 								<button class="btn btn-rounded btn-success btn-upper" style="margin-top:20px"><span><?php echo get_phrase('generate');?></span></button>
-							</div>                
-						</div>             
-					</div>            
-				<?php echo form_close();?>   
-		                </div> 
+							</div>
+						</div>
+					</div>
+				<?php echo form_close();?>
+		                </div>
                       </div>
 				 <?php if ($class_id != '' && $section_id != '' && $month != '' && $year != ''): ?>
-                <div class="element-box lined-primary shadow">              
-                    <div class="row">                
-                        <div class="col-7 text-left">                  
+                <div class="element-box lined-primary shadow">
+                    <div class="row">
+                        <div class="col-7 text-left">
                             <h5 class="form-header"><?php echo get_phrase('attendance_report');?></h5>
-                        </div>                
-                    </div>              
-                <div class="table-responsive">                
+                        </div>
+                    </div>
+                <div class="table-responsive">
                     <table class="table table-sm table-lightborder">
-                        <thead>                    
+                        <thead>
                             <tr class="text-center" height="50px">
-                                <th class="text-left"> <?php echo get_phrase('student');?></th>  
+                                <th class="text-left"> <?php echo get_phrase('student');?></th>
                                 <?php
                                     $days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
                                     for ($i = 1; $i <= $days; $i++) {
-                                ?>                    
-                                    <th class="text-center"> <?php echo $i; ?> </th>                    
+                                ?>
+                                    <th class="text-center"> <?php echo $i; ?> </th>
                                     <?php } ?>
-                                </tr> 
-                            </thead>                  
-                            <tbody>                    
-                                <tr>                      
-                                    <td><img alt="" src="<?php echo $this->crud_model->get_image_url('student', $student_id);?>" width="20px" style="border-radius:20px;margin-right:5px;"> <?php echo $this->crud_model->get_name('student', $student_id); ?> </td>    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img alt="" src="<?php echo $this->crud_model->get_image_url('student', $student_id);?>" width="20px" style="border-radius:20px;margin-right:5px;"> <?php echo $this->crud_model->get_name('student', $student_id); ?> </td>
                             <?php
                                 $status = 0;
                                 for ($i = 1; $i <= $days; $i++) {
@@ -148,14 +148,14 @@ $student_info = $this->db->get_where('student' , array('student_id' => $student_
                                     <?php  } if($status == 3)  { ?>
                                         <div class="status-pilli yellow" data-title="<?php echo get_phrase('late');?>" data-toggle="tooltip"></div>
                                     <?php  } $status =0;?>
-                                    </td>                      
+                                    </td>
                                  <?php } ?>
-                                </tr>                                      
-                            </tbody>                
-                        </table>             
-                    </div>           
-                </div>  
-                <?php endif;?>       
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <?php endif;?>
                   </div>
               </main>
               <div class="col col-xl-3 order-xl-1 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12 ">

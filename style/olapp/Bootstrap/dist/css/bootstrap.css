@@ -23,7 +23,7 @@ ul {
 
 body,
 caption {
-    text-align: left
+    text-align: right;
 }
 
 dd,
@@ -473,7 +473,7 @@ small {
     font-size: 80%;
     font-weight: 400
 }
- 
+
 
 .mark,
 mark {
@@ -1618,7 +1618,7 @@ pre code {
         margin-left: 91.66667%
     }
 }
- 
+
 .collapsing,
 .modal,
 .modal-open,
@@ -2082,7 +2082,7 @@ input[type=reset].btn-block,
 input[type=submit].btn-block {
     width: 100%
 }
- 
+
 
 .btn:focus,
 .btn:hover {
@@ -2112,9 +2112,9 @@ a.btn.disabled,
 fieldset:disabled a.btn {
     pointer-events: none
 }
-  
-  
-    
+
+
+
 .dropdown-toggle::after,
 .dropup .dropdown-toggle::after {
     width: 0;
@@ -2157,7 +2157,7 @@ fieldset:disabled a.btn {
     margin: .125rem 0 0;
     font-size: .812rem;
     color: #888da8;
-    text-align: left;
+    text-align: right;
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, .15);
     border-radius: .25rem
@@ -3579,8 +3579,8 @@ fieldset:disabled a.btn {
     border-bottom-right-radius: .2rem
 }
 
- 
- 
+
+
 
 .badge-pill {
     padding-right: .6em;
